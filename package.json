@@ -1,0 +1,47 @@
+{
+  "name": "react-pico-8",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/react-pico-8.min.js",
+  "src": "src/pico-8.js",
+  "files": [
+    "dist",
+    "License.txt",
+    "package.json",
+    "README.md"
+  ],
+  "scripts": {
+    "start": "yarn watch",
+    "build": "rollup -c",
+    "watch": "rollup -c --watch",
+    "test": "echo \"No tests \" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/woofers/react-pico-8.git"
+  },
+  "keywords": [
+    "react",
+    "reactjs",
+    "component"
+  ],
+  "author": "Jaxson Van Doorn <jaxson.vandoorn@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/woofers/react-pico-8/issues"
+  },
+  "homepage": "https://github.com/woofers/react-pico-8#readme",
+  "peerDependencies": {
+    "react": "^0.13.0 || ^0.14.0 || ^15.0.0 || ^16.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "rollup": "^1.8.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-uglify": "^6.0.2"
+  },
+  "dependencies": {}
+}
