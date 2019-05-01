@@ -2,95 +2,43 @@
   <head>
     <meta name="viewport" content="width=device-width">
     <script type="text/javascript" src="pico.js"></script>
-    <style type="text/css">
-    .p8_menu_button{
-        opacity:0.3;
-        padding:4px;
-        display:table;
-        width:24px;
-        height:24px;
-        float:right;
-    }
-
-    @media screen and (min-width:512px) {
-        .p8_menu_button{
-            width:24px; margin-left:12px; margin-bottom:8px;
-        }
-    }
-    .p8_menu_button:hover{
-        opacity:1.0;
-        cursor:pointer;
-    }
-
-    canvas{
-        image-rendering: optimizeSpeed;
-        image-rendering: -moz-crisp-edges;
-        image-rendering: -webkit-optimize-contrast;
-        image-rendering: optimize-contrast;
-        image-rendering: pixelated;
-        -ms-interpolation-mode: nearest-neighbor;
-        border: 0px;
-        cursor: none;
-    }
-
-
-    .p8_start_button{
-        cursor:pointer;
-        background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAAE5ElEQVR4Ae1dsY7jNhClhdTGZgFvugDXeHdxxQFXXKOzAdUHGfkFZ7/gIBXsCHVu9DX+AAP2uTkgqQOnSJ90+YBDirlwBUmkKVkSSekNHoxZLjWi5g3faxljM8Aq0AIQAAIAEAACABDgHARP+35FwBC2A5MOCQIBAAgAAQAI8A6CpzdWCBjCdmCQIUEgAAABIADwhYAo3BA0ufyzml8ta7J5NAhYq1ivluvVUvBElUdhfDjvq7mqYBTG8vFiQTejw7O1JIAxdjxdZJ7t8mJOfwqeHE+Xaq4hVZai4i5zYJ8A6pecCNlc6trhvKc9gifFXA67ZriyXV4s7mDoJ6lptPEAwdNiXvotij6tFHNKqmUFT0ularfBhL83q5TLX9m4YgdLuaZsEdPw4Ul8JAgAQAAIAJwnYDLG+4qAIYYKwZPadYgAJAgEACAABABsxthM8LSTPYYIBvF//0LwZLB3YeohQa5KDQjADYAh935v0GirMhUM5vUIVWDS4QEgYKyYL55BwES7b2jgozXh+eKpdl3wpHXNW55VhTcERGHc9JE3D9+6PUO2y/v4ND/0JAo3jcTHB/X3TYLevV32pAMWowEBvnw5qX/n+tNTo7y5AYfz/v7ukS7ByMIPDyAbePf20UT9fTEAzzyg6AT6sKg/Y74BVy+BHP+rF8UluHQawVMTAlT99U5/vJQgVcwXTz7qj38E3N89GjrB1D3gqp7cYgMlFZLi45sB9ClB2S6vXRc86eoSzBdPhOJ/33/4qHrw9ldDgl45uL97fPPwjUCLn18+McZ+//ql6UyMU4L6k6Yo3JDUbLcvhCjcELbbl/niGRLURprM47fLn4yxX+L4559+JKxXy/Xq1ZZLouSs/ti5AbcMPs3+fPEsZ790A8ifCbTTkcOr770/rZfdFzyViMJNcaekxE0anCCgkQfI1ksCZIv1j/hCww9uymIUxrXS//nl01UXOZz32+2vlL//8PH76tcvjDH2sPzr7+Dff/6AB5iOvFyn2W9RsOQW8kJMV4Kutv524TIhwxldcqPvA7+0yoQ9z3PPl2yR0RMNIKAZGYOLEvpeh9aeDwI6FIchEDDE/yF4YuW9EBy7QAtAAAgAQACbMTYTPJ3IYWTxwIrvexHZLh/gLSBg6BA8Ka1Ahe0oGyW4AfYDU2n3KqAXljFGefXohPAAXQie9P2KqRPQrsWticl2OUy4A03rVOvQaMtmg4ZadfVpecAApgoT9i8gKXaB7oOAaQMtmAIBrl5/+wis+v8IQ/Ck0X7LBDQ97vhiIAKyXY7LoQoIsW8mHIUbAuWq9VKOXndpwuvVcr1akoJLHT+c98X1Uq6X+yiMCdV1+Wu4X7OuebVhHf3+QT3geLqoFqXiZ7tc5sfTRc9BkTAZh/Ne8IR+Tfbr16uLURjT3FTfW1tHtd9kyDomYL1aXt1TeyD9pJTsOgrjbJcLntTaeO0Q6NdrCT6eLtX6pWEqfpR5/YFugEooqgelCVKdsvbD6INrH1ENgclwyPMcT5fqkUrfUqXNvFFXpamNdQieFn8J+rz0W1tT7le9q7quP5vhem0pzXlqS2m+TnVUxmYtCRgHtH3p/XFCewlCtPC/Lj0AUfXndtHj/YK+GQAEWOUDEmQ/MJ52FQndsQy0AASAAAAEgAAABIAAAASAAGBQ/Ad+omxjVTKyigAAABB0RVh0TG9kZVBORwAyMDExMDIyMeNZtsEAAAAASUVORK5CYII=");
-        -repeat center;
-        -webkit-background-size:cover; -moz-background-size:cover; -o-background-size:cover; background-size:cover;
-    }
-
-    .button_gfx{
-        stroke-width:2;
-        stroke: #ffffff;
-        stroke-opacity:0.4;
-        fill-opacity:0.2;
-        fill:black;
-    }
-
-    .button_gfx_icon{
-        stroke-width:3;
-        stroke: #909090;
-        stroke-opacity:0.7;
-        fill:none;
-    }
-    </style>
+    <link rel="stylesheet" href="style.css">
   </head>
   <!-- size limit -->
-  <body style="padding:0px; margin:0px; background-color:#222; color:#ccc">
+  <body>
     <!-- the itch app messes with the first found canvas // from @ultrabrite's shell-->
-    <canvas id="dummy4itchapp" style="position:absolute;visibility:hidden;width:0;height:0;"></canvas>
-    <div style="max-width:800px; max-height:800px; margin:auto"> <!-- optional div to limit size -->
+    <canvas id="dummy4itchapp"></canvas>
+    <!-- optional div to limit size -->
+    <div id="p8_widget">
       <!-- p8_frame -->
-      <div id="p8_frame" style="display:flex; width:100%; max-width:100vw; height:100vw; max-height:100vh; margin:auto;">
-        <div id="menu_buttons_touch" style="position:absolute; width:100%; z-index:10; left:0px;">
-          <div class="p8_menu_button" id="p8b_full"  style="float:left;margin-left:10px" onClick="p8_request_fullscreen();"></div>
-          <div class="p8_menu_button" id="p8b_sound" style="float:left;margin-left:10px" onClick="p8_create_audio_context(); Module.pico8ToggleSound();"></div>
-          <div class="p8_menu_button" id="p8b_close" style="float:right; margin-right:10px" onClick="p8_close_cart()"></div>
+      <div id="p8_frame">
+        <div id="menu_buttons_touch" class="touch_controls_top">
+          <div class="p8_menu_button left" id="p8b_full"  onClick="p8_request_fullscreen();"></div>
+          <div class="p8_menu_button left" id="p8b_sound" onClick="p8_create_audio_context(); Module.pico8ToggleSound();"></div>
+          <div class="p8_menu_button right" id="p8b_close" onClick="p8_close_cart()"></div>
         </div>
         <!-- p8_container -->
-        <div id="p8_container" style="margin:auto; display:table;" onclick="p8_create_audio_context(); p8_run_cart();">
-          <div id="p8_start_button" class="p8_start_button" style="width:100%; height:100%; display:flex;">
-            <img width=80 height=80 style="margin:auto;" src="images/start.png"/>
+        <div id="p8_container" onclick="p8_create_audio_context(); p8_run_cart();">
+          <div id="p8_start_button" class="p8_start_button">
+            <img src="images/start.png"/>
           </div>
         <!--p8_playarea -->
-        <div id="p8_playarea" style="display:none; margin:auto;">
-          <div id="touch_controls_background" style=" pointer-events:none; display:none; background-color:#000; position:fixed; top:0px; left:0px; border:0; width:100vw; height:100vh">&nbsp</div>
-            <div style="display:flex; position:relative">
+        <div id="p8_playarea">
+          <div id="touch_controls_background">&nbsp</div>
+            <div id="touch_controls_center">
               <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault();" ></canvas>
-              <div id="menu_buttons" style="width:0px; height:164px">
-                <div class="p8_menu_button" style="position:relative; left:44px" id="p8b_controls" onClick="Module.pico8ToggleControlMenu();"></div>
-                <div class="p8_menu_button" style="position:relative; left:44px" id="p8b_pause" onClick="Module.pico8TogglePaused();"></div>
-                <div class="p8_menu_button" style="position:relative; left:44px" id="p8b_sound" onClick="p8_create_audio_context(); Module.pico8ToggleSound();"></div>
-                <div class="p8_menu_button" style="position:relative; left:44px" id="p8b_full" onClick="p8_request_fullscreen();"></div>
+              <div id="menu_buttons">
+                <div class="side_buttons p8_menu_button" id="p8b_controls" onClick="Module.pico8ToggleControlMenu();"></div>
+                <div class="side_buttons p8_menu_button" id="p8b_pause" onClick="Module.pico8TogglePaused();"></div>
+                <div class="side_buttons p8_menu_button" id="p8b_sound" onClick="p8_create_audio_context(); Module.pico8ToggleSound();"></div>
+                <div class="side_buttons p8_menu_button" id="p8b_full" onClick="p8_request_fullscreen();"></div>
               </div>
             </div>
             <!-- display after first layout update -->
             <!-- touch_controls_gfx -->
-            <div id="touch_controls_gfx" style=" pointer-events:none; display:table; position:fixed; top:0px; left:0px; border:0; width:100vw; height:100vh">
-              <img src="" id="controls_right_panel" style="position:absolute; opacity:0.5;"/>
-              <img src="" id="controls_left_panel" style="position:absolute;  opacity:0.5;"/>
+            <div id="touch_controls_gfx">
+              <img src="" class="controls" id="controls_right_panel"/>
+              <img src="" class="controls" id="controls_left_panel"/>
             </div>
         </div>
       </div>

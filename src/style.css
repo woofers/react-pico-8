@@ -1,0 +1,161 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  background-color: #222;
+  color: #ccc;
+}
+
+#menu_buttons {
+  width: 0px;
+  height: 164px
+}
+
+#dummy4itchapp {
+  position: absolute;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+#p8_widget {
+  max-width: 800px;
+  max-height: 800px;
+  margin: auto;
+}
+
+#p8_frame {
+  display: flex;
+  width: 100%;
+  max-width: 100vw;
+  height: 100vw;
+  max-height: 100vh;
+}
+
+#p8_container {
+  margin: auto;
+}
+
+#p8_start_button {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+#p8_start_button img {
+  margin: auto;
+}
+
+#p8_playarea {
+  display: none;
+}
+
+#touch_controls_background {
+  pointer-events: none;
+  display: none;
+  background-color: #000;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  border: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.touch_controls_top {
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+  left: 0px;
+}
+
+#touch_controls_center {
+  display: flex;
+  position: relative;
+}
+
+.side_buttons {
+  position: relative;
+  left: 44px;
+}
+
+#touch_controls_gfx {
+  pointer-events: none;
+  display: table;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  border: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.controls {
+  position: absolute;
+  opacity: 0.5;
+}
+
+.right {
+  float: right !important;
+  margin-right: 10px;
+}
+
+.left {
+  float: left !important;
+  margin-left: 10px;
+}
+
+.p8_menu_button {
+  opacity: 0.3;
+  padding: 4px;
+  display: table;
+  width: 24px;
+  height: 24px;
+  float: right;
+}
+
+@media screen and (min-width: 512px) {
+  .p8_menu_button {
+    width: 24px;
+    margin-left: 12px;
+    margin-bottom: 8px;
+  }
+}
+.p8_menu_button:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+canvas {
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-contrast;
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor;
+  border: 0px;
+  cursor: none;
+}
+
+.p8_start_button {
+  cursor: pointer;
+  background: #000;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.button_gfx {
+  stroke-width: 2;
+  stroke: #ffffff;
+  stroke-opacity: 0.4;
+  fill-opacity: 0.2;
+  fill: #000;
+}
+
+.button_gfx_icon {
+  stroke-width: 3;
+  stroke: #909090;
+  stroke-opacity: 0.7;
+  fill: none;
+}
