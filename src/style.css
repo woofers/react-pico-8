@@ -158,3 +158,29 @@ canvas {
   stroke-opacity: 0.7;
   fill: none;
 }
+
+.old_buttons {
+  float: left;
+  width: 100%;
+  height: 16px;
+  display: inline-block;
+  margin: 1px;
+  padding: 4px;
+  text-align: center;
+  color: #fff;
+  background-color: #777;
+  font-family: verdana;
+  font-size: 9pt;
+  cursor: pointer;
+  cursor: hand;
+  text-decoration: none;
+}
+
+.old_buttons a {
+  color:#fff;
+}
+
+.old_buttons:link,
+.old_buttons:hover {
+  background-color: #aaa;
+}
