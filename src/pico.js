@@ -281,15 +281,20 @@ function p8_update_layout() {
 
     document.getElementById("touch_controls_gfx").style.display = "table";
     document.getElementById("touch_controls_background").style.display = "table";
+    document.getElementById("p8_container").style.marginLeft = "auto";
+    document.getElementById("p8_container").style.marginRight = "auto";
+    document.getElementById("p8_container").style.marginBottom = "auto";
+    document.getElementById("p8_widget").style.margin = "auto";
   } else {
     document.getElementById("touch_controls_gfx").style.display = "none";
     document.getElementById("touch_controls_background").style.display = "none";
+    document.getElementById("p8_container").style.margin = "0";
+    document.getElementById("p8_widget").style.margin = "0";
   }
 
   if (!p8_is_running) {
     p8_playarea.style.display = "none";
     p8_container.style.display = "flex";
-    p8_container.style.marginTop = "auto";
 
     el = document.getElementById("p8_start_button");
     if (el) el.style.display = "flex";
