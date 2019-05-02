@@ -9,11 +9,11 @@ const OldButton = p => {
   }
   const Link = ({ children }) => {
     if (isFunction()) return children
-    return (<a target="_new" href={p.onClick}>{children}</a>)
+    return (<a className="old_buttons" target="_new" href={p.onClick}>{children}</a>)
   }
   return (
     <Link>
-      <div className="old_buttons" onClick={onClick()}>
+      <div className={isFunction() ? 'old_buttons' : null} onClick={onClick()}>
         <img width="12px" height="12px" src={`images/old/${p.button.toLowerCase()}.png`} alt={p.alt || p.button} />
         {' '}{p.button}
       </div>
@@ -65,6 +65,14 @@ const Pico8 = p => {
             <div className="p8_menu_button left" id="p8b_sound" onClick={sound}></div>
             <div className="p8_menu_button right" id="p8b_close" onClick={close}></div>
           </div>
+        <div style={{ display: 'flex', justifyContent: 'center'}}>
+          <OldButton button="Reset" onClick={reset} />
+          <OldButton button="Pause" onClick={pause} />
+          <OldButton button="Fullscreen" alt="Toggle Fullscreen" onClick={fullscreen} />
+          <OldButton button="Sound" onClick={sound} />
+          <OldButton button="Carts" alt="More Carts" onClick="http://www.lexaloffle.com/bbs/?cat=7&sub=2" />
+          <OldButton button="Controls" onClick={context} />
+        </div>
           <div id="p8_container" onClick={start}>
             <div id="p8_start_button" className="p8_start_button">
               <img src="images/start.png"/>
@@ -84,16 +92,10 @@ const Pico8 = p => {
                   <img src="" className="controls" id="controls_right_panel"/>
                   <img src="" className="controls" id="controls_left_panel"/>
                 </div>
+              </div>
             </div>
           </div>
         </div>
-        <OldButton button="Reset" onClick={reset} />
-        <OldButton button="Pause" onClick={pause} />
-        <OldButton button="Fullscreen" alt="Toggle Fullscreen" onClick={fullscreen} />
-        <OldButton button="Sound" onClick={sound} />
-        <OldButton button="Carts" alt="More Carts" onClick="http://www.lexaloffle.com/bbs/?cat=7&sub=2" />
-        <OldButton button="Controls" onClick={context} />
-      </div>
     </div>
   )
 }

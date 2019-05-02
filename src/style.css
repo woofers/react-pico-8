@@ -161,7 +161,8 @@ canvas {
 
 .old_buttons {
   float: left;
-  width: 92px;
+  width: 100%;
+  height: 16px;
   display: inline-block;
   margin: 1px;
   padding: 4px;
@@ -172,10 +173,10 @@ canvas {
   font-size: 9pt;
   cursor: pointer;
   cursor: hand;
+  text-decoration: none;
 }
 
 .old_buttons a {
-  text-decoration: none;
   color:#fff;
 }
 
