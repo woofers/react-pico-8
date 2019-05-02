@@ -235,7 +235,7 @@ function p8_update_layout() {
 
   // set menu buttons position to bottom right
   el = document.getElementById("menu_buttons");
-  el.style.marginTop = csize - el.offsetHeight;
+  el.style.marginTop = document.getElementById("p8_container").offsetHeight - 164;
 
   if (p8_touch_detected && p8_is_running) {
     // turn off pointer events to prevent double-tap zoom etc (works on Android)
