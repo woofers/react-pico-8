@@ -1,5 +1,6 @@
 import { uglify } from 'rollup-plugin-uglify'
 import babel from 'rollup-plugin-babel'
+import postcss from 'rollup-plugin-postcss'
 const json = require('./package.json')
 const dependencies = [
   ...Object.keys(json.dependencies),
@@ -8,6 +9,9 @@ const dependencies = [
 
 const config = {
   plugins: [
+    postcss({
+      plugins: []
+    }),
     babel({
       exclude: "node_modules/**"
     }),
