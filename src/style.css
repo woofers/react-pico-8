@@ -1,12 +1,11 @@
 body {
   padding: 0px;
-  background-color: #222;
-  color: #ccc;
 }
 
 #menu_buttons {
   width: 0px;
   height: 164px
+  color: #ccc;
 }
 
 #dummy4itchapp {
@@ -20,6 +19,7 @@ body {
   max-width: 800px;
   max-height: 800px;
   margin: auto;
+  background: #222;
 }
 
 #p8_frame {
