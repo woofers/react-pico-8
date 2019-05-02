@@ -1,6 +1,26 @@
 import React, { useEffect } from 'react'
 import './style.css'
 
+const OldButton = p => {
+  const isFunction = () => typeof p.onClick === 'function'
+  const onClick = () => {
+    if (!isFunction()) return null
+    return p.onClick
+  }
+  const Link = ({ children }) => {
+    if (isFunction()) return children
+    return (<a target="_new" href={p.onClick}>{children}</a>)
+  }
+  return (
+    <Link>
+      <div className="old_buttons" onClick={onClick()}>
+        <img width="12px" height="12px" src={`images/old/${p.button.toLowerCase()}.png`} alt={p.alt || p.button} />
+        {' '}{p.button}
+      </div>
+    </Link>
+ )
+}
+
 const Pico8 = p => {
   const makeScript = (src, onload) => {
     const script = document.createElement('script')
@@ -32,6 +52,7 @@ const Pico8 = p => {
   }
   const fullscreen = () => window.p8_request_fullscreen()
   const pause = () => window.Module.pico8TogglePaused()
+  const reset = () => window.Module.pico8Reset()
   const context = () => window.Module.pico8ToggleControlMenu()
   const close = () => window.p8_close_cart()
   return (
@@ -66,6 +87,12 @@ const Pico8 = p => {
             </div>
           </div>
         </div>
+        <OldButton button="Reset" onClick={reset} />
+        <OldButton button="Pause" onClick={pause} />
+        <OldButton button="Fullscreen" alt="Toggle Fullscreen" onClick={fullscreen} />
+        <OldButton button="Sound" onClick={sound} />
+        <OldButton button="Carts" alt="More Carts" onClick="http://www.lexaloffle.com/bbs/?cat=7&sub=2" />
+        <OldButton button="Controls" onClick={context} />
       </div>
     </div>
   )
