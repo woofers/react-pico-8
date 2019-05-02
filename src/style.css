@@ -3,9 +3,11 @@ body {
 }
 
 #menu_buttons {
-  width: 0px;
   height: 164px
   color: #ccc;
+  position: absolute;
+  bottom: 0;
+  right: -42px;
 }
 
 #dummy4itchapp {
@@ -74,7 +76,6 @@ body {
 
 .side_buttons {
   position: relative;
-  left: 44px;
 }
 
 #touch_controls_gfx {
@@ -109,7 +110,6 @@ body {
   display: table;
   width: 24px;
   height: 24px;
-  float: right;
 }
 
 @media screen and (min-width: 512px) {

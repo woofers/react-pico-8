@@ -233,10 +233,6 @@ function p8_update_layout() {
   p8_container.style.width = csize;
   p8_container.style.height = csize;
 
-  // set menu buttons position to bottom right
-  el = document.getElementById("menu_buttons");
-  el.style.marginTop = document.getElementById("p8_container").offsetHeight - 164;
-
   if (p8_touch_detected && p8_is_running) {
     // turn off pointer events to prevent double-tap zoom etc (works on Android)
     // don't want this for desktop because breaks mouse input & click-to-focus when using codo_textarea
