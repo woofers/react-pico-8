@@ -340,7 +340,7 @@ function p8_close_cart() {
 var p8_is_running = false;
 var p8_script = null;
 var Module = null;
-function p8_run_cart() {
+function p8_run_cart(src) {
   if (p8_is_running) return;
   p8_is_running = true;
 
@@ -384,7 +384,7 @@ function p8_run_cart() {
     if (el) el.style.display = "table";
   };
   e.type = "application/javascript";
-  e.src = "index.js";
+  e.src = src;
   e.id = "e_script";
 
   document.body.appendChild(e); // load and run
