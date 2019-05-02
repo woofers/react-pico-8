@@ -22,26 +22,26 @@
           <div id="p8_start_button" class="p8_start_button">
             <img src="images/start.png"/>
           </div>
-        <!--p8_playarea -->
-        <div id="p8_playarea">
-          <div id="touch_controls_background">&nbsp</div>
-            <div id="touch_controls_center">
-              <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault();" ></canvas>
-              <div id="menu_buttons">
-                <div class="side_buttons p8_menu_button" id="p8b_controls" onClick="Module.pico8ToggleControlMenu();"></div>
-                <div class="side_buttons p8_menu_button" id="p8b_pause" onClick="Module.pico8TogglePaused();"></div>
-                <div class="side_buttons p8_menu_button" id="p8b_sound" onClick="p8_create_audio_context(); Module.pico8ToggleSound();"></div>
-                <div class="side_buttons p8_menu_button" id="p8b_full" onClick="p8_request_fullscreen();"></div>
+          <!--p8_playarea -->
+          <div id="p8_playarea">
+            <div id="touch_controls_background">&nbsp</div>
+              <div id="touch_controls_center">
+                <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault();" ></canvas>
+                <div id="menu_buttons">
+                  <div class="side_buttons p8_menu_button" id="p8b_controls" onClick="Module.pico8ToggleControlMenu();"></div>
+                  <div class="side_buttons p8_menu_button" id="p8b_pause" onClick="Module.pico8TogglePaused();"></div>
+                  <div class="side_buttons p8_menu_button" id="p8b_sound" onClick="p8_create_audio_context(); Module.pico8ToggleSound();"></div>
+                  <div class="side_buttons p8_menu_button" id="p8b_full" onClick="p8_request_fullscreen();"></div>
+                </div>
               </div>
-            </div>
-            <!-- display after first layout update -->
-            <!-- touch_controls_gfx -->
-            <div id="touch_controls_gfx">
-              <img src="" class="controls" id="controls_right_panel"/>
-              <img src="" class="controls" id="controls_left_panel"/>
-            </div>
+              <!-- display after first layout update -->
+              <!-- touch_controls_gfx -->
+              <div id="touch_controls_gfx">
+                <img src="" class="controls" id="controls_right_panel"/>
+                <img src="" class="controls" id="controls_left_panel"/>
+              </div>
+          </div>
         </div>
-      </div>
       </div>
     </div>
     <script type="text/javascript" src="start.js"></script>
