@@ -217,21 +217,21 @@ function p8_update_layout() {
     p8_is_running &&
     document.body.clientWidth < document.body.clientHeight
   )
-    p8_playarea.style.marginTop = 32;
+    p8_playarea.style.marginTop = '32px';
   else if (p8_touch_detected && p8_is_running)
     // landscape: slightly above vertical center (only relevant for iPad / highres devices)
-    p8_playarea.style.marginTop = (document.body.clientHeight - csize) / 4;
+    p8_playarea.style.marginTop = ((document.body.clientHeight - csize) / 4)+'px';
   else p8_playarea.style.marginTop = "";
 
-  canvas.style.width = csize;
-  canvas.style.height = csize;
+  canvas.style.width = csize+'px';
+  canvas.style.height = csize+'px';
 
   // to do: this should just happen from css layout
-  canvas.style.marginLeft = margin_left;
-  canvas.style.marginTop = margin_top;
+  canvas.style.marginLeft = margin_left+'px';
+  canvas.style.marginTop = margin_top+'px';
 
-  p8_container.style.width = csize;
-  p8_container.style.height = csize;
+  p8_container.style.width = csize+'px';
+  p8_container.style.height = csize+'px';
 
   if (p8_touch_detected && p8_is_running) {
     // turn off pointer events to prevent double-tap zoom etc (works on Android)
@@ -255,19 +255,19 @@ function p8_update_layout() {
     if (r > 40) r = 40;
 
     el = document.getElementById("controls_right_panel");
-    el.style.left = w - r * 6;
-    el.style.top = h - r * 7;
-    el.style.width = r * 6;
-    el.style.height = r * 7;
+    el.style.left = (w - r * 6)+'px';
+    el.style.top = (h - r * 7)+'px';
+    el.style.width = (r * 6)+'px';
+    el.style.height = (r * 7)+'px';
     if (el.getAttribute("src") != p8_gfx("controls_right_panel"))
       // optimisation: avoid reload? (browser should handle though)
       el.setAttribute("src", p8_gfx("controls_right_panel"));
 
     el = document.getElementById("controls_left_panel");
-    el.style.left = 0;
-    el.style.top = h - r * 6;
-    el.style.width = r * 6;
-    el.style.height = r * 6;
+    el.style.left = '0px';
+    el.style.top = (h - r * 6)+'px';
+    el.style.width = (r * 6)+'px';
+    el.style.height = (r * 6)+'px';
     if (el.getAttribute("src") != p8_gfx("controls_left_panel"))
       // optimisation: avoid reload? (browser should handle though)
       el.setAttribute("src", p8_gfx("controls_left_panel"));
