@@ -3,7 +3,7 @@ body {
 }
 
 #menu_buttons {
-  height: 164px
+  height: 164px;
   color: #ccc;
   position: absolute;
   bottom: 0;
