@@ -95,12 +95,12 @@ body {
 
 .right {
   float: right !important;
-  margin-right: 10px;
+  margin: 0 10px 0 0;
 }
 
 .left {
   float: left !important;
-  margin-left: 10px;
+  margin: 0 0 0 10px;
 }
 
 .p8_menu_button {
