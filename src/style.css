@@ -171,8 +171,3 @@ canvas {
   width: 100%;
   height: auto;
 }
-
-canvas {
-  width: 85%;
-  max-width: 768px;
-}

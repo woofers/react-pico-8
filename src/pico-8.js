@@ -1,5 +1,7 @@
+/** @jsx jsx */
 import React, { useRef, useState, useEffect } from 'react'
 import './style.css'
+import { jsx, css } from '@emotion/core'
 
 const OldButton = p => {
   const isFunction = () => typeof p.onClick === 'function'
@@ -31,6 +33,28 @@ const Button = p => {
     <div className={`${p.className} side_buttons p8_menu_button`} id={p.id} onClick={p.onClick}>
       <img src={`images/${image}.png`} style={{ pointerEvents: 'none' }} />
     </div>
+  )
+}
+
+const Canvas = p => {
+  const fullscreen = css`
+    width: 100%;
+    max-width: 768px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 15%);
+  `
+  const normal = css`
+    width: 85%;
+    max-width: 768px;
+  `
+  return (
+    <canvas css={p.fullscreen ? fullscreen : normal}
+            className="emscripten"
+            id="canvas"
+            onContextMenu={(e) => e.preventDefault()}
+    />
   )
 }
 
@@ -134,7 +158,7 @@ const Pico8 = p => {
             <div id="p8_playarea">
               <div id="touch_controls_background">&nbsp</div>
               <div class="game">
-                <canvas className="emscripten" id="canvas" onContextMenu={(e) => e.preventDefault()} />
+                <Canvas fullscreen={isFullscreen} />
                 <div id="menu_buttons">
                   <Button id="p8b_controls" onClick={context} hidden={isMobile || isFullscreen} />
                   <Button id="p8b_pause" on={isPaused} onClick={pause} hidden={isMobile || isFullscreen} />
