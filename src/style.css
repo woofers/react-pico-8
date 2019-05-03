@@ -3,11 +3,7 @@ body {
 }
 
 #menu_buttons {
-  height: 164px;
   color: #ccc;
-  position: absolute;
-  bottom: 0;
-  right: -42px;
 }
 
 #dummy4itchapp {
@@ -22,14 +18,6 @@ body {
   max-height: 800px;
   margin: auto;
   background: #222;
-}
-
-#p8_frame {
-  display: flex;
-  width: 100%;
-  max-width: 100vw;
-  height: 100vw;
-  max-height: 100vh;
 }
 
 #p8_container {
@@ -74,10 +62,6 @@ body {
   position: relative;
 }
 
-.side_buttons {
-  position: relative;
-}
-
 #touch_controls_gfx {
   pointer-events: none;
   display: table;
@@ -112,13 +96,6 @@ body {
   height: 24px;
 }
 
-@media screen and (min-width: 512px) {
-  .p8_menu_button {
-    width: 24px;
-    margin-left: 12px;
-    margin-bottom: 8px;
-  }
-}
 .p8_menu_button:hover {
   opacity: 1;
   cursor: pointer;
@@ -183,4 +160,14 @@ canvas {
 .old_buttons:link,
 .old_buttons:hover {
   background-color: #aaa;
+}
+
+canvas {
+ outline: 0px;
+ position: absolute;
+ left: 0px;
+ top: 0px;
+ width: 100%;
+ height: auto;
+ max-width: 768px;
 }

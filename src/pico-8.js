@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import './style.css'
 
 const OldButton = p => {
@@ -105,19 +105,13 @@ const Pico8 = p => {
             <Button className="p8_menu_button right" id="p8b_close" onClick={close} hidden={!isMobile} />
           </div>
           <div id="p8_container" onClick={start}>
+            <canvas className="emscripten" id="canvas" onContextMenu={(e) => e.preventDefault()} ></canvas>
             <div id="p8_start_button" className="p8_start_button">
               <img src="images/start.png"/>
             </div>
             <div id="p8_playarea">
               <div id="touch_controls_background">&nbsp</div>
                 <div id="touch_controls_center">
-                  <canvas className="emscripten" id="canvas" onContextMenu={(e) => e.preventDefault()} ></canvas>
-                  <div id="menu_buttons">
-                    <Button id="p8b_controls" onClick={context} hidden={isMobile} />
-                    <Button id="p8b_pause" on={isPaused} onClick={pause} hidden={isMobile} />
-                    <Button id="p8b_sound" on={!isMuted} onClick={sound} hidden={isMobile} />
-                    <Button id="p8b_full" onClick={fullscreen} hidden={isMobile} />
-                  </div>
                 </div>
                 <div id="touch_controls_gfx">
                   <img src="" className="controls" id="controls_right_panel"/>
@@ -125,6 +119,12 @@ const Pico8 = p => {
                 </div>
               </div>
             </div>
+          </div>
+          <div id="menu_buttons">
+            <Button id="p8b_controls" onClick={context} hidden={isMobile} />
+            <Button id="p8b_pause" on={isPaused} onClick={pause} hidden={isMobile} />
+            <Button id="p8b_sound" on={!isMuted} onClick={sound} hidden={isMobile} />
+            <Button id="p8b_full" onClick={fullscreen} hidden={isMobile} />
           </div>
         </div>
     </div>
