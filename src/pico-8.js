@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useRef, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { jsx, css } from '@emotion/core'
 const importAll = (r) => {
   let images = {};
