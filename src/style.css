@@ -4,6 +4,8 @@ body {
 
 #menu_buttons {
   color: #ccc;
+  display: inline-block;
+  margin-left: 12.5px;
 }
 
 #dummy4itchapp {
@@ -17,7 +19,6 @@ body {
   max-width: 800px;
   max-height: 800px;
   margin: auto;
-  background: #222;
 }
 
 #p8_container {
@@ -162,12 +163,16 @@ canvas {
   background-color: #aaa;
 }
 
+.game {
+  outline: 0px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: auto;
+}
+
 canvas {
- outline: 0px;
- position: absolute;
- left: 0px;
- top: 0px;
- width: 100%;
- height: auto;
- max-width: 768px;
+  width: 100%;
+  max-width: 768px;
 }

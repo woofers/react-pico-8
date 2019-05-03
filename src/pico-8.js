@@ -105,7 +105,15 @@ const Pico8 = p => {
             <Button className="p8_menu_button right" id="p8b_close" onClick={close} hidden={!isMobile} />
           </div>
           <div id="p8_container" onClick={start}>
-            <canvas className="emscripten" id="canvas" onContextMenu={(e) => e.preventDefault()} ></canvas>
+            <div class="game">
+              <canvas className="emscripten" id="canvas" onContextMenu={(e) => e.preventDefault()} />
+              <div id="menu_buttons">
+                <Button id="p8b_controls" onClick={context} hidden={isMobile} />
+                <Button id="p8b_pause" on={isPaused} onClick={pause} hidden={isMobile} />
+                <Button id="p8b_sound" on={!isMuted} onClick={sound} hidden={isMobile} />
+                <Button id="p8b_full" onClick={fullscreen} hidden={isMobile} />
+              </div>
+            </div>
             <div id="p8_start_button" className="p8_start_button">
               <img src="images/start.png"/>
             </div>
@@ -119,12 +127,6 @@ const Pico8 = p => {
                 </div>
               </div>
             </div>
-          </div>
-          <div id="menu_buttons">
-            <Button id="p8b_controls" onClick={context} hidden={isMobile} />
-            <Button id="p8b_pause" on={isPaused} onClick={pause} hidden={isMobile} />
-            <Button id="p8b_sound" on={!isMuted} onClick={sound} hidden={isMobile} />
-            <Button id="p8b_full" onClick={fullscreen} hidden={isMobile} />
           </div>
         </div>
     </div>
