@@ -159,12 +159,24 @@ const Pico8 = p => {
               <div id="touch_controls_background">&nbsp</div>
               <div class="game">
                 <Canvas fullscreen={isFullscreen} />
-                <div id="menu_buttons">
-                  <Button id="p8b_controls" onClick={context} hidden={isMobile || isFullscreen} />
-                  <Button id="p8b_pause" on={isPaused} onClick={pause} hidden={isMobile || isFullscreen} />
-                  <Button id="p8b_sound" on={!isMuted} onClick={sound} hidden={isMobile || isFullscreen} />
-                  <Button id="p8b_full" onClick={fullscreen} hidden={isMobile || isFullscreen} />
-                </div>
+                  { !(isMobile || isFullscreen) ?
+                    ( !p.legacyButtons ?
+                      <div id="menu_buttons">
+                        <Button id="p8b_controls" onClick={context} />
+                        <Button id="p8b_pause" on={isPaused} onClick={pause} />
+                        <Button id="p8b_sound" on={!isMuted} onClick={sound} />
+                        <Button id="p8b_full" onClick={fullscreen} />
+                      </div>
+                      :
+                      <div style={{ display: 'flex', justifyContent: 'center', width: '85%', maxWidth: '768px'}}>
+                        <OldButton button="Reset" onClick={reset} />
+                        <OldButton button="Pause" onClick={pause} />
+                        <OldButton button="Fullscreen" alt="Toggle Fullscreen" onClick={fullscreen} />
+                        <OldButton button="Sound" onClick={sound} />
+                        <OldButton button="Carts" alt="More Carts" onClick="http://www.lexaloffle.com/bbs/?cat=7&sub=2" />
+                        <OldButton button="Controls" onClick={context} />
+                      </div>
+                    ) : null }
               </div>
                 <div id="touch_controls_center">
                 </div>
