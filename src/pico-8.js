@@ -8,6 +8,8 @@ const importAll = (r) => {
 }
 const images = importAll(require.context('./images', false, /\.(png|jpe?g|svg)$/));
 const old = importAll(require.context('./images/old', false, /\.(png|jpe?g|svg)$/));
+import pico from './pico.js'
+import startPico from './start.js'
 
 const OldButton = p => {
   const style = css`
@@ -132,10 +134,8 @@ const Pico8 = p => {
   const [isMounted, setMounted] = useState(false)
   const makeScript = (src, onload) => {
     const script = document.createElement('script')
-    script.src = src
-    script.onload = onload || (() => {})
-    script.async = true
-    document.body.appendChild(script)
+    script.textContent = src
+    document.head.appendChild(script)
   }
   const run = () => window.p8_run_cart(p.src)
   const start = () => {
@@ -161,7 +161,9 @@ const Pico8 = p => {
   useEffect(() => {
     if (isMounted) return
     setMounted(true)
-    makeScript('pico.js', () => makeScript('start.js', p.autoPlay ? autoStart : null))
+    makeScript(pico)
+    makeScript(startPico)
+    if (p.autoPlay) autoStart()
     window.addEventListener('touchstart', () => setMobile(true), { passive: true })
     const fullscreenChange = (e) => {
       setFullscreen(!isFullscreen)

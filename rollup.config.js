@@ -3,6 +3,7 @@ import babel from 'rollup-plugin-babel'
 import postcss from 'rollup-plugin-postcss'
 import image from 'rollup-plugin-image'
 import copy from 'rollup-plugin-copy'
+import { string } from "rollup-plugin-string";
 const json = require('./package.json')
 const dependencies = [
   ...Object.keys(json.dependencies),
@@ -12,6 +13,10 @@ const dependencies = [
 const config = {
   plugins: [
     image(),
+    string({
+      include: "**/*.js",
+      exclude: ["src/pico-8.js"]
+    }),
     babel({
       exclude: "node_modules/**"
     }),
