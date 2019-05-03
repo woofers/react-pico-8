@@ -38,6 +38,7 @@ const Pico8 = p => {
   const [isMuted, setMuted] = useState(true)
   const [isMobile, setMobile] = useState(false)
   const [isPaused, setPaused] = useState(true)
+  const [isFullscreen, setFullscreen] = useState(false)
   const [hasStarted, setStarted] = useState(false)
   const [isMounted, setMounted] = useState(false)
   const makeScript = (src, onload) => {
@@ -74,13 +75,35 @@ const Pico8 = p => {
     setMounted(true)
     makeScript('pico.js', () => makeScript('start.js', p.autoPlay ? autoStart : null))
     window.addEventListener('touchstart', () => setMobile(true), { passive: true })
+    const fullscreenChange = (e) => {
+      setFullscreen(!isFullscreen)
+      const events = [
+        document.webkitIsFullScreen,
+        document.mozFullScreen,
+        document.msFullscreenElement,
+        document.fullscreenElement
+      ]
+      for (const event of events) {
+        if (event === false) {
+          setFullscreen(false)
+          return
+        }
+      }
+    }
+    window.addEventListener('webkitfullscreenchange', fullscreenChange, false);
+    window.addEventListener('mozfullscreenchange', fullscreenChange, false);
+    window.addEventListener('fullscreenchange', fullscreenChange, false);
+    window.addEventListener('MSFullscreenChange', fullscreenChange, false);
   })
   const sound = () => {
     setMuted(!isMuted)
     window.p8_create_audio_context();
     window.Module.pico8ToggleSound();
   }
-  const fullscreen = () => window.p8_request_fullscreen()
+  const fullscreen = () => {
+    setFullscreen(true)
+    window.p8_request_fullscreen()
+  }
   const pause = () => {
     setPaused(!isPaused)
     window.Module.pico8TogglePaused()
@@ -105,20 +128,20 @@ const Pico8 = p => {
             <Button className="p8_menu_button right" id="p8b_close" onClick={close} hidden={!isMobile} />
           </div>
           <div id="p8_container" onClick={start}>
-            <div class="game">
-              <canvas className="emscripten" id="canvas" onContextMenu={(e) => e.preventDefault()} />
-              <div id="menu_buttons">
-                <Button id="p8b_controls" onClick={context} hidden={isMobile} />
-                <Button id="p8b_pause" on={isPaused} onClick={pause} hidden={isMobile} />
-                <Button id="p8b_sound" on={!isMuted} onClick={sound} hidden={isMobile} />
-                <Button id="p8b_full" onClick={fullscreen} hidden={isMobile} />
-              </div>
-            </div>
             <div id="p8_start_button" className="p8_start_button">
               <img src="images/start.png"/>
             </div>
             <div id="p8_playarea">
               <div id="touch_controls_background">&nbsp</div>
+              <div class="game">
+                <canvas className="emscripten" id="canvas" onContextMenu={(e) => e.preventDefault()} />
+                <div id="menu_buttons">
+                  <Button id="p8b_controls" onClick={context} hidden={isMobile || isFullscreen} />
+                  <Button id="p8b_pause" on={isPaused} onClick={pause} hidden={isMobile || isFullscreen} />
+                  <Button id="p8b_sound" on={!isMuted} onClick={sound} hidden={isMobile || isFullscreen} />
+                  <Button id="p8b_full" onClick={fullscreen} hidden={isMobile || isFullscreen} />
+                </div>
+              </div>
                 <div id="touch_controls_center">
                 </div>
                 <div id="touch_controls_gfx">
