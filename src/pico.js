@@ -1,3 +1,7 @@
+
+// The following code has been adapted to work with react-pico-8.
+// File generated from default PICO-8 web export.
+
 // Default shell for PICO-8 0.1.12
 
 // options
