@@ -1,6 +1,8 @@
 import { uglify } from 'rollup-plugin-uglify'
 import babel from 'rollup-plugin-babel'
 import postcss from 'rollup-plugin-postcss'
+import image from 'rollup-plugin-image'
+import copy from 'rollup-plugin-copy'
 const json = require('./package.json')
 const dependencies = [
   ...Object.keys(json.dependencies),
@@ -9,11 +11,13 @@ const dependencies = [
 
 const config = {
   plugins: [
-    postcss({
-      plugins: []
-    }),
+    image(),
     babel({
       exclude: "node_modules/**"
+    }),
+    copy({
+      targets: ['src/images'],
+      outputFolder: 'dist'
     }),
     uglify()
   ],

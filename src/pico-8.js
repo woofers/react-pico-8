@@ -1,6 +1,13 @@
 /** @jsx jsx */
 import React, { useRef, useState, useEffect } from 'react'
 import { jsx, css } from '@emotion/core'
+const importAll = (r) => {
+  let images = {};
+  r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+  return images;
+}
+const images = importAll(require.context('./images', false, /\.(png|jpe?g|svg)$/));
+const old = importAll(require.context('./images/old', false, /\.(png|jpe?g|svg)$/));
 
 const OldButton = p => {
   const style = css`
@@ -38,7 +45,7 @@ const OldButton = p => {
   return (
     <Link>
       <div css={isFunction() ? style : null} onClick={onClick()}>
-        <img width="12px" height="12px" src={`images/old/${p.button.toLowerCase()}.png`} alt={p.alt || p.button} />
+        <img width="12px" height="12px" src={old[`${p.button.toLowerCase()}.png`]} alt={p.alt || p.button} />
         {' '}{p.button}
       </div>
     </Link>
@@ -75,7 +82,7 @@ const Button = p => {
   else if (p.align === 'right') align = right
   return (
     <div css={[menu, align]} className="p8_menu_button" id={p.id} onClick={p.onClick}>
-      <img src={`images/${image}.png`} style={{ pointerEvents: 'none' }} />
+      <img src={images[`${image}.png`]} style={{ pointerEvents: 'none' }} />
     </div>
   )
 }
@@ -253,7 +260,7 @@ const Pico8 = p => {
       <canvas css={hide} />
       <div id="p8_container" onClick={start}>
         <div css={startButton} id="p8_start_button">
-          <img alt="" src="images/start.png"/>
+          <img alt="" src={images['start.png']}/>
         </div>
         <div id="p8_playarea">
           <div id="menu_buttons_touch" css={mobileHeader}>
