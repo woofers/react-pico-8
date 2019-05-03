@@ -140,7 +140,7 @@ canvas {
 .old_buttons {
   float: left;
   width: 100%;
-  height: 16px;
+  min-height: 16px;
   display: inline-block;
   margin: 1px;
   padding: 4px;
