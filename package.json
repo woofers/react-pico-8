@@ -44,5 +44,8 @@
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-uglify": "^6.0.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@emotion/core": "^10.0.10",
+    "emotion": "^10.0.9"
+  }
 }
