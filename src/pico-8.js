@@ -65,14 +65,6 @@ const Pico8 = p => {
             <div className="p8_menu_button left" id="p8b_sound" onClick={sound}></div>
             <div className="p8_menu_button right" id="p8b_close" onClick={close}></div>
           </div>
-        <div style={{ display: 'flex', justifyContent: 'center'}}>
-          <OldButton button="Reset" onClick={reset} />
-          <OldButton button="Pause" onClick={pause} />
-          <OldButton button="Fullscreen" alt="Toggle Fullscreen" onClick={fullscreen} />
-          <OldButton button="Sound" onClick={sound} />
-          <OldButton button="Carts" alt="More Carts" onClick="http://www.lexaloffle.com/bbs/?cat=7&sub=2" />
-          <OldButton button="Controls" onClick={context} />
-        </div>
           <div id="p8_container" onClick={start}>
             <div id="p8_start_button" className="p8_start_button">
               <img src="images/start.png"/>
