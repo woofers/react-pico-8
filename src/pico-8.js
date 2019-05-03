@@ -148,49 +148,38 @@ const Pico8 = p => {
   return (
     <div>
       <canvas id="dummy4itchapp"></canvas>
-      <div id="p8_widget">
-        <div id="p8_frame">
-          <div id="p8_container" onClick={start}>
-            <div id="p8_start_button" className="p8_start_button">
-              <img src="images/start.png"/>
-            </div>
-            <div id="p8_playarea">
-              <div id="touch_controls_background">&nbsp</div>
-              <div id="menu_buttons_touch" className="touch_controls_top">
-                <Button className="p8_menu_button left" id="p8b_sound" on={!isMuted} onClick={sound} hidden={!isMobile || !isFullscreen} />
-                <Button className="p8_menu_button right" id="p8b_close" onClick={close} hidden={!isMobile || !isFullscreen} />
-              </div>
-              <div class="game">
-                <Canvas fullscreen={(isMobile && isFullscreen) || isFullscreen} />
-                  { !(isMobile || isFullscreen) ?
-                    ( !p.legacyButtons ?
-                      <div id="menu_buttons">
-                        <Button id="p8b_controls" onClick={context} />
-                        <Button id="p8b_pause" on={isPaused} onClick={pause} />
-                        <Button id="p8b_sound" on={!isMuted} onClick={sound} />
-                        <Button id="p8b_full" onClick={fullscreen} />
-                      </div>
-                      :
-                      <div style={{ display: 'flex', justifyContent: 'center', width: '85%', maxWidth: '768px'}}>
-                        <OldButton button="Reset" onClick={reset} />
-                        <OldButton button="Pause" onClick={pause} />
-                        <OldButton button="Fullscreen" alt="Toggle Fullscreen" onClick={fullscreen} />
-                        <OldButton button="Sound" onClick={sound} />
-                        <OldButton button="Carts" alt="More Carts" onClick="http://www.lexaloffle.com/bbs/?cat=7&sub=2" />
-                        <OldButton button="Controls" onClick={context} />
-                      </div>
-                    ) : null }
-              </div>
-                <div id="touch_controls_center">
-                </div>
-                <div id="touch_controls_gfx">
-                  <img src="" className="controls" id="controls_right_panel"/>
-                  <img src="" className="controls" id="controls_left_panel"/>
-                </div>
-              </div>
-            </div>
+      <div id="p8_container" onClick={start}>
+        <div id="p8_start_button" className="p8_start_button">
+          <img src="images/start.png"/>
+        </div>
+        <div id="p8_playarea">
+          <div id="menu_buttons_touch" className="touch_controls_top">
+            <Button className="p8_menu_button left" id="p8b_sound" on={!isMuted} onClick={sound} hidden={!isMobile || !isFullscreen} />
+            <Button className="p8_menu_button right" id="p8b_close" onClick={close} hidden={!isMobile || !isFullscreen} />
+          </div>
+          <div class="game">
+            <Canvas fullscreen={(isMobile && isFullscreen) || isFullscreen} />
+              { !(isMobile || isFullscreen) ?
+                ( !p.legacyButtons ?
+                  <div id="menu_buttons">
+                    <Button id="p8b_controls" onClick={context} />
+                    <Button id="p8b_pause" on={isPaused} onClick={pause} />
+                    <Button id="p8b_sound" on={!isMuted} onClick={sound} />
+                    <Button id="p8b_full" onClick={fullscreen} />
+                  </div>
+                  :
+                  <div style={{ display: 'flex', justifyContent: 'center', width: '85%', maxWidth: '768px'}}>
+                    <OldButton button="Reset" onClick={reset} />
+                    <OldButton button="Pause" onClick={pause} />
+                    <OldButton button="Fullscreen" alt="Toggle Fullscreen" onClick={fullscreen} />
+                    <OldButton button="Sound" onClick={sound} />
+                    <OldButton button="Carts" alt="More Carts" onClick="http://www.lexaloffle.com/bbs/?cat=7&sub=2" />
+                    <OldButton button="Controls" onClick={context} />
+                  </div>
+                ) : null }
           </div>
         </div>
+      </div>
     </div>
   )
 }
