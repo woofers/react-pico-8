@@ -33,43 +33,6 @@ function p8_gfx(i) {
   return `images/${i}.png`;
 }
 
-function p8_update_button_icons() {
-  // regenerate every frame (shouldn't be expensive?)
-  els = document.getElementsByClassName("p8_menu_button");
-  for (i = 0; i < els.length; i++) {
-    el = els[i];
-    index = el.id;
-    if (index == "p8b_sound")
-      index += pico8_state.sound_volume == 0 ? "0" : "1"; // 1 if undefined
-    if (index == "p8b_pause") index += pico8_state.is_paused > 0 ? "1" : "0"; // 0 if undefined
-    new_str =
-      '<img width=24 height=24 style="pointer-events:none" src="' +
-      p8_gfx(index) +
-      '">';
-    if (el.innerHTML != new_str) el.innerHTML = new_str;
-
-    // hide all buttons for touch mode (can pause with menu buttons)
-
-    var is_visible = p8_is_running;
-
-    if (!p8_touch_detected && el.parentElement.id == "menu_buttons_touch")
-      is_visible = false;
-    if (p8_touch_detected && el.parentElement.id == "menu_buttons")
-      is_visible = false;
-
-    var is_fullscreen =
-      document.fullscreenElement ||
-      document.mozFullScreenElement ||
-      document.webkitIsFullScreen ||
-      document.msFullscreenElement;
-    if (is_fullscreen) is_visible = false;
-
-    if (is_visible) el.style.display = "";
-    else el.style.display = "none";
-  }
-  requestAnimationFrame(p8_update_button_icons);
-}
-
 function abs(x) {
   return x < 0 ? -x : x;
 }

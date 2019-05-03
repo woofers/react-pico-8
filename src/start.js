@@ -1,5 +1,4 @@
 p8_update_layout();
-p8_update_button_icons();
 var canvas = document.getElementById("canvas");
 Module = {};
 Module.canvas = canvas;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import './style.css'
 
 const OldButton = p => {
@@ -21,7 +21,23 @@ const OldButton = p => {
  )
 }
 
+const Button = p => {
+  let image = p.id
+  if (p.id === 'p8b_sound' || p.id === 'p8b_pause') {
+    image += p.on ? '1' : '0'
+  }
+  return (
+    <div className="side_buttons p8_menu_button" id={p.id} onClick={p.onClick}>
+      <img src={`images/${image}.png`} style={{ pointerEvents: 'none' }} />
+    </div>
+  )
+}
+
 const Pico8 = p => {
+  const [isMuted, setMuted] = useState(true)
+  const [isPaused, setPaused] = useState(true)
+  const [hasStarted, setStarted] = useState(false)
+  const [isMounted, setMounted] = useState(false)
   const makeScript = (src, onload) => {
     const script = document.createElement('script')
     script.src = src
@@ -31,27 +47,41 @@ const Pico8 = p => {
   }
   const run = () => window.p8_run_cart(p.src)
   const start = () => {
+    if (hasStarted) return
+    setMuted(false)
+    setPaused(false)
+    setStarted(true)
     run()
     window.p8_create_audio_context()
+    console.log('yoo')
   }
   const autoStart = () => {
     const temp_context = new AudioContext()
     temp_context.onstatechange = () => {
       if (temp_context.state == "running") {
+        setMuted(false)
+        setPaused(false)
+        setStarted(true)
         run()
         temp_context.close()
       }
     }
   }
   useEffect(() => {
+    if (isMounted) return
+    setMounted(true)
     makeScript('pico.js', () => makeScript('start.js', p.autoPlay ? autoStart : null))
   })
   const sound = () => {
+    setMuted(!isMuted)
     window.p8_create_audio_context();
     window.Module.pico8ToggleSound();
   }
   const fullscreen = () => window.p8_request_fullscreen()
-  const pause = () => window.Module.pico8TogglePaused()
+  const pause = () => {
+    setPaused(!isPaused)
+    window.Module.pico8TogglePaused()
+  }
   const reset = () => window.Module.pico8Reset()
   const context = () => window.Module.pico8ToggleControlMenu()
   const close = () => window.p8_close_cart()
@@ -65,14 +95,6 @@ const Pico8 = p => {
             <div className="p8_menu_button left" id="p8b_sound" onClick={sound}></div>
             <div className="p8_menu_button right" id="p8b_close" onClick={close}></div>
           </div>
-        <div style={{ display: 'flex', justifyContent: 'center'}}>
-          <OldButton button="Reset" onClick={reset} />
-          <OldButton button="Pause" onClick={pause} />
-          <OldButton button="Fullscreen" alt="Toggle Fullscreen" onClick={fullscreen} />
-          <OldButton button="Sound" onClick={sound} />
-          <OldButton button="Carts" alt="More Carts" onClick="http://www.lexaloffle.com/bbs/?cat=7&sub=2" />
-          <OldButton button="Controls" onClick={context} />
-        </div>
           <div id="p8_container" onClick={start}>
             <div id="p8_start_button" className="p8_start_button">
               <img src="images/start.png"/>
@@ -82,10 +104,10 @@ const Pico8 = p => {
                 <div id="touch_controls_center">
                   <canvas className="emscripten" id="canvas" onContextMenu={(e) => e.preventDefault()} ></canvas>
                   <div id="menu_buttons">
-                    <div className="side_buttons p8_menu_button" id="p8b_controls" onClick={context}></div>
-                    <div className="side_buttons p8_menu_button" id="p8b_pause" onClick={pause}></div>
-                    <div className="side_buttons p8_menu_button" id="p8b_sound" onClick={sound}></div>
-                    <div className="side_buttons p8_menu_button" id="p8b_full" onClick={fullscreen}></div>
+                    <Button id="p8b_controls" onClick={context} />
+                    <Button id="p8b_pause" on={isPaused} onClick={pause} />
+                    <Button id="p8b_sound" on={!isMuted} onClick={sound} />
+                    <Button id="p8b_full" onClick={fullscreen} />
                   </div>
                 </div>
                 <div id="touch_controls_gfx">
