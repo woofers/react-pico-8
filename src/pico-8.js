@@ -28,7 +28,7 @@ const Button = p => {
   }
   if (p.hidden) return null
   return (
-    <div className="side_buttons p8_menu_button" id={p.id} onClick={p.onClick}>
+    <div className={`${p.className} side_buttons p8_menu_button`} id={p.id} onClick={p.onClick}>
       <img src={`images/${image}.png`} style={{ pointerEvents: 'none' }} />
     </div>
   )
@@ -87,16 +87,22 @@ const Pico8 = p => {
   }
   const reset = () => window.Module.pico8Reset()
   const context = () => window.Module.pico8ToggleControlMenu()
-  const close = () => window.p8_close_cart()
+  const close = () => {
+    setStarted(false)
+    setMuted(false)
+    setPaused(false)
+    setMobile(false)
+    window.p8_close_cart()
+  }
   return (
     <div>
       <canvas id="dummy4itchapp"></canvas>
       <div id="p8_widget">
         <div id="p8_frame">
           <div id="menu_buttons_touch" className="touch_controls_top">
-            <div className="p8_menu_button left" id="p8b_full"  onClick={fullscreen}></div>
-            <div className="p8_menu_button left" id="p8b_sound" onClick={sound}></div>
-            <div className="p8_menu_button right" id="p8b_close" onClick={close}></div>
+            <Button className="p8_menu_button left" id="p8b_full" onClick={fullscreen} hidden={!isMobile} />
+            <Button className="p8_menu_button left" id="p8b_sound" on={!isMuted} onClick={sound} hidden={!isMobile} />
+            <Button className="p8_menu_button right" id="p8b_close" onClick={close} hidden={!isMobile} />
           </div>
           <div id="p8_container" onClick={start}>
             <div id="p8_start_button" className="p8_start_button">
