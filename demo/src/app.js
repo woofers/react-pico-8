@@ -14,7 +14,7 @@ const App = () => {
   `
   return (
     <div css={full}>
-      <Pico8 autoPlay={true} src="index.js" legacyButtons={false} />
+      <Pico8 autoPlay={true} src="index.js" legacyButtons={false} placeholder="placeholder.png" />
     </div>
   )
 }

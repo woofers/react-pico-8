@@ -110,7 +110,7 @@ const Canvas = p => {
     image-rendering: pixelated;
     -ms-interpolation-mode: nearest-neighbor;
     border: 0px;
-    cursor: none;
+    cursor: ${p.hasStarted ? 'none' : 'pointer'};
   `
   return (
     <canvas css={[canvas, p.fullscreen ? fullscreen : normal]}
@@ -118,6 +118,34 @@ const Canvas = p => {
             id="canvas"
             onContextMenu={(e) => e.preventDefault()}
     />
+  )
+}
+
+const Start = p => {
+  const bg = p.placeholder ? `url(${p.placeholder})` : '#000'
+  const style = css`
+    max-width: 768px;
+    max-height: 768px;
+    display: flex;
+    img {
+      margin: auto;
+    }
+    cursor: pointer;
+    background: ${bg};
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+  `
+  return (
+    <div css={style} id="p8_start_button">
+      <img alt="Play Game" src={images['start.png']}/>
+    </div>
   )
 }
 
@@ -213,25 +241,6 @@ const Pico8 = p => {
     width: 0;
     height: 0;
   `
-  const startButton = css`
-    max-width: 768px;
-    max-height: 768px;
-    display: flex;
-    img {
-      margin: auto;
-    }
-    cursor: pointer;
-    background: #000;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 100%;
-  `
   const mobileHeader = css`
     position: absolute;
     width: 100%;
@@ -261,16 +270,14 @@ const Pico8 = p => {
     <div>
       <canvas css={hide} />
       <div id="p8_container" onClick={start}>
-        <div css={startButton} id="p8_start_button">
-          <img alt="" src={images['start.png']}/>
-        </div>
+        <Start placeholder={p.placeholder} />
         <div id="p8_playarea">
           <div id="menu_buttons_touch" css={mobileHeader}>
             <Button align="left" id="p8b_sound" on={!isMuted} onClick={sound} hidden={!isMobile || !isFullscreen} />
             <Button align="right" id="p8b_close" onClick={close} hidden={!isMobile || !isFullscreen} />
           </div>
           <div css={game}>
-            <Canvas fullscreen={(isMobile && isFullscreen) || isFullscreen} />
+            <Canvas fullscreen={(isMobile && isFullscreen) || isFullscreen} hasStarted={hasStarted} />
               { !(isMobile || isFullscreen) && hasStarted ?
                 ( !p.legacyButtons ?
                   <div css={stack}>
