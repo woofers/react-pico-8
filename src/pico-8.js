@@ -26,6 +26,7 @@ const Button = p => {
   if (p.id === 'p8b_sound' || p.id === 'p8b_pause') {
     image += p.on ? '1' : '0'
   }
+  if (p.hidden) return null
   return (
     <div className="side_buttons p8_menu_button" id={p.id} onClick={p.onClick}>
       <img src={`images/${image}.png`} style={{ pointerEvents: 'none' }} />
@@ -35,6 +36,7 @@ const Button = p => {
 
 const Pico8 = p => {
   const [isMuted, setMuted] = useState(true)
+  const [isMobile, setMobile] = useState(false)
   const [isPaused, setPaused] = useState(true)
   const [hasStarted, setStarted] = useState(false)
   const [isMounted, setMounted] = useState(false)
@@ -71,6 +73,7 @@ const Pico8 = p => {
     if (isMounted) return
     setMounted(true)
     makeScript('pico.js', () => makeScript('start.js', p.autoPlay ? autoStart : null))
+    window.addEventListener('touchstart', () => setMobile(true), { passive: true })
   })
   const sound = () => {
     setMuted(!isMuted)
@@ -104,10 +107,10 @@ const Pico8 = p => {
                 <div id="touch_controls_center">
                   <canvas className="emscripten" id="canvas" onContextMenu={(e) => e.preventDefault()} ></canvas>
                   <div id="menu_buttons">
-                    <Button id="p8b_controls" onClick={context} />
-                    <Button id="p8b_pause" on={isPaused} onClick={pause} />
-                    <Button id="p8b_sound" on={!isMuted} onClick={sound} />
-                    <Button id="p8b_full" onClick={fullscreen} />
+                    <Button id="p8b_controls" onClick={context} hidden={isMobile} />
+                    <Button id="p8b_pause" on={isPaused} onClick={pause} hidden={isMobile} />
+                    <Button id="p8b_sound" on={!isMuted} onClick={sound} hidden={isMobile} />
+                    <Button id="p8b_full" onClick={fullscreen} hidden={isMobile} />
                   </div>
                 </div>
                 <div id="touch_controls_gfx">
