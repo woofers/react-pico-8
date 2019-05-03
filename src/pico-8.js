@@ -30,7 +30,7 @@ const Button = p => {
   }
   if (p.hidden) return null
   return (
-    <div className={`${p.className} side_buttons p8_menu_button`} id={p.id} onClick={p.onClick}>
+    <div className={`${p.className || ''} side_buttons p8_menu_button`} id={p.id} onClick={p.onClick}>
       <img src={`images/${image}.png`} style={{ pointerEvents: 'none' }} />
     </div>
   )
@@ -60,7 +60,11 @@ const Canvas = p => {
 
 const Pico8 = p => {
   const [isMuted, setMuted] = useState(true)
-  const [isMobile, setMobile] = useState(false)
+  const [isMobile, _setMobile] = useState(false)
+  const setMobile = (value) => {
+    _setMobile(value)
+    if (value) setTimeout(fullscreen, 100)
+  }
   const [isPaused, setPaused] = useState(true)
   const [isFullscreen, setFullscreen] = useState(false)
   const [hasStarted, setStarted] = useState(false)
@@ -146,19 +150,18 @@ const Pico8 = p => {
       <canvas id="dummy4itchapp"></canvas>
       <div id="p8_widget">
         <div id="p8_frame">
-          <div id="menu_buttons_touch" className="touch_controls_top">
-            <Button className="p8_menu_button left" id="p8b_full" onClick={fullscreen} hidden={!isMobile} />
-            <Button className="p8_menu_button left" id="p8b_sound" on={!isMuted} onClick={sound} hidden={!isMobile} />
-            <Button className="p8_menu_button right" id="p8b_close" onClick={close} hidden={!isMobile} />
-          </div>
           <div id="p8_container" onClick={start}>
             <div id="p8_start_button" className="p8_start_button">
               <img src="images/start.png"/>
             </div>
             <div id="p8_playarea">
               <div id="touch_controls_background">&nbsp</div>
+              <div id="menu_buttons_touch" className="touch_controls_top">
+                <Button className="p8_menu_button left" id="p8b_sound" on={!isMuted} onClick={sound} hidden={!isMobile || !isFullscreen} />
+                <Button className="p8_menu_button right" id="p8b_close" onClick={close} hidden={!isMobile || !isFullscreen} />
+              </div>
               <div class="game">
-                <Canvas fullscreen={isFullscreen} />
+                <Canvas fullscreen={(isMobile && isFullscreen) || isFullscreen} />
                   { !(isMobile || isFullscreen) ?
                     ( !p.legacyButtons ?
                       <div id="menu_buttons">
