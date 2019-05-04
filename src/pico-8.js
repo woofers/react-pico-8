@@ -303,4 +303,10 @@ const Pico8 = p => {
   )
 }
 
+Pico8.defaultProps = {
+  autoPlay: true,
+  legacyButtons: false,
+  placeholder: ''
+}
+
 export default Pico8
