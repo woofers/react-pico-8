@@ -270,7 +270,7 @@ const Pico8 = p => {
     <div css={p.css} className={p.className} style={p.style}>
       <canvas css={hide} />
       <div id="p8_container">
-        <Start placeholder={p.placeholder} onClick={start} />
+        { !hasStarted ? <Start placeholder={p.placeholder} onClick={start} /> : null }
         <div id="p8_playarea">
           <div id="menu_buttons_touch" css={mobileHeader}>
             <Button align="left" id="p8b_sound" on={!isMuted} onClick={sound} hidden={!isMobile || !isFullscreen} />

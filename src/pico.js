@@ -96,10 +96,6 @@ function p8_run_cart(src) {
 
   document.body.appendChild(e); // load and run
 
-  // hide start button and show canvas / menu buttons. hide start button
-  el = document.getElementById("p8_start_button");
-  if (el) el.style.display = "none";
-
   // add #playing for touchscreen devices (allows back button to close)
   if (p8_touch_detected) {
     window.location.hash = "#playing";
