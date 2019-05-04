@@ -110,7 +110,7 @@ const Canvas = p => {
     image-rendering: pixelated;
     -ms-interpolation-mode: nearest-neighbor;
     border: 0px;
-    cursor: ${p.hasStarted ? 'none' : 'auto'};
+    cursor: ${(p.hasStarted && p.hideCursor) ? 'none' : 'auto'};
   `
   return (
     <canvas css={[canvas, p.fullscreen ? fullscreen : normal]}
@@ -277,7 +277,7 @@ const Pico8 = p => {
             <Button align="right" id="p8b_close" onClick={close} hidden={!isMobile || !isFullscreen} />
           </div>
           <div css={game}>
-            <Canvas fullscreen={(isMobile && isFullscreen) || isFullscreen} hasStarted={hasStarted} />
+            <Canvas fullscreen={(isMobile && isFullscreen) || isFullscreen} hasStarted={hasStarted} hideCursor={p.hideCursor} />
               { !(isMobile || isFullscreen) && hasStarted ?
                 ( !p.legacyButtons ?
                   <div css={stack}>
@@ -306,7 +306,8 @@ const Pico8 = p => {
 Pico8.defaultProps = {
   autoPlay: true,
   legacyButtons: false,
-  placeholder: ''
+  placeholder: '',
+  hideCursor: true
 }
 
 export default Pico8
