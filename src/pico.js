@@ -85,11 +85,6 @@ function p8_run_cart(src) {
   // load and run script
   e = document.createElement("script");
   p8_script = e;
-  e.onload = function() {
-    // show canvas / menu buttons only after loading
-    el = document.getElementById("p8_playarea");
-    if (el) el.style.display = "table";
-  };
   e.type = "application/javascript";
   e.src = src;
   e.id = "e_script";
