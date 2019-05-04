@@ -109,12 +109,17 @@ const Canvas = p => {
     border: 0px;
     cursor: ${(p.hasStarted && p.hideCursor) ? 'none' : 'auto'};
   `
+  const center = css`
+    text-align: center;
+  `
   return (
-    <canvas css={[canvas, p.fullscreen ? fullscreen : normal]}
-            className="emscripten"
-            id="canvas"
-            onContextMenu={(e) => e.preventDefault()}
-    />
+    <div css={p.fullscreen ? center : ''}>
+      <canvas css={[canvas, p.fullscreen ? fullscreen : normal]}
+              className="emscripten"
+              id="canvas"
+              onContextMenu={(e) => e.preventDefault()}
+      />
+    </div>
   )
 }
 
