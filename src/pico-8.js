@@ -91,15 +91,12 @@ const Button = p => {
 
 const Canvas = p => {
   const fullscreen = css`
-    width: 100%;
-    max-width: 768px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 15%);
+    width: 100vmin;
+    height: 100vmin;
   `
   const normal = css`
-    width: 85%;
+    width: 85vmin;
+    height: 85vmin;
     max-width: 768px;
   `
   const canvas = css`
@@ -139,8 +136,8 @@ const Start = p => {
     position: relative;
     left: 0px;
     top: 0px;
-    width: 85vw;
-    height: 85vw;
+    width: 85vmin;
+    height: 85vmin;
   `
   return (
     <div css={style} onClick={p.onClick} id="p8_start_button">
@@ -267,16 +264,8 @@ const Pico8 = p => {
   const inline = css`
     display: flex;
     justify-content: center;
-    width: 85%;
+    width: 85vmin;
     max-width: 768px;
-  `
-  const game = css`
-    outline: 0px;
-    position: relative;
-    left: 0px;
-    top: 0px;
-    width: 100vw;
-    height: auto;
   `
   return (
     <div css={p.css} className={p.className} style={p.style}>
@@ -288,7 +277,7 @@ const Pico8 = p => {
             <Button align="left" id="p8b_sound" on={!isMuted} onClick={sound} hidden={!isMobile || !isFullscreen} />
             <Button align="right" id="p8b_close" onClick={close} hidden={!isMobile || !isFullscreen} />
           </div>
-          <div css={game}>
+          <div>
             <Canvas fullscreen={(isMobile && isFullscreen) || isFullscreen} hasStarted={hasStarted} hideCursor={p.hideCursor} />
               { !(isMobile || isFullscreen) && hasStarted ?
                 ( !p.legacyButtons ?
