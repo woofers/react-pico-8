@@ -223,8 +223,8 @@ const Pico8 = p => {
     window.p8_request_fullscreen()
   }
   const pause = () => {
-    setPaused(!isPaused)
     window.Module.pico8TogglePaused()
+    setTimeout(() => setPaused(!!window.pico8_state.is_paused), 120)
   }
   const reset = () => window.Module.pico8Reset()
   const context = () => window.Module.pico8ToggleControlMenu()
