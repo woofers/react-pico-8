@@ -110,7 +110,7 @@ const Canvas = p => {
     image-rendering: pixelated;
     -ms-interpolation-mode: nearest-neighbor;
     border: 0px;
-    cursor: ${p.hasStarted ? 'none' : 'pointer'};
+    cursor: ${p.hasStarted ? 'none' : 'auto'};
   `
   return (
     <canvas css={[canvas, p.fullscreen ? fullscreen : normal]}
@@ -143,7 +143,7 @@ const Start = p => {
     height: 100vw;
   `
   return (
-    <div css={style} id="p8_start_button">
+    <div css={style} onClick={p.onClick} id="p8_start_button">
       <img alt="Play Game" src={images['start.png']}/>
     </div>
   )
@@ -269,8 +269,8 @@ const Pico8 = p => {
   return (
     <div {...p}>
       <canvas css={hide} />
-      <div id="p8_container" onClick={start}>
-        <Start placeholder={p.placeholder} />
+      <div id="p8_container">
+        <Start placeholder={p.placeholder} onClick={start} />
         <div id="p8_playarea">
           <div id="menu_buttons_touch" css={mobileHeader}>
             <Button align="left" id="p8b_sound" on={!isMuted} onClick={sound} hidden={!isMobile || !isFullscreen} />
