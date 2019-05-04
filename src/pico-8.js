@@ -267,7 +267,7 @@ const Pico8 = p => {
     height: auto;
   `
   return (
-    <div {...p}>
+    <div css={p.css} className={p.className} style={p.style}>
       <canvas css={hide} />
       <div id="p8_container">
         <Start placeholder={p.placeholder} onClick={start} />
