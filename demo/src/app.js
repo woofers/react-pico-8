@@ -18,6 +18,7 @@ const App = () => {
                autoPlay={true}
                legacyButtons={false}
                hideCursor={false}
+               center={true}
                placeholder="placeholder.png"
         />
     </div>

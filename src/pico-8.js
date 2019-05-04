@@ -113,12 +113,13 @@ const Canvas = p => {
     text-align: center;
   `
   return (
-    <div css={p.fullscreen ? center : ''}>
+    <div css={p.fullscreen || p.center ? center : ''}>
       <canvas css={[canvas, p.fullscreen ? fullscreen : normal]}
               className="emscripten"
               id="canvas"
               onContextMenu={(e) => e.preventDefault()}
       />
+      {p.children}
     </div>
   )
 }
@@ -144,8 +145,12 @@ const Start = p => {
     width: 85vmin;
     height: 85vmin;
   `
+  const center = css`
+    margin-left: auto;
+    margin-right: auto;
+  `
   return (
-    <div css={style} onClick={p.onClick} id="p8_start_button">
+    <div css={[style, p.center ? center : '']} onClick={p.onClick} id="p8_start_button">
       <img alt="Play Game" src={images['start.png']}/>
     </div>
   )
@@ -272,18 +277,24 @@ const Pico8 = p => {
     width: 85vmin;
     max-width: 768px;
   `
+  const center = css`
+    margin-left: auto;
+    margin-right: auto;
+  `
   return (
     <div css={p.css} className={p.className} style={p.style}>
       <canvas css={hide} />
       <div id="p8_container">
-        { !hasStarted ? <Start placeholder={p.placeholder} onClick={start} /> : null }
+        { !hasStarted ? <Start center={p.center} placeholder={p.placeholder} onClick={start} /> : null }
         <div id="p8_playarea">
           <div id="menu_buttons_touch" css={mobileHeader}>
             <Button align="left" id="p8b_sound" on={!isMuted} onClick={sound} hidden={!isMobile || !isFullscreen} />
             <Button align="right" id="p8b_close" onClick={close} hidden={!isMobile || !isFullscreen} />
           </div>
           <div>
-            <Canvas fullscreen={(isMobile && isFullscreen) || isFullscreen} hasStarted={hasStarted} hideCursor={p.hideCursor} />
+            <Canvas center={p.center} fullscreen={(isMobile && isFullscreen) || isFullscreen}
+                    hasStarted={hasStarted} hideCursor={p.hideCursor}
+            >
               { !(isMobile || isFullscreen) && hasStarted ?
                 ( !p.legacyButtons ?
                   <div css={stack}>
@@ -293,7 +304,7 @@ const Pico8 = p => {
                     <Button id="p8b_full" onClick={fullscreen} />
                   </div>
                   :
-                  <div css={inline}>
+                  <div css={[inline, p.center ? center : '']}>
                     <OldButton button="Reset" onClick={reset} />
                     <OldButton button="Pause" onClick={pause} />
                     <OldButton button="Fullscreen" alt="Toggle Fullscreen" onClick={fullscreen} />
@@ -302,6 +313,7 @@ const Pico8 = p => {
                     <OldButton button="Controls" onClick={context} />
                   </div>
                 ) : null }
+            </Canvas>
           </div>
         </div>
       </div>
@@ -313,7 +325,8 @@ Pico8.defaultProps = {
   autoPlay: true,
   legacyButtons: false,
   placeholder: '',
-  hideCursor: true
+  hideCursor: true,
+  center: false
 }
 
 export default Pico8
