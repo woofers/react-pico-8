@@ -212,7 +212,16 @@ const Pico8 = p => {
     window.addEventListener('mozfullscreenchange', fullscreenChange, false);
     window.addEventListener('fullscreenchange', fullscreenChange, false);
     window.addEventListener('MSFullscreenChange', fullscreenChange, false);
+    window.addEventListener("keydown", keydown, { passive: false });
   })
+  const keydown = (e) => {
+    e = e || window.event;
+    const enter = 13
+    const x = 88
+    const z = 90
+    const keys = [enter, x, z]
+    if (keys.indexOf(e.keyCode) > -1) updatePauseButton()
+  }
   const sound = () => {
     setMuted(!isMuted)
     window.p8_create_audio_context();
@@ -224,6 +233,9 @@ const Pico8 = p => {
   }
   const pause = () => {
     window.Module.pico8TogglePaused()
+    updatePauseButton()
+  }
+  const updatePauseButton = () => {
     setTimeout(() => setPaused(!!window.pico8_state.is_paused), 120)
   }
   const reset = () => window.Module.pico8Reset()
