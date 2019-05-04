@@ -139,8 +139,8 @@ const Start = p => {
     position: relative;
     left: 0px;
     top: 0px;
-    width: 100vw;
-    height: 100vw;
+    width: 85vw;
+    height: 85vw;
   `
   return (
     <div css={style} onClick={p.onClick} id="p8_start_button">
