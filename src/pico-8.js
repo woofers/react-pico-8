@@ -260,14 +260,14 @@ const Pico8 = p => {
   `
   const game = css`
     outline: 0px;
-    position: absolute;
+    position: relative;
     left: 0px;
     top: 0px;
-    width: 100%;
+    width: 100vw;
     height: auto;
   `
   return (
-    <div>
+    <div {...p}>
       <canvas css={hide} />
       <div id="p8_container" onClick={start}>
         <Start placeholder={p.placeholder} />
