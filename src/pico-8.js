@@ -97,6 +97,7 @@ const Canvas = p => {
   const normal = css`
     width: 85vmin;
     height: 85vmin;
+    max-height: 768px;
     max-width: 768px;
   `
   const canvas = css`
