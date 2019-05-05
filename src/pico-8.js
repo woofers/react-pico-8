@@ -9,7 +9,6 @@ const importAll = (r) => {
 const images = importAll(require.context('./images', false, /\.(png|jpe?g|svg)$/));
 const old = importAll(require.context('./images/old', false, /\.(png|jpe?g|svg)$/));
 import pico from './pico.js'
-import startPico from './start.js'
 
 const OldButton = p => {
   const style = css`
@@ -210,7 +209,6 @@ const Pico8 = p => {
     if (isMounted) return
     setMounted(true)
     makeScript(pico)
-    makeScript(startPico)
     if (p.autoPlay) autoStart()
     window.addEventListener('touchstart', () => setMobile(true), { passive: true })
     const fullscreenChange = (e) => {

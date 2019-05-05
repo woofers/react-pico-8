@@ -146,3 +146,7 @@ function p8_request_fullscreen() {
     el.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
   }
 }
+
+var canvas = document.getElementById("canvas");
+Module = {};
+Module.canvas = canvas;
