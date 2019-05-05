@@ -118,7 +118,9 @@ const Canvas = p => {
     text-align: center;
   `
   const margin = css`
-    margin-left: 45px;
+    @media only screen and (min-width: 740px) {
+      margin-left: 45px;
+    }
   `
   return (
     <div css={[p.fullscreen || p.center ? center : '', p.center && !p.legacyButtons && !p.isFullscreen ? margin : '' ]}>
