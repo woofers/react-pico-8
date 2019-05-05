@@ -71,9 +71,13 @@ const Button = p => {
   const menu = css`
     opacity: 0.3;
     padding: 4px;
-    display: table;
+    display: inline;
     width: 24px;
     height: 24px;
+    margin-left: 6px;
+    @media only screen and (min-width: 740px) {
+      display: table;
+    }
     &:hover {
       cursor: pointer;
       opacity: 1;
@@ -274,7 +278,12 @@ const Pico8 = p => {
   const stack = css`
     color: #ccc;
     display: inline-block;
-    margin-left: 12.5px;
+    margin-left: 0px;
+    margin-top: 12.5px;
+    @media only screen and (min-width: 740px) {
+      margin-top: 0px;
+      margin-left: 12.5px;
+    }
   `
   const inline = css`
     display: flex;
