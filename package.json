@@ -1,6 +1,6 @@
 {
   "name": "react-pico-8",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "",
   "main": "dist/react-pico-8.min.js",
   "src": "src/pico-8.js",
