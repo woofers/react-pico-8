@@ -28,12 +28,15 @@ const OldButton = p => {
     cursor: hand;
     text-decoration: none;
     a {
-      color:#fff;
+      color: #fff;
     }
-   &:link,
-   &:hover {
-     background-color: #aaa;
-   }
+    div {
+      font-family: verdana;
+    }
+    &:link,
+    &:hover {
+      background-color: #aaa;
+    }
   `
   const isFunction = () => typeof p.onClick === 'function'
   const onClick = () => {
