@@ -100,22 +100,6 @@ function p8_run_cart(src) {
   }
 }
 
-// key blocker. prevent cursor keys from scrolling page while playing cart.
-// also don't act on M, R so that can mute / reset cart
-document.addEventListener(
-  "keydown",
-  function(event) {
-    event = event || window.event;
-    if (!p8_is_running) return;
-    if (pico8_state.has_focus == 1)
-      if ([32, 37, 38, 39, 40, 77, 82, 9].indexOf(event.keyCode) > -1)
-        if (event.preventDefault)
-          // cursors, M R, tab
-          event.preventDefault();
-  },
-  { passive: false }
-);
-
 function p8_request_fullscreen() {
   var is_fullscreen =
     document.fullscreenElement ||

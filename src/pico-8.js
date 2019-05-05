@@ -168,6 +168,20 @@ const Start = p => {
   )
 }
 
+
+const enter = 13
+const x = 88
+const alt_x = 77
+const z = 90
+const alt_z = 82
+const tab = 9
+const space = 32
+const arrows = [37, 38, 39, 40]
+const keys = [enter, x, alt_x, z, alt_z, tab, space].concat(arrows)
+const blockKeys = (e) => {
+  if (keys.indexOf(e.keyCode) > -1) e.preventDefault()
+}
+
 const Pico8 = p => {
   const [isMuted, setMuted] = useState(true)
   const [isMobile, _setMobile] = useState(false)
@@ -206,39 +220,49 @@ const Pico8 = p => {
     }
   }
   useEffect(() => {
+    const addEvent = (name, func, options) => {
+      window.addEventListener(name, func, options)
+    }
+    const removeEvent = (name, func, options) => {
+      window.removeEventListener(name, func, options)
+    }
+    const setEvent = (name, func, options, value) => {
+      removeEvent(name, func, options)
+      if (value) {
+        addEvent(name, func, options)
+      }
+    }
+    setEvent("keydown", blockKeys, { passive: false }, hasStarted && p.blockKeys)
     if (isMounted) return
     setMounted(true)
     makeScript(pico)
     if (p.autoPlay) autoStart()
-    window.addEventListener('touchstart', () => setMobile(true), { passive: true })
-    const fullscreenChange = (e) => {
-      setFullscreen(!isFullscreen)
-      const events = [
-        document.webkitIsFullScreen,
-        document.mozFullScreen,
-        document.msFullscreenElement,
-        document.fullscreenElement
-      ]
-      for (const event of events) {
-        if (event === false) {
-          setFullscreen(false)
-          return
-        }
+    addEvent("keydown", keydown, { passive: false })
+    addEvent('touchstart', () => setMobile(true), { passive: true })
+    addEvent('webkitfullscreenchange', fullscreenChange, false);
+    addEvent('mozfullscreenchange', fullscreenChange, false);
+    addEvent('fullscreenchange', fullscreenChange, false);
+    addEvent('MSFullscreenChange', fullscreenChange, false);
+  })
+  const fullscreenChange = (e) => {
+    const events = [
+      document.webkitIsFullScreen,
+      document.mozFullScreen,
+      document.msFullscreenElement,
+      document.fullscreenElement
+    ]
+    for (const event of events) {
+      if (event === false) {
+        setFullscreen(false)
+        return
       }
     }
-    window.addEventListener('webkitfullscreenchange', fullscreenChange, false);
-    window.addEventListener('mozfullscreenchange', fullscreenChange, false);
-    window.addEventListener('fullscreenchange', fullscreenChange, false);
-    window.addEventListener('MSFullscreenChange', fullscreenChange, false);
-    window.addEventListener("keydown", keydown, { passive: false });
-  })
+  }
   const keydown = (e) => {
-    e = e || window.event;
-    const enter = 13
-    const x = 88
-    const z = 90
-    const keys = [enter, x, z]
     if (keys.indexOf(e.keyCode) > -1) updatePauseButton()
+  }
+  const updatePauseButton = () => {
+    setTimeout(() => setPaused(!!window.pico8_state.is_paused), 120)
   }
   const sound = () => {
     setMuted(!isMuted)
@@ -252,9 +276,6 @@ const Pico8 = p => {
   const pause = () => {
     window.Module.pico8TogglePaused()
     updatePauseButton()
-  }
-  const updatePauseButton = () => {
-    setTimeout(() => setPaused(!!window.pico8_state.is_paused), 120)
   }
   const reset = () => window.Module.pico8Reset()
   const context = () => window.Module.pico8ToggleControlMenu()
@@ -344,7 +365,8 @@ Pico8.defaultProps = {
   legacyButtons: false,
   placeholder: '',
   hideCursor: true,
-  center: false
+  center: false,
+  blockKeys: true
 }
 
 export default Pico8

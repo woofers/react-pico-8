@@ -73,6 +73,7 @@ const App = () => {
   const [legacyButtons, setLegacyButtons] = useState(false)
   const [hideCursor, setHideCursor] = useState(true)
   const [center, setCenter] = useState(true)
+  const [blockKeys, setBlockKeys] = useState(true)
   return (
     <div>
       <div css={page}>
@@ -82,6 +83,7 @@ const App = () => {
                legacyButtons={legacyButtons}
                hideCursor={hideCursor}
                center={center}
+               blockKeys={blockKeys}
                placeholder="placeholder.png"
         />
         <div css={desc}>
@@ -103,6 +105,9 @@ const App = () => {
             </Option>
             <Option name="center" checked={center} onChange={() => setCenter(!center)}>
               Indicates if the game is centred outside of  fullscreen mode.
+            </Option>
+            <Option name="blockKeys" checked={blockKeys} onChange={() => setBlockKeys(!blockKeys)}>
+              If set blocks keys which scroll page.
             </Option>
           </form>
         </div>
