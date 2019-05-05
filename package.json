@@ -14,6 +14,7 @@
     "start": "yarn watch",
     "build": "rollup -c",
     "watch": "rollup -c --watch",
+    "clean": "rm -rf dist",
     "test": "echo \"No tests \" && exit 0"
   },
   "repository": {
