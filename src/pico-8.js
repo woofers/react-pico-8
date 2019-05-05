@@ -112,8 +112,11 @@ const Canvas = p => {
   const center = css`
     text-align: center;
   `
+  const margin = css`
+    margin-left: 45px;
+  `
   return (
-    <div css={p.fullscreen || p.center ? center : ''}>
+    <div css={[p.fullscreen || p.center ? center : '', p.center && !p.legacyButtons && !p.isFullscreen ? margin : '' ]}>
       <canvas css={[canvas, p.fullscreen ? fullscreen : normal]}
               className="emscripten"
               id="canvas"
@@ -292,7 +295,8 @@ const Pico8 = p => {
             <Button align="right" id="p8b_close" onClick={close} hidden={!isMobile || !isFullscreen} />
           </div>
           <div>
-            <Canvas center={p.center} fullscreen={(isMobile && isFullscreen) || isFullscreen}
+            <Canvas legacyButtons={p.legacyButtons} center={p.center}
+                    fullscreen={(isMobile && isFullscreen) || isFullscreen}
                     hasStarted={hasStarted} hideCursor={p.hideCursor}
             >
               { !(isMobile || isFullscreen) && hasStarted ?
