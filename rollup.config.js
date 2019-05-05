@@ -1,7 +1,7 @@
 import { uglify } from 'rollup-plugin-uglify'
 import babel from 'rollup-plugin-babel'
 import copy from 'rollup-plugin-copy'
-import { string } from "rollup-plugin-string";
+import { string } from "rollup-plugin-string"
 const json = require('./package.json')
 const dependencies = [
   ...Object.keys(json.dependencies),
