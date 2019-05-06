@@ -1,189 +1,11 @@
 /** @jsx jsx */
 import { useState, useEffect, useRef } from 'react'
 import { jsx, css } from '@emotion/core'
-const importAll = (r) => {
-  let images = {};
-  r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
-  return images;
-}
-const images = importAll(require.context('./images', false, /\.(png|jpe?g|svg)$/));
-const old = importAll(require.context('./images/old', false, /\.(png|jpe?g|svg)$/));
+import { Button, LegacyButton } from './buttons'
+import Start from './start.js'
+import Canvas from './canvas.js'
 import pico from './pico.js'
-
-const OldButton = p => {
-  const style = css`
-    float: left;
-    width: 100%;
-    min-height: 16px;
-    display: inline-block;
-    margin: 1px;
-    padding: 4px;
-    text-align: center;
-    color: #fff;
-    background-color: #777;
-    font-family: verdana;
-    font-size: 9pt;
-    cursor: pointer;
-    cursor: hand;
-    text-decoration: none;
-    a {
-      color: #fff;
-    }
-    div {
-      font-family: verdana;
-    }
-    &:link,
-    &:hover {
-      background-color: #aaa;
-    }
-  `
-  const isFunction = () => typeof p.onClick === 'function'
-  const onClick = () => {
-    if (!isFunction()) return null
-    return p.onClick
-  }
-  const Link = ({ children }) => {
-    if (isFunction()) return children
-    return (<a css={style} target="_new" href={p.onClick}>{children}</a>)
-  }
-  return (
-    <Link>
-      <div css={isFunction() ? style : null} onClick={onClick()}>
-        <img width="12px" height="12px" src={old[`${p.button.toLowerCase()}.png`]} alt={p.alt || p.button} />
-        {' '}{p.button}
-      </div>
-    </Link>
- )
-}
-
-const Button = p => {
-  let image = p.id
-  if (p.id === 'p8b_sound' || p.id === 'p8b_pause') {
-    image += p.on ? '1' : '0'
-  }
-  if (p.hidden) return null
-  const left = css`
-    float: left !important;
-    margin: 0 0 0 10px;
-  `
-  const right = css`
-    float: right !important;
-    margin: 0 10px 0 0;
-  `
-  const menu = css`
-    opacity: 0.3;
-    padding: 4px;
-    display: inline;
-    width: 24px;
-    height: 24px;
-    margin-left: 6px;
-    @media only screen and (min-width: 740px) {
-      display: table;
-    }
-    &:hover {
-      cursor: pointer;
-      opacity: 1;
-    }
-  `
-  let align = ''
-  if (p.align === 'left') align = left
-  else if (p.align === 'right') align = right
-  return (
-    <div css={[menu, align]} className="p8_menu_button" id={p.id} onClick={p.onClick}>
-      <img src={images[`${image}.png`]} style={{ pointerEvents: 'none' }} />
-    </div>
-  )
-}
-
-const Canvas = p => {
-  const fullscreen = css`
-    width: 100vmin;
-    height: 100vmin;
-  `
-  const normal = css`
-    width: 85vmin;
-    height: 85vmin;
-    max-height: 768px;
-    max-width: 768px;
-  `
-  const canvas = css`
-    image-rendering: optimizeSpeed;
-    image-rendering: -moz-crisp-edges;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: optimize-contrast;
-    image-rendering: pixelated;
-    -ms-interpolation-mode: nearest-neighbor;
-    border: 0px;
-    cursor: ${(p.hasStarted && p.hideCursor) ? 'none' : 'auto'};
-    outline: none;
-  `
-  const center = css`
-    text-align: center;
-  `
-  const margin = css`
-    @media only screen and (min-width: 740px) {
-      margin-left: 45px;
-    }
-  `
-  return (
-    <div css={[p.fullscreen || p.center ? center : '', p.center && !p.legacyButtons && !p.isFullscreen ? margin : '' ]}>
-      <canvas css={[canvas, p.fullscreen ? fullscreen : normal]}
-              className="emscripten"
-              id="canvas"
-              onContextMenu={(e) => e.preventDefault()}
-              onKeyDown={blockKeys}
-              tabIndex="-1"
-      />
-      {p.children}
-    </div>
-  )
-}
-
-const Start = p => {
-  const bg = p.placeholder ? `url(${p.placeholder})` : '#000'
-  const style = css`
-    max-width: 768px;
-    max-height: 768px;
-    display: flex;
-    img {
-      margin: auto;
-    }
-    cursor: pointer;
-    background: ${bg};
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    position: relative;
-    left: 0px;
-    top: 0px;
-    width: 85vmin;
-    height: 85vmin;
-  `
-  const center = css`
-    margin-left: auto;
-    margin-right: auto;
-  `
-  return (
-    <div css={[style, p.center ? center : '']} onClick={p.onClick} id="p8_start_button">
-      <img alt="Play Game" src={images['start.png']}/>
-    </div>
-  )
-}
-
-
-const enter = 13
-const x = 88
-const alt_x = 77
-const z = 90
-const alt_z = 82
-const tab = 9
-const space = 32
-const arrows = [37, 38, 39, 40]
-const keys = [enter, x, alt_x, z, alt_z, tab, space].concat(arrows)
-const blockKeys = (e) => {
-  if (keys.indexOf(e.keyCode) > -1) e.preventDefault()
-}
+import { blockKeys, keys } from './keys.js'
 
 const Pico8 = p => {
   const [isMuted, setMuted] = useState(true)
@@ -238,7 +60,7 @@ const Pico8 = p => {
     setEvent("keydown", blockKeys, { passive: false }, hasStarted && p.blockKeys)
     if (isMounted) return
     setMounted(true)
-    makeScript(pico)
+    pico()
     if (p.autoPlay) autoStart()
     addEvent("keydown", keydown, { passive: false })
     addEvent('touchstart', () => setMobile(true), { passive: true })
@@ -360,12 +182,12 @@ const Pico8 = p => {
                   </div>
                   :
                   <div css={[inline, p.center ? center : '']}>
-                    <OldButton button="Reset" onClick={reset} />
-                    <OldButton button="Pause" onClick={pause} />
-                    <OldButton button="Fullscreen" alt="Toggle Fullscreen" onClick={fullscreen} />
-                    <OldButton button="Sound" onClick={sound} />
-                    <OldButton button="Carts" alt="More Carts" onClick="http://www.lexaloffle.com/bbs/?cat=7&sub=2" />
-                    <OldButton button="Controls" onClick={context} />
+                    <LegacyButton button="Reset" onClick={reset} />
+                    <LegacyButton button="Pause" onClick={pause} />
+                    <LegacyButton button="Fullscreen" alt="Toggle Fullscreen" onClick={fullscreen} />
+                    <LegacyButton button="Sound" onClick={sound} />
+                    <LegacyButton button="Carts" alt="More Carts" onClick="http://www.lexaloffle.com/bbs/?cat=7&sub=2" />
+                    <LegacyButton button="Controls" onClick={context} />
                   </div>
                 ) : null }
             </Canvas>

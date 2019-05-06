@@ -1,7 +1,6 @@
 import { uglify } from 'rollup-plugin-uglify'
 import babel from 'rollup-plugin-babel'
 import copy from 'rollup-plugin-copy'
-import { string } from "rollup-plugin-string"
 const json = require('./package.json')
 const dependencies = [
   ...Object.keys(json.dependencies),
@@ -10,10 +9,6 @@ const dependencies = [
 
 const config = {
   plugins: [
-    string({
-      include: "**/*.js",
-      exclude: ["src/pico-8.js"]
-    }),
     babel({
       exclude: "node_modules/**"
     }),

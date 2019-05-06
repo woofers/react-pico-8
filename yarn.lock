@@ -1772,13 +1772,6 @@ rollup-plugin-copy@^2.0.0:
     fs-extra "^7.0.1"
     is-plain-object "^3.0.0"
 
-rollup-plugin-string@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-string/-/rollup-plugin-string-3.0.0.tgz#fed2d6301fae1e59eb610957df757ef13fada3f0"
-  integrity sha512-vqyzgn9QefAgeKi+Y4A7jETeIAU1zQmS6VotH6bzm/zmUQEnYkpIGRaOBPY41oiWYV4JyBoGAaBjYMYuv+6wVw==
-  dependencies:
-    rollup-pluginutils "^2.4.1"
-
 rollup-plugin-uglify@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/rollup-plugin-uglify/-/rollup-plugin-uglify-6.0.2.tgz#681042cfdf7ea4e514971946344e1a95bc2772fe"
