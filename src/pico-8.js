@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { jsx, css } from '@emotion/core'
 const importAll = (r) => {
   let images = {};
@@ -274,7 +274,19 @@ const Pico8 = p => {
   }
   const fullscreen = () => {
     setFullscreen(true)
-    window.p8_request_fullscreen()
+    const area = playArea.current
+    if (area.requestFullscreen) {
+      area.requestFullscreen()
+    }
+    else if (area.mozRequestFullScreen) {
+      area.mozRequestFullScreen()
+    }
+    else if (area.webkitRequestFullScreen) {
+      area.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT)
+    }
+    else if (area.msRequestFullScreen) {
+      area.msRequestFullScreen()
+    }
   }
   const pause = () => {
     window.Module.pico8TogglePaused()
@@ -322,12 +334,13 @@ const Pico8 = p => {
     margin-left: auto;
     margin-right: auto;
   `
+  const playArea = useRef()
   return (
     <div css={p.css} className={p.className} style={p.style}>
       <canvas css={hide} />
       <div id="p8_container">
         { !hasStarted ? <Start center={p.center} placeholder={p.placeholder} onClick={start} /> : null }
-        <div id="p8_playarea" css={hasStarted ? '' : [hide, none]}>
+        <div ref={playArea} id="p8_playarea" css={hasStarted ? '' : [hide, none]}>
           <div id="menu_buttons_touch" css={mobileHeader}>
             <Button align="left" id="p8b_sound" on={!isMuted} onClick={sound} hidden={!isMobile || !isFullscreen} />
             <Button align="right" id="p8b_close" onClick={close} hidden={!isMobile || !isFullscreen} />

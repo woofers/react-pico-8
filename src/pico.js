@@ -100,37 +100,6 @@ function p8_run_cart(src) {
   }
 }
 
-function p8_request_fullscreen() {
-  var is_fullscreen =
-    document.fullscreenElement ||
-    document.mozFullScreenElement ||
-    document.webkitIsFullScreen ||
-    document.msFullscreenElement;
-
-  if (is_fullscreen) {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen();
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen();
-    }
-    return;
-  }
-
-  var el = document.getElementById("p8_playarea");
-
-  if (el.requestFullscreen) {
-    el.requestFullscreen();
-  } else if (el.mozRequestFullScreen) {
-    el.mozRequestFullScreen();
-  } else if (el.webkitRequestFullScreen) {
-    el.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
-  }
-}
-
 var canvas = document.getElementById("canvas");
 Module = {};
 Module.canvas = canvas;
