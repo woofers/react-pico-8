@@ -6,9 +6,9 @@ const importAll = (r) => {
   r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
   return images;
 }
+import pico from './pico.js'
 const images = importAll(require.context('./images', false, /\.(png|jpe?g|svg)$/));
 const old = importAll(require.context('./images/old', false, /\.(png|jpe?g|svg)$/));
-import pico from './pico.js'
 
 const OldButton = p => {
   const style = css`
@@ -238,7 +238,7 @@ const Pico8 = p => {
     setEvent("keydown", blockKeys, { passive: false }, hasStarted && p.blockKeys)
     if (isMounted) return
     setMounted(true)
-    makeScript(pico)
+    pico()
     if (p.autoPlay) autoStart()
     addEvent("keydown", keydown, { passive: false })
     addEvent('touchstart', () => setMobile(true), { passive: true })
