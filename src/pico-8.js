@@ -132,7 +132,7 @@ const Canvas = p => {
               id="canvas"
               onContextMenu={(e) => e.preventDefault()}
               onKeyDown={blockKeys}
-              tabindex="-1"
+              tabIndex="-1"
       />
       {p.children}
     </div>

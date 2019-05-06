@@ -13,7 +13,7 @@ const Checkbox = p => {
   return (
     <div css={span}>
       <input id={p.name} type="checkbox" checked={p.checked} onChange={p.onChange} />
-      <label css={style} for={p.name}>{p.children}</label>
+      <label css={style} htmlFor={p.name}>{p.children}</label>
     </div>
   )
 }
