@@ -115,6 +115,7 @@ const Canvas = p => {
     -ms-interpolation-mode: nearest-neighbor;
     border: 0px;
     cursor: ${(p.hasStarted && p.hideCursor) ? 'none' : 'auto'};
+    outline: none;
   `
   const center = css`
     text-align: center;
@@ -130,6 +131,8 @@ const Canvas = p => {
               className="emscripten"
               id="canvas"
               onContextMenu={(e) => e.preventDefault()}
+              onKeyDown={blockKeys}
+              tabindex="-1"
       />
       {p.children}
     </div>

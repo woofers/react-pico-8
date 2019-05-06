@@ -107,7 +107,7 @@ const App = () => {
               Indicates if the game is centred outside of  fullscreen mode.
             </Option>
             <Option name="blockKeys" checked={blockKeys} onChange={() => setBlockKeys(!blockKeys)}>
-              If set blocks keys which scroll page.
+              If set blocks keys which scroll page when the game is running.  If un-set keys will only be blocked when the canvas is focused.
             </Option>
           </form>
         </div>
