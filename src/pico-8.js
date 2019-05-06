@@ -5,7 +5,7 @@ import { Button, LegacyButton } from './buttons'
 import Start from './start.js'
 import Canvas from './canvas.js'
 import pico from './pico.js'
-import { keys } from './keys.js'
+import { blockKeys, keys } from './keys.js'
 
 const Pico8 = p => {
   const [isMuted, setMuted] = useState(true)
