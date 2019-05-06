@@ -8,53 +8,7 @@ const importAll = (r) => {
 }
 import pico from './pico.js'
 const images = importAll(require.context('./images', false, /\.(png|jpe?g|svg)$/));
-const old = importAll(require.context('./images/old', false, /\.(png|jpe?g|svg)$/));
-
-const OldButton = p => {
-  const style = css`
-    float: left;
-    width: 100%;
-    min-height: 16px;
-    display: inline-block;
-    margin: 1px;
-    padding: 4px;
-    text-align: center;
-    color: #fff;
-    background-color: #777;
-    font-family: verdana;
-    font-size: 9pt;
-    cursor: pointer;
-    cursor: hand;
-    text-decoration: none;
-    a {
-      color: #fff;
-    }
-    div {
-      font-family: verdana;
-    }
-    &:link,
-    &:hover {
-      background-color: #aaa;
-    }
-  `
-  const isFunction = () => typeof p.onClick === 'function'
-  const onClick = () => {
-    if (!isFunction()) return null
-    return p.onClick
-  }
-  const Link = ({ children }) => {
-    if (isFunction()) return children
-    return (<a css={style} target="_new" href={p.onClick}>{children}</a>)
-  }
-  return (
-    <Link>
-      <div css={isFunction() ? style : null} onClick={onClick()}>
-        <img width="12px" height="12px" src={old[`${p.button.toLowerCase()}.png`]} alt={p.alt || p.button} />
-        {' '}{p.button}
-      </div>
-    </Link>
- )
-}
+import LegacyButton from './legacy-button'
 
 const Button = p => {
   let image = p.id
@@ -360,12 +314,12 @@ const Pico8 = p => {
                   </div>
                   :
                   <div css={[inline, p.center ? center : '']}>
-                    <OldButton button="Reset" onClick={reset} />
-                    <OldButton button="Pause" onClick={pause} />
-                    <OldButton button="Fullscreen" alt="Toggle Fullscreen" onClick={fullscreen} />
-                    <OldButton button="Sound" onClick={sound} />
-                    <OldButton button="Carts" alt="More Carts" onClick="http://www.lexaloffle.com/bbs/?cat=7&sub=2" />
-                    <OldButton button="Controls" onClick={context} />
+                    <LegacyButton button="Reset" onClick={reset} />
+                    <LegacyButton button="Pause" onClick={pause} />
+                    <LegacyButton button="Fullscreen" alt="Toggle Fullscreen" onClick={fullscreen} />
+                    <LegacyButton button="Sound" onClick={sound} />
+                    <LegacyButton button="Carts" alt="More Carts" onClick="http://www.lexaloffle.com/bbs/?cat=7&sub=2" />
+                    <LegacyButton button="Controls" onClick={context} />
                   </div>
                 ) : null }
             </Canvas>
