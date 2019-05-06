@@ -4,6 +4,7 @@ import { jsx, css } from '@emotion/core'
 import { Button, LegacyButton } from './buttons'
 import Start from './start.js'
 import pico from './pico.js'
+import { keys, blockKeys } from './keys.js'
 
 const Canvas = p => {
   const fullscreen = css`
@@ -47,19 +48,6 @@ const Canvas = p => {
       {p.children}
     </div>
   )
-}
-
-const enter = 13
-const x = 88
-const alt_x = 77
-const z = 90
-const alt_z = 82
-const tab = 9
-const space = 32
-const arrows = [37, 38, 39, 40]
-const keys = [enter, x, alt_x, z, alt_z, tab, space].concat(arrows)
-const blockKeys = (e) => {
-  if (keys.indexOf(e.keyCode) > -1) e.preventDefault()
 }
 
 const Pico8 = p => {
