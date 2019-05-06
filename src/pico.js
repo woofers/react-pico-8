@@ -81,9 +81,9 @@ const onLoad = () => {
     p8_script = e
     e.type = "application/javascript"
     e.src = src
-    e.id = "e_script"
 
-    document.body.appendChild(e) // load and run
+    // load and run
+    document.body.appendChild(e)
 
     // add #playing for touchscreen devices (allows back button to close)
     if (window.p8_touch_detected) {
