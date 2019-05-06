@@ -1,11 +1,7 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
-const importAll = (r) => {
-  let images = {};
-  r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
-  return images;
-}
-const old = importAll(require.context('./images/old', false, /\.(png|jpe?g|svg)$/));
+import { importAll } from './import'
+import { legacy } from './icons'
 
 const OldButton = p => {
   const style = css`
@@ -46,7 +42,7 @@ const OldButton = p => {
   return (
     <Link>
       <div css={isFunction() ? style : null} onClick={onClick()}>
-        <img width="12px" height="12px" src={old[`${p.button.toLowerCase()}.png`]} alt={p.alt || p.button} />
+        <img width="12px" height="12px" src={legacy[`${p.button.toLowerCase()}.png`]} alt={p.alt || p.button} />
         {' '}{p.button}
       </div>
     </Link>

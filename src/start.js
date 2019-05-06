@@ -1,11 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
-const importAll = (r) => {
-  let images = {};
-  r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
-  return images;
-}
-const images = importAll(require.context('./images', false, /\.(png|jpe?g|svg)$/));
+import { start } from './icons'
 
 const Start = p => {
   const bg = p.placeholder ? `url(${p.placeholder})` : '#000'
@@ -34,7 +29,7 @@ const Start = p => {
   `
   return (
     <div css={[style, p.center ? center : '']} onClick={p.onClick} id="p8_start_button">
-      <img alt="Play Game" src={images['start.png']}/>
+      <img alt="Play Game" src={start}/>
     </div>
   )
 }

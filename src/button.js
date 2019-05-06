@@ -1,11 +1,6 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
-const importAll = (r) => {
-  let images = {};
-  r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
-  return images;
-}
-const images = importAll(require.context('./images', false, /\.(png|jpe?g|svg)$/));
+import { icons } from './icons'
 
 const Button = p => {
   let image = p.id
@@ -41,7 +36,7 @@ const Button = p => {
   else if (p.align === 'right') align = right
   return (
     <div css={[menu, align]} className="p8_menu_button" id={p.id} onClick={p.onClick}>
-      <img src={images[`${image}.png`]} style={{ pointerEvents: 'none' }} />
+      <img src={icons[`${image}.png`]} style={{ pointerEvents: 'none' }} />
     </div>
   )
 }
