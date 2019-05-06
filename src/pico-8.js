@@ -1,9 +1,8 @@
 /** @jsx jsx */
 import { useState, useEffect, useRef } from 'react'
 import { jsx, css } from '@emotion/core'
+import { Button, LegacyButton } from './buttons'
 import pico from './pico.js'
-import LegacyButton from './legacy-button'
-import Button from './button'
 const importAll = (r) => {
   let images = {};
   r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
