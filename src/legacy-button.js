@@ -26,7 +26,6 @@ const OldButton = p => {
     div {
       font-family: verdana;
     }
-    &:link,
     &:hover {
       background-color: #aaa;
     }
