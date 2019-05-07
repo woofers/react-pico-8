@@ -19,6 +19,7 @@ const OldButton = p => {
     cursor: pointer;
     cursor: hand;
     text-decoration: none;
+    border: 0;
     a {
       color: #fff;
     }
@@ -35,18 +36,27 @@ const OldButton = p => {
     if (!isFunction()) return null
     return p.onClick
   }
+  const Button = ({ children }) => {
+    if (!isFunction()) return children
+    return (
+      <button css={isFunction() ? style : null} onClick={onClick()} aria-label={tag}>
+        {children}
+      </button>
+    )
+  }
   const Link = ({ children }) => {
     if (isFunction()) return children
-    return (<a css={style} target="_new" href={p.onClick}>{children}</a>)
+    return (<a role="button" css={style} target="_new" href={p.onClick} aria-label={tag}>{children}</a>)
   }
+  const tag = p.alt || p.button
   return (
     <Link>
-      <div css={isFunction() ? style : null} onClick={onClick()}>
-        <img width="12px" height="12px" src={legacy[`${p.button.toLowerCase()}.png`]} alt={p.alt || p.button} />
+      <Button>
+        <img width="12px" height="12px" src={legacy[`${p.button.toLowerCase()}.png`]} alt={tag} />
         {' '}{p.button}
-      </div>
+      </Button>
     </Link>
- )
+  )
 }
 
 export default OldButton
