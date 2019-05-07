@@ -7,6 +7,7 @@ import Canvas from './canvas.js'
 import pico from './pico.js'
 import { blockKeys, keys } from './keys.js'
 import { addEvent, removeEvent, setEvent } from './event.js'
+import { goFullscreen, onFullscreenExit } from './screen.js'
 
 const Pico8 = p => {
   const [isMuted, setMuted] = useState(true)
@@ -59,18 +60,7 @@ const Pico8 = p => {
     addEvent('MSFullscreenChange', fullscreenChange, false);
   })
   const fullscreenChange = (e) => {
-    const events = [
-      document.webkitIsFullScreen,
-      document.mozFullScreen,
-      document.msFullscreenElement,
-      document.fullscreenElement
-    ]
-    for (const event of events) {
-      if (event === false) {
-        setFullscreen(false)
-        return
-      }
-    }
+    onFullscreenExit(() => setFullscreen(false))
   }
   const keydown = (e) => {
     if (keys.indexOf(e.keyCode) > -1) updatePauseButton()
@@ -85,19 +75,7 @@ const Pico8 = p => {
   }
   const fullscreen = () => {
     setFullscreen(true)
-    const area = playArea.current
-    if (area.requestFullscreen) {
-      area.requestFullscreen()
-    }
-    else if (area.mozRequestFullScreen) {
-      area.mozRequestFullScreen()
-    }
-    else if (area.webkitRequestFullScreen) {
-      area.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT)
-    }
-    else if (area.msRequestFullScreen) {
-      area.msRequestFullScreen()
-    }
+    goFullscreen(playArea.current)
   }
   const pause = () => {
     window.Module.pico8TogglePaused()
