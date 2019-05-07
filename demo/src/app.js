@@ -74,18 +74,20 @@ const App = () => {
   const [hideCursor, setHideCursor] = useState(true)
   const [center, setCenter] = useState(true)
   const [blockKeys, setBlockKeys] = useState(true)
+  const [isMounted, setMounted] = useState(true)
   return (
     <div>
       <div css={page}>
         <Global styles={font} />
-        <Pico8 src="index.js"
-               autoPlay={autoPlay}
-               legacyButtons={legacyButtons}
-               hideCursor={hideCursor}
-               center={center}
-               blockKeys={blockKeys}
-               placeholder="placeholder.png"
-        />
+        { isMounted ?
+          <Pico8 src="index.js"
+                 autoPlay={autoPlay}
+                 legacyButtons={legacyButtons}
+                 hideCursor={hideCursor}
+                 center={center}
+                 blockKeys={blockKeys}
+                 placeholder="placeholder.png"
+          /> : null }
         <div css={desc}>
           <span css={heading}>
             <h1>
@@ -108,6 +110,9 @@ const App = () => {
             </Option>
             <Option name="blockKeys" checked={blockKeys} onChange={() => setBlockKeys(!blockKeys)}>
               If set blocks keys which scroll page when the game is running.  If un-set keys will only be blocked when the canvas is focused.
+            </Option>
+            <Option name="isMounted" checked={isMounted} onChange={() => setMounted(!isMounted)}>
+              Used to test component mounting and un-mounting.
             </Option>
           </form>
         </div>

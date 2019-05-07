@@ -1,7 +1,7 @@
 // The following code has been adapted to work with react-pico-8.
 // File generated from default PICO-8 web export.
 
-export const startPico = () => {
+const init = () => {
   // Default shell for PICO-8 0.1.12
 
   // options
@@ -32,8 +32,26 @@ export const startPico = () => {
   // Otherwise, PICO-8 will create its own one
   window.p8_touch_detected = false
 
-  window.addEventListener("touchstart", (e) => window.p8_touch_detected = true, { passive: true })
+  // Set canvas for game module
+  window.Module = { canvas: document.getElementById("canvas") }
 
+  // Indicate that the game instance is not running
+  // by default
+  window.p8_is_running = false
+
+  // Clear PICO-8 script var
+  window.p8_script = null
+
+  // Clear game audio context
+  window.pico8_audio_context = null
+}
+
+
+const onTouch = (e) => window.p8_touch_detected = true
+
+export const startPico = () => {
+  init()
+  window.addEventListener("touchstart", onTouch, { passive: true })
   window.p8_create_audio_context = () => {
     if (window.pico8_audio_context) {
       window.pico8_audio_context.resume()
@@ -67,9 +85,6 @@ export const startPico = () => {
     window.Module.pico8SetPaused(1)
   }
 
-  window.p8_is_running = false
-  window.p8_script = null
-  window.Module = null
   window.p8_run_cart = src => {
     if (window.p8_is_running) return
     window.p8_is_running = true
@@ -92,10 +107,11 @@ export const startPico = () => {
       }
     }
   }
-  window.Module = { canvas: document.getElementById("canvas") }
 }
 
 export const removePico = () => {
-  window.p8_script.parentNode.remove(window.p8_script)
-  window.p8_script = null
+  document.body.removeChild(window.p8_script)
+  window.pico8_audio_context.close()
+  window.removeEventListener("touchstart", onTouch, { passive: true })
+  init()
 }
