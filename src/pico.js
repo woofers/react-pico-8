@@ -1,7 +1,7 @@
 // The following code has been adapted to work with react-pico-8.
 // File generated from default PICO-8 web export.
 
-const onLoad = () => {
+export const startPico = () => {
   // Default shell for PICO-8 0.1.12
 
   // options
@@ -77,13 +77,12 @@ const onLoad = () => {
     // create audio context and wake it up (for iOS -- needs happen inside touch event)
     window.p8_create_audio_context()
 
-    const e = document.createElement("script")
-    p8_script = e
-    e.type = "application/javascript"
-    e.src = src
+    window.p8_script = document.createElement("script")
+    window.p8_script.type = "application/javascript"
+    window.p8_script.src = src
 
     // load and run
-    document.body.appendChild(e)
+    document.body.appendChild(window.p8_script)
 
     // add #playing for touchscreen devices (allows back button to close)
     if (window.p8_touch_detected) {
@@ -96,4 +95,7 @@ const onLoad = () => {
   window.Module = { canvas: document.getElementById("canvas") }
 }
 
-export default onLoad
+export const removePico = () => {
+  window.p8_script.parentNode.remove(window.p8_script)
+  window.p8_script = null
+}
