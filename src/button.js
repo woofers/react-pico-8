@@ -4,6 +4,7 @@ import { icons } from './icons'
 
 const Button = p => {
   let image = p.id
+  let title = p.title
   if (p.id === 'p8b_sound' || p.id === 'p8b_pause') {
     image += p.on ? '1' : '0'
   }
@@ -45,7 +46,8 @@ const Button = p => {
   if (p.align === 'left') align = left
   else if (p.align === 'right') align = right
   return (
-    <div css={[menu, align]} className="p8_menu_button" id={p.id} onClick={p.onClick}>
+    <div title={p.on ? p.onTitle : p.title} css={[menu, align]}
+         className="p8_menu_button" id={p.id} onClick={p.onClick}>
       <button css={mask} />
     </div>
   )

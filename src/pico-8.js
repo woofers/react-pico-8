@@ -175,10 +175,10 @@ const Pico8 = p => {
               { !(isMobile || isFullscreen) && hasStarted ?
                 ( !p.legacyButtons ?
                   <div css={stack}>
-                    <Button id="p8b_controls" onClick={context} />
-                    <Button id="p8b_pause" on={isPaused} onClick={pause} />
-                    <Button id="p8b_sound" on={!isMuted} onClick={sound} />
-                    <Button id="p8b_full" onClick={fullscreen} />
+                    <Button id="p8b_controls" title="Controls" onClick={context} />
+                    <Button id="p8b_pause" onTitle="Play" title="Pause" on={isPaused} onClick={pause} />
+                    <Button id="p8b_sound" onTitle="Mute" title="Unmute" on={!isMuted} onClick={sound} />
+                    <Button id="p8b_full" title="Go Fullscreen" onClick={fullscreen} />
                   </div>
                   :
                   <div css={[inline, p.center ? center : '']}>
