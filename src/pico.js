@@ -39,10 +39,12 @@ const init = () => {
   // by default
   window.p8_is_running = false
 
-  // Clear PICO-8 script var
+  // Clear PICO-8 script tag
+  if (window.p8_script) document.body.removeChild(window.p8_script)
   window.p8_script = null
 
   // Clear game audio context
+  if (window.pico8_audio_context) window.pico8_audio_context.close()
   window.pico8_audio_context = null
 }
 
@@ -110,8 +112,6 @@ export const startPico = () => {
 }
 
 export const removePico = () => {
-  document.body.removeChild(window.p8_script)
-  window.pico8_audio_context.close()
   window.removeEventListener("touchstart", onTouch, { passive: true })
   init()
 }
