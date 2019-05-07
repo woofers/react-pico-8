@@ -7,7 +7,7 @@ import Canvas from './canvas.js'
 import pico from './pico.js'
 import { blockKeys, keys } from './keys.js'
 import { addEvent, removeEvent, setEvent } from './event.js'
-import { goFullscreen, onFullscreenExit } from './screen.js'
+import { onFullscreenEvent, goFullscreen, onFullscreenExit } from './screen.js'
 
 const Pico8 = p => {
   const [isMuted, setMuted] = useState(true)
@@ -54,10 +54,7 @@ const Pico8 = p => {
     if (p.autoPlay) autoStart()
     addEvent("keydown", keydown, { passive: false })
     addEvent('touchstart', () => setMobile(true), { passive: true })
-    addEvent('webkitfullscreenchange', fullscreenChange, false);
-    addEvent('mozfullscreenchange', fullscreenChange, false);
-    addEvent('fullscreenchange', fullscreenChange, false);
-    addEvent('MSFullscreenChange', fullscreenChange, false);
+    onFullscreenEvent(fullscreenChange, false)
   })
   const fullscreenChange = (e) => {
     onFullscreenExit(() => setFullscreen(false))

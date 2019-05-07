@@ -1,3 +1,4 @@
+import { addEvent } from './event'
 
 export const goFullscreen = (area) => {
   if (area.requestFullscreen) {
@@ -27,4 +28,11 @@ export const onFullscreenExit = (callback) => {
       return
     }
   }
+}
+
+export const onFullscreenEvent = (func, options) => {
+  addEvent('webkitfullscreenchange', func, options);
+  addEvent('mozfullscreenchange', func, options);
+  addEvent('fullscreenchange', func, options);
+  addEvent('MSFullscreenChange', func, options);
 }
