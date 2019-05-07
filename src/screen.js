@@ -36,3 +36,10 @@ export const onFullscreenEvent = (func, options) => {
   addEvent('fullscreenchange', func, options);
   addEvent('MSFullscreenChange', func, options);
 }
+
+export const removeOnFullscreenEvent = (func, options) => {
+  removeEvent('webkitfullscreenchange', func, options);
+  removeEvent('mozfullscreenchange', func, options);
+  removeEvent('fullscreenchange', func, options);
+  removeEvent('MSFullscreenChange', func, options);
+}

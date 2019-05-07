@@ -4,10 +4,10 @@ import { jsx, css } from '@emotion/core'
 import { Button, LegacyButton } from './buttons'
 import Start from './start.js'
 import Canvas from './canvas.js'
-import pico from './pico.js'
+import { startPico, removePico } from './pico.js'
 import { blockKeys, keys } from './keys.js'
 import { addEvent, removeEvent, setEvent } from './event.js'
-import { onFullscreenEvent, goFullscreen, onFullscreenExit } from './screen.js'
+import { removeOnFullscreenEvent, onFullscreenEvent, goFullscreen, onFullscreenExit } from './screen.js'
 
 const Pico8 = p => {
   const [isMuted, setMuted] = useState(true)
@@ -19,7 +19,6 @@ const Pico8 = p => {
   const [isPaused, setPaused] = useState(true)
   const [isFullscreen, setFullscreen] = useState(false)
   const [hasStarted, setStarted] = useState(false)
-  const [isMounted, setMounted] = useState(false)
   const makeScript = (src, onload) => {
     const script = document.createElement('script')
     script.textContent = src
@@ -48,14 +47,24 @@ const Pico8 = p => {
   }
   useEffect(() => {
     setEvent("keydown", blockKeys, { passive: false }, hasStarted && p.blockKeys)
-    if (isMounted) return
-    setMounted(true)
-    pico()
+  })
+
+  const onMobile = () => setMobile(true)
+  useEffect(() => {
+    startPico()
     if (p.autoPlay) autoStart()
     addEvent("keydown", keydown, { passive: false })
-    addEvent('touchstart', () => setMobile(true), { passive: true })
+    addEvent('touchstart', onMobile, { passive: true })
     onFullscreenEvent(fullscreenChange, false)
-  })
+    return () => {
+      removePico()
+      removeEvent("keydown", keydown, { passive: false })
+      removeEvent('touchstart', onMobile, { passive: true })
+      removeOnFullscreenEvent(fullscreenChange, false)
+      removeEvent("keydown", blockKeys, { passive: false })
+    }
+  }, [])
+
   const fullscreenChange = (e) => {
     onFullscreenExit(() => setFullscreen(false))
   }
