@@ -6,6 +6,8 @@ import Start from './start.js'
 import Canvas from './canvas.js'
 import pico from './pico.js'
 import { blockKeys, keys } from './keys.js'
+import { addEvent, removeEvent, setEvent } from './event.js'
+import { onFullscreenEvent, goFullscreen, onFullscreenExit } from './screen.js'
 
 const Pico8 = p => {
   const [isMuted, setMuted] = useState(true)
@@ -45,18 +47,6 @@ const Pico8 = p => {
     }
   }
   useEffect(() => {
-    const addEvent = (name, func, options) => {
-      window.addEventListener(name, func, options)
-    }
-    const removeEvent = (name, func, options) => {
-      window.removeEventListener(name, func, options)
-    }
-    const setEvent = (name, func, options, value) => {
-      removeEvent(name, func, options)
-      if (value) {
-        addEvent(name, func, options)
-      }
-    }
     setEvent("keydown", blockKeys, { passive: false }, hasStarted && p.blockKeys)
     if (isMounted) return
     setMounted(true)
@@ -64,24 +54,10 @@ const Pico8 = p => {
     if (p.autoPlay) autoStart()
     addEvent("keydown", keydown, { passive: false })
     addEvent('touchstart', () => setMobile(true), { passive: true })
-    addEvent('webkitfullscreenchange', fullscreenChange, false);
-    addEvent('mozfullscreenchange', fullscreenChange, false);
-    addEvent('fullscreenchange', fullscreenChange, false);
-    addEvent('MSFullscreenChange', fullscreenChange, false);
+    onFullscreenEvent(fullscreenChange, false)
   })
   const fullscreenChange = (e) => {
-    const events = [
-      document.webkitIsFullScreen,
-      document.mozFullScreen,
-      document.msFullscreenElement,
-      document.fullscreenElement
-    ]
-    for (const event of events) {
-      if (event === false) {
-        setFullscreen(false)
-        return
-      }
-    }
+    onFullscreenExit(() => setFullscreen(false))
   }
   const keydown = (e) => {
     if (keys.indexOf(e.keyCode) > -1) updatePauseButton()
@@ -96,19 +72,7 @@ const Pico8 = p => {
   }
   const fullscreen = () => {
     setFullscreen(true)
-    const area = playArea.current
-    if (area.requestFullscreen) {
-      area.requestFullscreen()
-    }
-    else if (area.mozRequestFullScreen) {
-      area.mozRequestFullScreen()
-    }
-    else if (area.webkitRequestFullScreen) {
-      area.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT)
-    }
-    else if (area.msRequestFullScreen) {
-      area.msRequestFullScreen()
-    }
+    goFullscreen(playArea.current)
   }
   const pause = () => {
     window.Module.pico8TogglePaused()
