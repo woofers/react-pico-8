@@ -98,4 +98,6 @@ export const startPico = () => {
 export const removePico = () => {
   document.body.removeChild(window.p8_script)
   window.p8_script = null
+  window.pico8_audio_context.close()
+  window.pico8_audio_context = null
 }
