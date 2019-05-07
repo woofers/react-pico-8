@@ -7,6 +7,7 @@ const Button = p => {
   if (p.id === 'p8b_sound' || p.id === 'p8b_pause') {
     image += p.on ? '1' : '0'
   }
+  image = icons[`${image}.png`]
   if (p.hidden) return null
   const left = css`
     float: left !important;
@@ -17,26 +18,35 @@ const Button = p => {
     margin: 0 10px 0 0;
   `
   const menu = css`
-    opacity: 0.3;
     padding: 4px;
     display: inline;
-    width: 24px;
-    height: 24px;
     margin-left: 6px;
     @media only screen and (min-width: 740px) {
       display: table;
     }
     &:hover {
       cursor: pointer;
-      opacity: 1;
+      button {
+        background: #fff;
+      }
     }
+  `
+  const mask = css`
+    width: 24px;
+    height: 24px;
+    background: #64605d;
+    -webkit-mask-image: url(${image});
+    mask-image: url(${image});
+    pointer-events: none;
+    display: inline-block;
+    border: 0;
   `
   let align = ''
   if (p.align === 'left') align = left
   else if (p.align === 'right') align = right
   return (
     <div css={[menu, align]} className="p8_menu_button" id={p.id} onClick={p.onClick}>
-      <img src={icons[`${image}.png`]} style={{ pointerEvents: 'none' }} />
+      <button css={mask} />
     </div>
   )
 }
