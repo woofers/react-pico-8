@@ -1,4 +1,4 @@
-import { addEvent } from './event'
+import { addEvent, removeEvent } from './event'
 
 export const goFullscreen = (area) => {
   if (area.requestFullscreen) {

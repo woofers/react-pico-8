@@ -96,6 +96,6 @@ export const startPico = () => {
 }
 
 export const removePico = () => {
-  window.p8_script.parentNode.remove(window.p8_script)
+  document.body.removeChild(window.p8_script)
   window.p8_script = null
 }
