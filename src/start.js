@@ -22,15 +22,16 @@ const Start = p => {
     top: 0px;
     width: 85vmin;
     height: 85vmin;
+    border: 0;
   `
   const center = css`
     margin-left: auto;
     margin-right: auto;
   `
   return (
-    <div css={[style, p.center ? center : '']} onClick={p.onClick} id="p8_start_button">
-      <img alt="Play Game" src={start}/>
-    </div>
+    <button title="Start Game" css={[style, p.center ? center : '']} onClick={p.onClick} id="p8_start_button">
+      <img alt="" src={start}/>
+    </button>
   )
 }
 
