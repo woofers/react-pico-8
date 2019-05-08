@@ -1,0 +1,94 @@
+React PICO-8
+===========
+[![img](https://wdp9fww0r9.execute-api.us-west-2.amazonaws.com/production/badge/woofers/react-pico-8)](https://wdp9fww0r9.execute-api.us-west-2.amazonaws.com/production/results/woofers/react-pico-8) [![img](https://david-dm.org/woofers/react-pico-8.svg)](https://www.npmjs.com/package/react-pico-8) [![img](https://badge.fury.io/js/react-pico-8.svg)](https://www.npmjs.com/package/react-pico-8) [![img](https://img.shields.io/npm/dt/react-pico-8.svg)](https://www.npmjs.com/package/react-pico-8) [![img](https://img.shields.io/npm/l/react-pico-8.svg)](https://github.com/woofers/react-pico-8/blob/master/License.txt) [![img](https://img.shields.io/badge/greenkeeper-enabled-brightgreen.svg)](https://greenkeeper.io/)
+
+Run [PICO-8](https://lexaloffle.com/pico-8.php) game cartridges using a cusomtizable React component.
+
+**[Live Demo](https://jaxson.vandoorn.ca/react-pico-8/)**
+
+**Note:** This project is community made and not endorsed by Lexaloffle or the offical [PICO-8](https://www.lexaloffle.com/pico-8.php) Fantasy Console.
+
+
+# Installation
+
+**Yarn**
+
+    yarn add react-pico-8
+
+**npm**
+
+    npm install react-pico-8
+
+
+# Usage
+
+```js
+import React, { Component } from "react"
+import Pico8 from 'react-pico-8'
+
+class Application extends Component {
+  render () {
+    return (
+      <div>
+        <Pico8 src="index.js"
+               autoPlay={true}
+               legacyButtons={false}
+               hideCursor={true}
+               center={true}
+               blockKeys={true}
+               placeholder="placeholder.png"
+        />
+      </div>
+    )
+  }
+}
+```
+
+Simply add the game widget to the React application using JSX.
+
+Be sure to include the `.js` `src` of the game cartridge generated from [PICO-8](https://lexaloffle.com/pico-8.php)'s web export.
+
+
+## Props
+
+
+### Src
+
+Source of the game cartridge.  **Required**
+
+This can be obtained from [PICO-8](https://lexaloffle.com/pico-8.php) by loading a game cart, then typing the command `export index.html`.
+
+[PICO-8](https://lexaloffle.com/pico-8.php) produces two files: the cartridge `index.js` and the player `index.html`.
+
+Since `react-pico-8` already has the game player embeded, only the `.js` file needs to be provided as the `src`.
+
+
+### Auto Play
+
+`autoPlay` indicates if the game canvas should attempt to auto-play on page-load. **Default:** `true`
+
+
+### Legacy Buttons
+
+`legacyButtons` is used to select the type of buttons. **Default:** `false`
+
+
+### Hide Cursor
+
+`hideCusor` indicates if the cursor is hidden over the game canvas when the game is playing.  **Default:** `true`
+
+
+### Center
+
+`center` indicates if the game is centred outside of fullscreen mode. **Default:** `true`
+
+
+### Block Keys
+
+If `blockKeys` is set keys which are used to interact with the game are blocked from scrolling when the game is running.
+If un-set keys will only be blocked when the canvas is focused.  **Default:** `true`
+
+
+### Placeholder
+
+The image to be used as a placeholder prior to starting the game.  If un-set, a black background will be used.  **Default:** `''`
