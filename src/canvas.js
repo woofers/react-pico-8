@@ -28,7 +28,7 @@ const Canvas = p => {
     text-align: center;
   `
   const margin = css`
-    @media only screen and (min-width: 740px) {
+    @media only screen and (min-width: 768px) {
       margin-left: 45px;
     }
   `
