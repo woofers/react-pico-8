@@ -8,11 +8,11 @@ self.__precacheManifest = [
     "url": "/react-pico-8/static/js/runtime~main.7269bc60.js"
   },
   {
-    "revision": "351fe978beb4f9a727d7",
-    "url": "/react-pico-8/static/js/2.d8c05b17.chunk.js"
+    "revision": "7b1222d933f1fb5157e2",
+    "url": "/react-pico-8/static/js/2.3b7edf74.chunk.js"
   },
   {
-    "revision": "fa33ac144f074d1afe2634fe883dc21e",
+    "revision": "c5dd67a253db90bc0b7c97b38055beee",
     "url": "/react-pico-8/index.html"
   }
 ];
