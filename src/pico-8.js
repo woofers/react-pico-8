@@ -114,7 +114,7 @@ const Pico8 = p => {
     display: inline-block;
     margin-left: 0px;
     margin-top: 12.5px;
-    @media only screen and (min-width: 740px) {
+    @media only screen and (min-width: 768px) {
       margin-top: 0px;
       margin-left: 12.5px;
     }

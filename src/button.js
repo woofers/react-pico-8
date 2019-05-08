@@ -22,7 +22,7 @@ const Button = p => {
     padding: 4px;
     display: inline;
     margin-left: 6px;
-    @media only screen and (min-width: 740px) {
+    @media only screen and (min-width: 768px) {
       display: table;
     }
     &:hover {
