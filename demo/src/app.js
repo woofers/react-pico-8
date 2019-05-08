@@ -96,6 +96,7 @@ const App = () => {
             <img width="32px" height="32px" src="pico.png" alt="PICO-8 Logo" />
           </span>
           <form css={form}>
+            <h2>Props</h2>
             <Option name="autoPlay" checked={autoPlay} onChange={() => setAutoPlay(!autoPlay)}>
               Indicates if the game canvas should attempt to auto-play on page-load.
             </Option>
@@ -111,6 +112,7 @@ const App = () => {
             <Option name="blockKeys" checked={blockKeys} onChange={() => setBlockKeys(!blockKeys)}>
               If set blocks keys which scroll page when the game is running.  If un-set keys will only be blocked when the canvas is focused.
             </Option>
+            <h2>State</h2>
             <Option name="isMounted" checked={isMounted} onChange={() => setMounted(!isMounted)}>
               Used to test component mounting and un-mounting.
             </Option>
