@@ -26,7 +26,7 @@ const Button = p => {
       display: table;
     }
     &:hover {
-      cursor: pointer;
+      cursor: ${p.usePointer ? 'pointer' : 'auto'};
       button {
         background: #fff;
       }

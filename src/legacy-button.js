@@ -4,6 +4,7 @@ import { importAll } from './import'
 import { legacy } from './icons'
 
 const OldButton = p => {
+  const isFunction = () => typeof p.onClick === 'function'
   const style = css`
     float: left;
     width: 100%;
@@ -16,7 +17,7 @@ const OldButton = p => {
     background-color: #777;
     font-family: verdana;
     font-size: 9pt;
-    cursor: pointer;
+    cursor: ${p.usePointer || !isFunction() ? 'pointer' : 'auto'};
     cursor: hand;
     text-decoration: none;
     border: 0;
@@ -30,7 +31,6 @@ const OldButton = p => {
       background-color: #aaa;
     }
   `
-  const isFunction = () => typeof p.onClick === 'function'
   const onClick = () => {
     if (!isFunction()) return null
     return p.onClick

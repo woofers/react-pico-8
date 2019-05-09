@@ -75,6 +75,7 @@ const App = () => {
   const [center, setCenter] = useState(true)
   const [blockKeys, setBlockKeys] = useState(true)
   const [isMounted, setMounted] = useState(true)
+  const [usePointer, setPointer] = useState(true)
   return (
     <div>
       <div css={page}>
@@ -86,6 +87,7 @@ const App = () => {
                  hideCursor={hideCursor}
                  center={center}
                  blockKeys={blockKeys}
+                 usePointer={usePointer}
                  placeholder="placeholder.png"
           /> : null }
         <div css={desc}>
@@ -111,6 +113,9 @@ const App = () => {
             </Option>
             <Option name="blockKeys" checked={blockKeys} onChange={() => setBlockKeys(!blockKeys)}>
               If set keys which are used to interact with the game are blocked from scrolling when the game is running.  If un-set keys will only be blocked when the canvas is focused.
+            </Option>
+            <Option name="usePointer" checked={usePointer} onChange={() => setPointer(!usePointer)}>
+              If set the pointer hand will be used on buttons.  If un-set a normal cursor will be used on all buttons which do not lead to a new page.
             </Option>
             <h2>State</h2>
             <Option name="isMounted" checked={isMounted} onChange={() => setMounted(!isMounted)}>

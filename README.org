@@ -71,6 +71,13 @@ Since ~react-pico-8~ already has the game player embeded, only the ~.js~ file ne
 ~center~ indicates if the game is centred outside of fullscreen mode. *Default:* ~true~
 *** Block Keys
 If ~blockKeys~ is set keys which are used to interact with the game are blocked from scrolling when the game is running.
+
 If un-set keys will only be blocked when the canvas is focused.  *Default:* ~true~
+*** Use Pointer
+
+If ~usePointer~ is set the pointer hand will be used on buttons.
+
+If un-set a normal cursor will be used on all buttons which do not lead to a new page. *Default:* ~true~
+
 *** Placeholder
 The image to be used as a placeholder prior to starting the game.  If un-set, a black background will be used.  *Default:* ~''~
