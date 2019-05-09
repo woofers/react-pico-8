@@ -36,6 +36,7 @@ class Application extends Component {
                hideCursor={true}
                center={true}
                blockKeys={true}
+               usePointer={true}
                placeholder="placeholder.png"
         />
       </div>
