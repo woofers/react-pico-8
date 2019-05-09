@@ -88,7 +88,10 @@ const Pico8 = p => {
     updatePauseButton()
   }
   const reset = () => window.Module.pico8Reset()
-  const context = () => window.Module.pico8ToggleControlMenu()
+  const context = () => {
+    window.Module.pico8ToggleControlMenu()
+    updatePauseButton()
+  }
   const close = () => {
     setStarted(false)
     setMuted(false)
