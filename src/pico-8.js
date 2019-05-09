@@ -137,7 +137,7 @@ const Pico8 = p => {
     <div css={p.css} className={p.className} style={p.style}>
       <canvas css={hide} />
       <div id="p8_container">
-        { !hasStarted ? <Start center={p.center} placeholder={p.placeholder} onClick={start} /> : null }
+        { !hasStarted ? <Start center={p.center} placeholder={p.placeholder} onClick={start} usePointer={p.usePointer} /> : null }
         <div ref={playArea} id="p8_playarea" css={hasStarted ? '' : [hide, none]}>
           <div id="menu_buttons_touch" css={mobileHeader}>
             <Button align="left" id="p8b_sound" on={!isMuted} onClick={sound} hidden={!isMobile || !isFullscreen} />
@@ -151,19 +151,19 @@ const Pico8 = p => {
               { !(isMobile || isFullscreen) && hasStarted ?
                 ( !p.legacyButtons ?
                   <div css={stack}>
-                    <Button id="p8b_controls" title="Controls" onClick={context} />
-                    <Button id="p8b_pause" onTitle="Play" title="Pause" on={isPaused} onClick={pause} />
-                    <Button id="p8b_sound" onTitle="Mute" title="Unmute" on={!isMuted} onClick={sound} />
-                    <Button id="p8b_full" title="Go Fullscreen" onClick={fullscreen} />
+                    <Button usePointer={p.usePointer} id="p8b_controls" title="Controls" onClick={context} />
+                    <Button usePointer={p.usePointer} id="p8b_pause" onTitle="Play" title="Pause" on={isPaused} onClick={pause} />
+                    <Button usePointer={p.usePointer} id="p8b_sound" onTitle="Mute" title="Unmute" on={!isMuted} onClick={sound} />
+                    <Button usePointer={p.usePointer} id="p8b_full" title="Go Fullscreen" onClick={fullscreen} />
                   </div>
                   :
                   <div css={[inline, p.center ? center : '']}>
-                    <LegacyButton button="Reset" onClick={reset} />
-                    <LegacyButton button="Pause" onClick={pause} />
-                    <LegacyButton button="Fullscreen" alt="Toggle Fullscreen" onClick={fullscreen} />
-                    <LegacyButton button="Sound" onClick={sound} />
-                    <LegacyButton button="Carts" alt="More Carts" onClick="http://www.lexaloffle.com/bbs/?cat=7&sub=2" />
-                    <LegacyButton button="Controls" onClick={context} />
+                    <LegacyButton usePointer={p.usePointer} button="Reset" onClick={reset} />
+                    <LegacyButton usePointer={p.usePointer} button="Pause" onClick={pause} />
+                    <LegacyButton usePointer={p.usePointer} button="Fullscreen" alt="Toggle Fullscreen" onClick={fullscreen} />
+                    <LegacyButton usePointer={p.usePointer} button="Sound" onClick={sound} />
+                    <LegacyButton usePointer={p.usePointer} button="Carts" alt="More Carts" onClick="http://www.lexaloffle.com/bbs/?cat=7&sub=2" />
+                    <LegacyButton usePointer={p.usePointer} button="Controls" onClick={context} />
                   </div>
                 ) : null }
             </Canvas>
@@ -180,7 +180,8 @@ Pico8.defaultProps = {
   placeholder: '',
   hideCursor: true,
   center: false,
-  blockKeys: true
+  blockKeys: true,
+  usePointer: true
 }
 
 export default Pico8

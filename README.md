@@ -86,7 +86,15 @@ Since `react-pico-8` already has the game player embeded, only the `.js` file ne
 ### Block Keys
 
 If `blockKeys` is set keys which are used to interact with the game are blocked from scrolling when the game is running.
+
 If un-set keys will only be blocked when the canvas is focused.  **Default:** `true`
+
+
+### Use Pointer
+
+If `usePointer` is set the pointer hand will be used on buttons.
+
+If un-set a normal cursor will be used on all buttons which do not lead to a new page. **Default:** `true`
 
 
 ### Placeholder

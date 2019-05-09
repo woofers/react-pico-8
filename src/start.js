@@ -11,7 +11,7 @@ const Start = p => {
     img {
       margin: auto;
     }
-    cursor: pointer;
+    cursor: ${p.usePointer ? 'pointer' : 'auto'};
     background: ${bg};
     -webkit-background-size: cover;
     -moz-background-size: cover;
