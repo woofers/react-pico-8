@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/react-pico-8/precache-manifest.b6be9214a653db747e23967e27346fbc.js"
+  "/react-pico-8/precache-manifest.d87c5b18674bae685bacb036750753de.js"
 );
 
 workbox.clientsClaim();
