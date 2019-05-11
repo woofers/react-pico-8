@@ -1,7 +1,9 @@
 /** @jsx jsx */
 import { Global, jsx, css } from '@emotion/core'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Pico8 from 'react-pico-8'
+import CodeBlock from './code-block'
+import codeDemo from './code'
 
 const Checkbox = p => {
   const span = css`
@@ -33,7 +35,7 @@ const Option = p => {
 
 const App = () => {
   const font = css`
-    @import url('https://fonts.googleapis.com/css?family=Lato:400,700');
+    @import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700|Lato:400,700');
     * {
       font-family: 'Lato', sans-serif;
     }
@@ -52,15 +54,19 @@ const App = () => {
   const form = css`
     margin-top: 20px;
   `
-  const heading = css`
-    margin-bottom: 20px;
+  const link = css`
     a {
       text-decoration: none;
       color: #FFF;
-      margin-right: 10px;
     }
     a:hover {
       opacity: 0.5;
+    }
+  `
+  const heading = css`
+    margin-bottom: 20px;
+    a {
+      margin-right: 10px;
     }
     h1 {
       display: inline;
@@ -76,6 +82,14 @@ const App = () => {
   const [blockKeys, setBlockKeys] = useState(true)
   const [isMounted, setMounted] = useState(true)
   const [usePointer, setPointer] = useState(true)
+  const values = [
+    autoPlay,
+    legacyButtons,
+    hideCursor,
+    center,
+    blockKeys,
+    usePointer
+  ]
   return (
     <div>
       <div css={page}>
@@ -91,7 +105,7 @@ const App = () => {
                  placeholder="placeholder.png"
           /> : null }
         <div css={desc}>
-          <span css={heading}>
+          <span css={[heading, link]}>
             <h1>
               <a href="https://github.com/woofers/react-pico-8">react-pico-8</a>
             </h1>
@@ -122,6 +136,13 @@ const App = () => {
               Used to test component mounting and un-mounting.
             </Option>
           </form>
+          <h2>Usage</h2>
+          <CodeBlock language="jsx">{codeDemo(...values)}</CodeBlock>
+          <p>Simply add the game widget to the React application using JSX.</p>
+          <p css={link}>
+            Be sure to include the <code>.js</code> <code>src</code> of
+            the game cartridge generated from <a href="https://lexaloffle.com/pico-8.php">PICO-8</a>'s web export.
+          </p>
         </div>
       </div>
     </div>
