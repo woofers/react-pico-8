@@ -23,25 +23,23 @@ Run [PICO-8](https://lexaloffle.com/pico-8.php) game cartridges using a cusomtiz
 # Usage
 
 ```js
-import React, { Component } from "react"
+import React from 'react'
 import Pico8 from 'react-pico-8'
 
-class Application extends Component {
-  render () {
-    return (
-      <div>
-        <Pico8 src="index.js"
-               autoPlay={true}
-               legacyButtons={false}
-               hideCursor={true}
-               center={true}
-               blockKeys={true}
-               usePointer={true}
-               placeholder="placeholder.png"
-        />
-      </div>
-    )
-  }
+const App = () => {
+  return (
+    <div>
+      <Pico8 src="index.js"
+             autoPlay={true}
+             legacyButtons={false}
+             hideCursor={true}
+             center={true}
+             blockKeys={true}
+             usePointer={true}
+             placeholder="placeholder.png"
+      />
+    </div>
+  )
 }
 ```
 
