@@ -49,6 +49,15 @@ const init = () => {
 }
 
 
+const suppressConsole = () => {
+  const noop = string => {}
+  const log = console.log
+  window.err = noop
+  window.out = noop
+  console.log = noop
+  return () => setTimeout(() => console.log = log, 60)
+}
+
 const onTouch = (e) => window.p8_touch_detected = true
 
 export const startPico = () => {
@@ -97,6 +106,10 @@ export const startPico = () => {
     window.p8_script = document.createElement("script")
     window.p8_script.type = "application/javascript"
     window.p8_script.src = src
+
+    // suppress noisy console during cart load
+    const resetConsole = suppressConsole()
+    window.p8_script.onload = resetConsole
 
     // load and run
     document.body.appendChild(window.p8_script)
