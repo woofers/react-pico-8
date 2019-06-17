@@ -43,13 +43,21 @@ const Button = p => {
     border: 0;
   `
   let align = ''
+  const Wrapper = p => {
+    const isFunction = () => typeof p.onClick === 'function'
+    const { onClick, ...rest } = p
+    return (isFunction()
+      ? <div onClick={onClick} {...rest}>{p.children}</div>
+      : <a role="button" target="_new" href={onClick} {...rest}>{p.children}</a>
+    )
+  }
   if (p.align === 'left') align = left
   else if (p.align === 'right') align = right
   return (
-    <div title={p.on ? p.onTitle : p.title} css={[menu, align]}
+    <Wrapper title={p.on ? p.onTitle : p.title} css={[menu, align]}
          className="p8_menu_button" onClick={p.onClick}>
       <button css={mask} />
-    </div>
+    </Wrapper>
   )
 }
 

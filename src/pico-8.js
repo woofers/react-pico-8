@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { useState, useEffect, useRef } from 'react'
 import { jsx, css } from '@emotion/core'
-import { Button, LegacyButton } from './buttons'
+import { Reset, Pause, Fullscreen, Sound, Carts, Controls, Button, LegacyButton } from './buttons'
 import Start from './start.js'
 import Canvas from './canvas.js'
 import { startPico, removePico } from './pico.js'
@@ -87,8 +87,7 @@ const Pico8 = p => {
     window.Module.pico8TogglePaused()
     updatePauseButton()
   }
-  const reset = () => window.Module.pico8Reset()
-  const context = () => {
+  const controls = () => {
     window.Module.pico8ToggleControlMenu()
     updatePauseButton()
   }
@@ -133,6 +132,17 @@ const Pico8 = p => {
     margin-right: auto;
   `
   const playArea = useRef()
+  const { usePointer, legacyButtons } = p
+  const buttonData = {
+    usePointer,
+    legacyButtons,
+    isPaused,
+    isMuted,
+    pause,
+    fullscreen,
+    sound,
+    controls
+  }
   return (
     <div css={p.css} className={p.className} style={p.style}>
       <canvas css={hide} />
@@ -149,23 +159,15 @@ const Pico8 = p => {
                     hasStarted={hasStarted} hideCursor={p.hideCursor}
             >
               { !(isMobile || isFullscreen) && hasStarted ?
-                ( !p.legacyButtons ?
-                  <div css={stack}>
-                    <Button usePointer={p.usePointer} button="Controls" title="Controls" onClick={context} />
-                    <Button usePointer={p.usePointer} button="Pause" onTitle="Play" title="Pause" on={isPaused} onClick={pause} />
-                    <Button usePointer={p.usePointer} button="Sound" onTitle="Mute" title="Unmute" on={!isMuted} onClick={sound} />
-                    <Button usePointer={p.usePointer} button="Fullscreen" title="Go Fullscreen" onClick={fullscreen} />
-                  </div>
-                  :
-                  <div css={[inline, p.center ? center : '']}>
-                    <LegacyButton usePointer={p.usePointer} button="Reset" onClick={reset} />
-                    <LegacyButton usePointer={p.usePointer} button="Pause" onClick={pause} />
-                    <LegacyButton usePointer={p.usePointer} button="Fullscreen" alt="Toggle Fullscreen" onClick={fullscreen} />
-                    <LegacyButton usePointer={p.usePointer} button="Sound" onClick={sound} />
-                    <LegacyButton usePointer={p.usePointer} button="Carts" alt="More Carts" onClick="http://www.lexaloffle.com/bbs/?cat=7&sub=2" />
-                    <LegacyButton usePointer={p.usePointer} button="Controls" onClick={context} />
-                  </div>
-                ) : null }
+                <div css={!p.legacyButtons ? stack : ([inline, p.center ? center : ''])}>
+                  <Reset {...buttonData} />
+                  <Pause {...buttonData} />
+                  <Fullscreen {...buttonData} />
+                  <Sound {...buttonData} />
+                  <Carts {...buttonData} />
+                  <Controls {...buttonData} />
+                </div>
+              : null}
             </Canvas>
           </div>
         </div>
