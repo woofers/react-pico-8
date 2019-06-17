@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { useState, useEffect, useRef } from 'react'
 import { jsx, css } from '@emotion/core'
-import { Reset, Pause, Fullscreen, Sound, Carts, Controls, Button, LegacyButton } from './buttons'
+import { defaultButtons, defaultLegacy, Button } from './buttons'
 import Start from './start.js'
 import Canvas from './canvas.js'
 import { startPico, removePico } from './pico.js'
@@ -133,6 +133,10 @@ const Pico8 = p => {
   `
   const playArea = useRef()
   const { usePointer, legacyButtons } = p
+  const Buttons = b => {
+    const buttons = b.legacyButtons ? defaultLegacy : defaultButtons
+    return buttons.map(B => <B {...b}/>)
+  }
   const buttonData = {
     usePointer,
     legacyButtons,
@@ -160,12 +164,7 @@ const Pico8 = p => {
             >
               { !(isMobile || isFullscreen) && hasStarted ?
                 <div css={!p.legacyButtons ? stack : ([inline, p.center ? center : ''])}>
-                  <Reset {...buttonData} />
-                  <Pause {...buttonData} />
-                  <Fullscreen {...buttonData} />
-                  <Sound {...buttonData} />
-                  <Carts {...buttonData} />
-                  <Controls {...buttonData} />
+                  <Buttons {...buttonData} />
                 </div>
               : null}
             </Canvas>
