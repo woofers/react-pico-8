@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { jsx, css } from '@emotion/core'
 import { defaultButtons, defaultLegacy, Button } from './buttons'
 import Start from './start.js'
@@ -134,8 +134,16 @@ const Pico8 = p => {
   const playArea = useRef()
   const { usePointer, legacyButtons } = p
   const Buttons = b => {
-    const buttons = b.legacyButtons ? defaultLegacy : defaultButtons
-    return buttons.map(B => <B {...b}/>)
+    let buttons = p.children
+    let map = (arr, func) => React.Children.map(arr, func)
+    if (!buttons) {
+      buttons = legacyButtons ? defaultLegacy : defaultButtons
+      map = (arr, func) => arr.map(func)
+    }
+    return map(buttons, B => {
+      if (!React.isValidElement(B)) return <B {...b}/>
+      return React.cloneElement(B, b)
+    })
   }
   const buttonData = {
     usePointer,

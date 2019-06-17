@@ -2,6 +2,7 @@
 import { Global, jsx, css } from '@emotion/core'
 import { useState } from 'react'
 import Pico8 from 'react-pico-8'
+import * as buttons from 'react-pico-8/buttons'
 import CodeBlock from './code-block'
 import codeDemo from './code'
 
@@ -102,8 +103,9 @@ const App = () => {
                  center={center}
                  blockKeys={blockKeys}
                  usePointer={usePointer}
-                 placeholder="placeholder.png"
-          /> : null }
+                 placeholder="placeholder.png">
+            {Object.values(buttons).sort().map(B => <B />)}
+          </Pico8> : null }
         <div css={desc}>
           <span css={[heading, link]}>
             <h1>
