@@ -3,9 +3,9 @@ import { jsx, css } from '@emotion/core'
 import { icons } from './icons'
 
 const Button = p => {
-  let image = p.id
+  let image = p.button.toLowerCase()
   let title = p.title
-  if (p.id === 'p8b_sound' || p.id === 'p8b_pause') {
+  if (p.onTitle) {
     image += p.on ? '1' : '0'
   }
   image = icons[`${image}.png`]
@@ -47,7 +47,7 @@ const Button = p => {
   else if (p.align === 'right') align = right
   return (
     <div title={p.on ? p.onTitle : p.title} css={[menu, align]}
-         className="p8_menu_button" id={p.id} onClick={p.onClick}>
+         className="p8_menu_button" onClick={p.onClick}>
       <button css={mask} />
     </div>
   )

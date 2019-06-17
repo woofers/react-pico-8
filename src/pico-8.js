@@ -140,8 +140,8 @@ const Pico8 = p => {
         { !hasStarted ? <Start center={p.center} placeholder={p.placeholder} onClick={start} usePointer={p.usePointer} /> : null }
         <div ref={playArea} id="p8_playarea" css={hasStarted ? '' : [hide, none]}>
           <div id="menu_buttons_touch" css={mobileHeader}>
-            <Button align="left" id="p8b_sound" on={!isMuted} onClick={sound} hidden={!isMobile || !isFullscreen} />
-            <Button align="right" id="p8b_close" onClick={close} hidden={!isMobile || !isFullscreen} />
+            <Button align="left" button="Sound" on={!isMuted} onClick={sound} hidden={!isMobile || !isFullscreen} />
+            <Button align="right" button="Close" onClick={close} hidden={!isMobile || !isFullscreen} />
           </div>
           <div>
             <Canvas legacyButtons={p.legacyButtons} center={p.center}
@@ -151,10 +151,10 @@ const Pico8 = p => {
               { !(isMobile || isFullscreen) && hasStarted ?
                 ( !p.legacyButtons ?
                   <div css={stack}>
-                    <Button usePointer={p.usePointer} id="p8b_controls" title="Controls" onClick={context} />
-                    <Button usePointer={p.usePointer} id="p8b_pause" onTitle="Play" title="Pause" on={isPaused} onClick={pause} />
-                    <Button usePointer={p.usePointer} id="p8b_sound" onTitle="Mute" title="Unmute" on={!isMuted} onClick={sound} />
-                    <Button usePointer={p.usePointer} id="p8b_full" title="Go Fullscreen" onClick={fullscreen} />
+                    <Button usePointer={p.usePointer} button="Controls" title="Controls" onClick={context} />
+                    <Button usePointer={p.usePointer} button="Pause" onTitle="Play" title="Pause" on={isPaused} onClick={pause} />
+                    <Button usePointer={p.usePointer} button="Sound" onTitle="Mute" title="Unmute" on={!isMuted} onClick={sound} />
+                    <Button usePointer={p.usePointer} button="Fullscreen" title="Go Fullscreen" onClick={fullscreen} />
                   </div>
                   :
                   <div css={[inline, p.center ? center : '']}>
