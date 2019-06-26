@@ -26,9 +26,9 @@ const Button = p => {
       display: table;
     }
     &:hover {
-      cursor: ${p.usePointer ? 'pointer' : 'auto'};
+      cursor: ${p.disabled ? 'grab' : (p.usePointer ? 'pointer' : 'auto')};
       button {
-        background: #fff;
+        ${p.disabled ? '' : 'background: #fff'};
       }
     }
   `
@@ -45,7 +45,8 @@ const Button = p => {
   let align = ''
   const Wrapper = p => {
     const isFunction = () => typeof p.onClick === 'function'
-    const { onClick, ...rest } = p
+    const { disabled, onClick, ...rest } = p
+    if (disabled) return <div {...rest}>{p.children}</div>
     return (isFunction()
       ? <div onClick={onClick} {...rest}>{p.children}</div>
       : <a role="button" target="_new" href={onClick} {...rest}>{p.children}</a>
@@ -54,12 +55,11 @@ const Button = p => {
   if (p.align === 'left') align = left
   else if (p.align === 'right') align = right
   return (
-    <Wrapper title={p.on ? p.onTitle : p.title} css={[menu, align]}
+    <Wrapper disabled={p.disabled} title={p.on ? p.onTitle : p.title} css={[menu, align]}
          className="p8_menu_button" onClick={p.onClick}>
-      <button css={mask} />
+      <button disabled={p.disabled} css={mask} />
     </Wrapper>
   )
 }
-
 
 export default Button

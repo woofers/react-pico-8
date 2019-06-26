@@ -2,9 +2,10 @@
 import { Global, jsx, css } from '@emotion/core'
 import { useState } from 'react'
 import Pico8 from 'react-pico-8'
-import * as buttons from 'react-pico-8/buttons'
+import * as picoButtons from 'react-pico-8/buttons'
 import CodeBlock from './code-block'
 import codeDemo from './code'
+import List from './drag-list'
 
 const Checkbox = p => {
   const span = css`
@@ -83,6 +84,7 @@ const App = () => {
   const [blockKeys, setBlockKeys] = useState(true)
   const [isMounted, setMounted] = useState(true)
   const [usePointer, setPointer] = useState(true)
+  const [buttons, setButtons] = useState(Object.keys(picoButtons).map(name => ({ name, Button: picoButtons[name] })))
   const values = [
     autoPlay,
     legacyButtons,
@@ -104,8 +106,9 @@ const App = () => {
                  blockKeys={blockKeys}
                  usePointer={usePointer}
                  placeholder="placeholder.png">
-            {Object.values(buttons).sort().map(B => <B />)}
+            {buttons.map(({ name, Button }) => <Button key={name}/> )}
           </Pico8> : null }
+        <List items={buttons} setItems={setButtons} />
         <div css={desc}>
           <span css={[heading, link]}>
             <h1>
