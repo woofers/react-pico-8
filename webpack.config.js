@@ -6,18 +6,18 @@ const getFile = path => path.substring(path.lastIndexOf('/') + 1)
 const mode = process.env.NODE_ENV
 
 module.exports = {
-  entry: `./${json.src}`,
+  entry: {
+    'react-pico-8': `./${json.src}`,
+    buttons: './src/external-buttons.js'
+  },
   output: {
-    filename: getFile(json.main),
-    path: path.resolve(__dirname, getPath(json.main)),
-    library: '',
-    libraryTarget: 'commonjs'
+    filename: '[name].js',
+    path: path.resolve(__dirname),
+    library: json.name,
+    libraryTarget: 'umd'
   },
   externals: [nodeExternals()],
   mode: 'production',
-  optimization: {
-    minimize: mode === 'production'
-  },
   module: {
     rules: [
       {
@@ -30,5 +30,10 @@ module.exports = {
         loader: "url-loader?mimetype=image/png"
       }
     ]
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
   }
 }
