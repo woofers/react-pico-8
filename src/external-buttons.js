@@ -17,7 +17,7 @@ export const Pause = p => {
 }
 
 export const Fullscreen = p => {
-  return (<SmartButton button="Fullscreen" title="Go Fullscreen" alt="Toggle Fullscreen" {...p} onClick={p.fullscreen} />)
+  return (<SmartButton button="Fullscreen" title="Go Fullscreen" {...p} onClick={p.fullscreen} />)
 }
 
 export const Sound = p => {
@@ -25,7 +25,7 @@ export const Sound = p => {
 }
 
 export const Carts = p => {
-  return (<SmartButton {...p} button="Carts" alt="More Carts" title="More Carts" onClick="http://www.lexaloffle.com/bbs/?cat=7&sub=2" />)
+  return (<SmartButton {...p} button="Carts" title="More Carts" onClick="http://www.lexaloffle.com/bbs/?cat=7&sub=2" />)
 }
 
 export const Controls = p => {

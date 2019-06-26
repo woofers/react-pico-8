@@ -31,6 +31,8 @@ const OldButton = p => {
       background-color: #aaa;
     }
   `
+  let tag = p.title || p.button
+  if (p.on) tag = p.onTitle
   const onClick = () => {
     if (!isFunction()) return null
     return p.onClick
@@ -47,11 +49,10 @@ const OldButton = p => {
     if (isFunction()) return children
     return (<a role="button" css={style} target="_new" href={p.onClick} aria-label={tag}>{children}</a>)
   }
-  const tag = p.alt || p.button
   return (
     <Link>
       <Button>
-        <img width="12px" height="12px" src={legacy[`${p.button.toLowerCase()}.png`]} alt={tag} />
+        <img width="12px" height="12px" src={legacy[`${p.button.toLowerCase()}.png`]} alt="" />
         {' '}{p.button}
       </Button>
     </Link>
