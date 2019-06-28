@@ -142,7 +142,7 @@ const App = () => {
             </Option>
           </form>
           <h2>Usage</h2>
-          <CodeBlock language="jsx">{codeDemo(...values)}</CodeBlock>
+          <CodeBlock language="jsx">{codeDemo(...values, buttons)}</CodeBlock>
           <p>Simply add the game widget to the React application using JSX.</p>
           <p css={link}>
             Be sure to include the <code>.js</code> <code>src</code> of
