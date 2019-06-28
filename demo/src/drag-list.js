@@ -9,11 +9,15 @@ const indent = css`
   padding: 0;
 `
 
+const check = css`
+  margin-left: 24px;
+  margin-right: 8px;
+`
+
 const iconSize = css`
   display: inline-flex;
   min-width: 56px;
   flex-shrink: 0;
-  padding-left: 16px;
 `
 
 const background = css`
@@ -65,6 +69,14 @@ const DragList = p => {
       )
     })
   }
+  const toggle = index => {
+    p.setItems(items => {
+      let [removed] = items.splice(index, 1)
+      removed.enabled = !removed.enabled
+      items.splice(index, 0, removed)
+      return items.concat([])
+    })
+  }
   return (
     <div css={background}>
       <DragDropContext onDragEnd={onDragEnd}>
@@ -89,6 +101,7 @@ const DragList = p => {
                           )}
                         >
                           <div css={align}>
+                            <input css={check} type="checkbox" checked={pair.enabled} onChange={() => toggle(index)} />
                             <div css={iconSize}>{icon}</div>
                             <div>{name}</div>
                           </div>

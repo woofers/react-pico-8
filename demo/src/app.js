@@ -84,7 +84,7 @@ const App = () => {
   const [blockKeys, setBlockKeys] = useState(true)
   const [isMounted, setMounted] = useState(true)
   const [usePointer, setPointer] = useState(true)
-  const [buttons, setButtons] = useState(Object.keys(picoButtons).map(name => ({ name, Button: picoButtons[name] })))
+  const [buttons, setButtons] = useState(Object.keys(picoButtons).map(name => ({ name, Button: picoButtons[name], enabled: name !== 'Reset' && name !== 'Carts' })))
   const values = [
     autoPlay,
     legacyButtons,
@@ -106,7 +106,7 @@ const App = () => {
                  blockKeys={blockKeys}
                  usePointer={usePointer}
                  placeholder="placeholder.png">
-            {buttons.map(({ name, Button }) => <Button key={name}/> )}
+            {buttons.filter(({enabled}) => enabled).map(({ name, Button }) => <Button key={name}/>)}
           </Pico8> : null }
         <List items={buttons} setItems={setButtons} />
         <div css={desc}>
