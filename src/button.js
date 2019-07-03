@@ -35,7 +35,7 @@ const Button = p => {
   const mask = css`
     width: 24px;
     height: 24px;
-    background: #64605d;
+    background: ${p.selected ? '#b9b2ad' : '#64605d'};
     -webkit-mask-image: url(${image});
     mask-image: url(${image});
     pointer-events: none;

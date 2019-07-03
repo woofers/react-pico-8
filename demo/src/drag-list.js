@@ -90,7 +90,7 @@ const DragList = p => {
                     const { name, Button } = pair
                     const id = `icon-${name}`
                     const label = name.toLowerCase()
-                    const icon = <Button disabled={true} />
+                    const icon = <Button selected={pair.enabled} disabled={true} />
                     return (
                       <Draggable key={id} draggableId={id} index={index}>
                         {(provided, snapshot) => (
