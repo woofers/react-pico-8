@@ -7,6 +7,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
 const indent = css`
   margin: 0;
   padding: 0;
+  list-style: none;
 `
 
 const check = css`
@@ -21,8 +22,8 @@ const iconSize = css`
 `
 
 const background = css`
-  color: white;
-  max-width: 400px;
+  color: #fff;
+  max-width: 350px;
 `
 
 const align = css`
@@ -33,15 +34,14 @@ const align = css`
   padding-bottom: 8px;
 `
 
-const getItems = items =>
-  Object.keys(items).map(button => {
-    const Icon = items[button]
-    return {
-      id: `item-${button}`,
-      primary: button,
-      icon: <Icon disabled={true} />
-    }
-  })
+const hidden = css`
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+`
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list)
@@ -78,44 +78,49 @@ const DragList = p => {
     })
   }
   return (
-    <div css={background}>
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="droppable">
-          {(provided, snapshot) => (
-            <div ref={provided.innerRef}>
-              <ul css={indent}>
-                {p.items.map((pair, index) => {
-                  const { name, Button } = pair
-                  const id = `icon-${name}`
-                  const icon = <Button disabled={true} />
-                  return (
-                    <Draggable key={id} draggableId={id} index={index}>
-                      {(provided, snapshot) => (
-                        <li
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          style={getItemStyle(
-                            snapshot.isDragging,
-                            provided.draggableProps.style
-                          )}
-                        >
-                          <div css={align}>
-                            <input css={check} type="checkbox" checked={pair.enabled} onChange={() => toggle(index)} />
-                            <div css={iconSize}>{icon}</div>
-                            <div>{name}</div>
-                          </div>
-                        </li>
-                      )}
-                    </Draggable>
-                  )})}
-                  {provided.placeholder}
-              </ul>
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
-    </div>
+    <form css={background}>
+      <fieldset>
+        <legend>{p.children}</legend>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="droppable">
+            {(provided, snapshot) => (
+              <div ref={provided.innerRef}>
+                <ul css={indent}>
+                  {p.items.map((pair, index) => {
+                    const { name, Button } = pair
+                    const id = `icon-${name}`
+                    const label = name.toLowerCase()
+                    const icon = <Button disabled={true} />
+                    return (
+                      <Draggable key={id} draggableId={id} index={index}>
+                        {(provided, snapshot) => (
+                          <li
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            style={getItemStyle(
+                              snapshot.isDragging,
+                              provided.draggableProps.style
+                            )}
+                          >
+                            <div css={align}>
+                              <input id={label} css={check} type="checkbox" checked={pair.enabled} onChange={() => toggle(index)} />
+                              <label css={hidden} htmlFor={label}>Show {name.toLowerCase()} button</label>
+                              <div css={iconSize}>{icon}</div>
+                              <div>{name}</div>
+                            </div>
+                          </li>
+                        )}
+                      </Draggable>
+                    )})}
+                    {provided.placeholder}
+                </ul>
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
+      </fieldset>
+    </form>
   )
 }
 
