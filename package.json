@@ -1,6 +1,6 @@
 {
   "name": "react-pico-8",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "",
   "main": "react-pico-8.js",
   "src": "src/pico-8.js",
@@ -42,7 +42,7 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "8.0.5",
-    "react": "^16.8.6",
+    "peer-deps-externals-webpack-plugin": "^1.0.4",
     "url-loader": "^2.0.1",
     "webpack": "4.29.6",
     "webpack-cli": "^3.3.5",
