@@ -104,6 +104,14 @@ const App = () => {
   const usage = css`
     flex: 0 600px;
   `
+  const order = [
+    'Controls',
+    'Reset',
+    'Pause',
+    'Sound',
+    'Carts',
+    'Fullscreen'
+  ]
   const [autoPlay, setAutoPlay] = useState(true)
   const [legacyButtons, setLegacyButtons] = useState(false)
   const [hideCursor, setHideCursor] = useState(true)
@@ -111,7 +119,11 @@ const App = () => {
   const [blockKeys, setBlockKeys] = useState(true)
   const [isMounted, setMounted] = useState(true)
   const [usePointer, setPointer] = useState(true)
-  const [buttons, setButtons] = useState(Object.keys(picoButtons).map(name => ({ name, Button: picoButtons[name], enabled: name !== 'Reset' && name !== 'Carts' })))
+  const [buttons, setButtons] = useState(order.map(name => ({
+    name,
+    Button: picoButtons[name],
+    enabled: name !== 'Reset' && name !== 'Carts'
+  })))
   const values = [
     autoPlay,
     legacyButtons,
