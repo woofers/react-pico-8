@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e4d8da6b26b0f28053fb5f0c56dd6308",
+    "revision": "652a033970c9674962d915aa43f71801",
     "url": "/react-pico-8/index.html"
   },
   {
-    "revision": "7db94a50ee44369aa0fe",
+    "revision": "fdf6204a76505896572e",
     "url": "/react-pico-8/static/css/2.66d9353d.chunk.css"
   },
   {
-    "revision": "7db94a50ee44369aa0fe",
-    "url": "/react-pico-8/static/js/2.5f598808.chunk.js"
+    "revision": "fdf6204a76505896572e",
+    "url": "/react-pico-8/static/js/2.0eab0979.chunk.js"
   },
   {
-    "revision": "eb97c7dcb251ab776ab6",
-    "url": "/react-pico-8/static/js/main.9b6d2e22.chunk.js"
+    "revision": "fe3e521d0b6096d8ef9b",
+    "url": "/react-pico-8/static/js/main.5d616c85.chunk.js"
   },
   {
     "revision": "57070ef85fec624df4b6",
