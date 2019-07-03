@@ -3,9 +3,9 @@ import { jsx, css } from '@emotion/core'
 import { icons } from './icons'
 
 const Button = p => {
-  let image = p.id
+  let image = p.button.toLowerCase()
   let title = p.title
-  if (p.id === 'p8b_sound' || p.id === 'p8b_pause') {
+  if (p.onTitle) {
     image += p.on ? '1' : '0'
   }
   image = icons[`${image}.png`]
@@ -26,16 +26,16 @@ const Button = p => {
       display: table;
     }
     &:hover {
-      cursor: ${p.usePointer ? 'pointer' : 'auto'};
+      cursor: ${p.disabled ? 'grab' : (p.usePointer ? 'pointer' : 'auto')};
       button {
-        background: #fff;
+        ${p.disabled ? '' : 'background: #fff'};
       }
     }
   `
   const mask = css`
     width: 24px;
     height: 24px;
-    background: #64605d;
+    background: ${p.selected ? '#b9b2ad' : '#64605d'};
     -webkit-mask-image: url(${image});
     mask-image: url(${image});
     pointer-events: none;
@@ -43,15 +43,23 @@ const Button = p => {
     border: 0;
   `
   let align = ''
+  const Wrapper = p => {
+    const isFunction = () => typeof p.onClick === 'function'
+    const { disabled, onClick, ...rest } = p
+    if (disabled) return <div {...rest}>{p.children}</div>
+    return (isFunction()
+      ? <div onClick={onClick} {...rest}>{p.children}</div>
+      : <a role="button" target="_new" href={onClick} {...rest}>{p.children}</a>
+    )
+  }
   if (p.align === 'left') align = left
   else if (p.align === 'right') align = right
   return (
-    <div title={p.on ? p.onTitle : p.title} css={[menu, align]}
-         className="p8_menu_button" id={p.id} onClick={p.onClick}>
-      <button css={mask} />
-    </div>
+    <Wrapper disabled={p.disabled} title={p.on ? p.onTitle : p.title} css={[menu, align]}
+         className="p8_menu_button" onClick={p.onClick}>
+      <button disabled={p.disabled} css={mask} />
+    </Wrapper>
   )
 }
-
 
 export default Button

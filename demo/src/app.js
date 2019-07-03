@@ -2,8 +2,10 @@
 import { Global, jsx, css } from '@emotion/core'
 import { useState } from 'react'
 import Pico8 from 'react-pico-8'
+import * as picoButtons from 'react-pico-8/buttons'
 import CodeBlock from './code-block'
 import codeDemo from './code'
+import List from './drag-list'
 
 const Checkbox = p => {
   const span = css`
@@ -45,8 +47,23 @@ const App = () => {
     }
   `
   const desc = css`
-    margin: 35px;
+    margin: 0 auto;
+    padding: 35px;
     color: #FFF;
+    max-width: 1000px;
+
+    fieldset {
+      border: none;
+    }
+    legend {
+      display: block;
+      font-size: 1.5em;
+      font-weight: bold;
+      margin: 0 0 5px 0;
+    }
+    h2 {
+      margin-top: 0;
+    }
   `
   const page = css`
     margin-top: 75px;
@@ -75,6 +92,26 @@ const App = () => {
       image-rendering: pixelated;
     }
   `
+  const live = css`
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  `
+  const list = css`
+    flex: 0 400px;
+  `
+
+  const usage = css`
+    flex: 0 600px;
+  `
+  const order = [
+    'Controls',
+    'Reset',
+    'Pause',
+    'Sound',
+    'Carts',
+    'Fullscreen'
+  ]
   const [autoPlay, setAutoPlay] = useState(true)
   const [legacyButtons, setLegacyButtons] = useState(false)
   const [hideCursor, setHideCursor] = useState(true)
@@ -82,6 +119,11 @@ const App = () => {
   const [blockKeys, setBlockKeys] = useState(true)
   const [isMounted, setMounted] = useState(true)
   const [usePointer, setPointer] = useState(true)
+  const [buttons, setButtons] = useState(order.map(name => ({
+    name,
+    Button: picoButtons[name],
+    enabled: name !== 'Reset' && name !== 'Carts'
+  })))
   const values = [
     autoPlay,
     legacyButtons,
@@ -102,8 +144,9 @@ const App = () => {
                  center={center}
                  blockKeys={blockKeys}
                  usePointer={usePointer}
-                 placeholder="placeholder.png"
-          /> : null }
+                 placeholder="placeholder.png">
+            {buttons.filter(({enabled}) => enabled).map(({ name, Button }) => <Button key={name}/>)}
+          </Pico8> : null }
         <div css={desc}>
           <span css={[heading, link]}>
             <h1>
@@ -112,37 +155,48 @@ const App = () => {
             <img width="32px" height="32px" src="pico.png" alt="PICO-8 Logo" />
           </span>
           <form css={form}>
-            <h2>Props</h2>
-            <Option name="autoPlay" checked={autoPlay} onChange={() => setAutoPlay(!autoPlay)}>
-              Indicates if the game canvas should attempt to auto-play on page-load.
-            </Option>
-            <Option name="legacyButtons" checked={legacyButtons} onChange={() => setLegacyButtons(!legacyButtons)}>
-              Used to select the type of buttons.
-            </Option>
-            <Option name="hideCursor" checked={hideCursor} onChange={() => setHideCursor(!hideCursor)}>
-              Indicates if the cursor is hidden over the game canvas when the game is playing.
-            </Option>
-            <Option name="center" checked={center} onChange={() => setCenter(!center)}>
-              Indicates if the game is centred outside of fullscreen mode.
-            </Option>
-            <Option name="blockKeys" checked={blockKeys} onChange={() => setBlockKeys(!blockKeys)}>
-              If set keys which are used to interact with the game are blocked from scrolling when the game is running.  If un-set keys will only be blocked when the canvas is focused.
-            </Option>
-            <Option name="usePointer" checked={usePointer} onChange={() => setPointer(!usePointer)}>
-              If set the pointer hand will be used on buttons.  If un-set a normal cursor will be used on all buttons which do not lead to a new page.
-            </Option>
-            <h2>State</h2>
-            <Option name="isMounted" checked={isMounted} onChange={() => setMounted(!isMounted)}>
-              Used to test component mounting and un-mounting.
-            </Option>
+            <fieldset>
+              <legend>Props</legend>
+              <Option name="autoPlay" checked={autoPlay} onChange={() => setAutoPlay(!autoPlay)}>
+                Indicates if the game canvas should attempt to auto-play on page-load.
+              </Option>
+              <Option name="legacyButtons" checked={legacyButtons} onChange={() => setLegacyButtons(!legacyButtons)}>
+                Used to select the type of buttons.
+              </Option>
+              <Option name="hideCursor" checked={hideCursor} onChange={() => setHideCursor(!hideCursor)}>
+                Indicates if the cursor is hidden over the game canvas when the game is playing.
+              </Option>
+              <Option name="center" checked={center} onChange={() => setCenter(!center)}>
+                Indicates if the game is centred outside of fullscreen mode.
+              </Option>
+              <Option name="blockKeys" checked={blockKeys} onChange={() => setBlockKeys(!blockKeys)}>
+                If set keys which are used to interact with the game are blocked from scrolling when the game is running.  If un-set keys will only be blocked when the canvas is focused.
+              </Option>
+              <Option name="usePointer" checked={usePointer} onChange={() => setPointer(!usePointer)}>
+                If set the pointer hand will be used on buttons.  If un-set a normal cursor will be used on all buttons which do not lead to a new page.
+              </Option>
+            </fieldset>
+            <fieldset>
+              <legend>State</legend>
+              <Option name="isMounted" checked={isMounted} onChange={() => setMounted(!isMounted)}>
+                Used to test component mounting and un-mounting.
+              </Option>
+            </fieldset>
           </form>
-          <h2>Usage</h2>
-          <CodeBlock language="jsx">{codeDemo(...values)}</CodeBlock>
-          <p>Simply add the game widget to the React application using JSX.</p>
-          <p css={link}>
-            Be sure to include the <code>.js</code> <code>src</code> of
-            the game cartridge generated from <a href="https://lexaloffle.com/pico-8.php">PICO-8</a>'s web export.
-          </p>
+          <div css={live}>
+            <div css={list}>
+              <List items={buttons} setItems={setButtons}>Buttons</List>
+            </div>
+            <div css={usage}>
+              <h2>Usage</h2>
+              <CodeBlock language="jsx">{codeDemo(...values, buttons)}</CodeBlock>
+              <p>Simply add the game widget to the React application using JSX.</p>
+              <p css={link}>
+                Be sure to include the <code>.js</code> <code>src</code> of
+                the game cartridge generated from <a href="https://lexaloffle.com/pico-8.php">PICO-8</a>'s web export.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 {
   "name": "react-pico-8-demo",
   "homepage": "http://woofers.github.io/react-pico-8",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "dependencies": {
     "@emotion/core": "^10.0.9",
     "@fortawesome/fontawesome-svg-core": "^1.2.17",
@@ -13,12 +13,13 @@
     "prism-themes": "https://github.com/PrismJS/prism-themes",
     "prismjs": "^1.16.0",
     "react": "^16.8.3",
+    "react-beautiful-dnd": "^11.0.4",
     "react-dom": "^16.8.3",
     "react-emotion": "^10.0.0",
     "react-helmet": "^5.2.0",
     "react-pico-8": "../",
     "react-prism": "^4.3.2",
-    "react-scripts": "^2.1.8"
+    "react-scripts": "^3.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

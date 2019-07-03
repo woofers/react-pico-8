@@ -29,27 +29,38 @@ npm install react-pico-8
 #+BEGIN_SRC js
 import React from 'react'
 import Pico8 from 'react-pico-8'
+import { Controls,
+         Reset,
+         Pause,
+         Sound,
+         Carts,
+         Fullscreen } from 'react-pico-8/buttons'
 
-const App = () => {
-  return (
-    <div>
-      <Pico8 src="index.js"
-             autoPlay={true}
-             legacyButtons={false}
-             hideCursor={true}
-             center={true}
-             blockKeys={true}
-             usePointer={true}
-             placeholder="placeholder.png"
-      />
-    </div>
-  )
-}
+const App = () => (
+  <Pico8 src="index.js"
+         autoPlay={true}
+         legacyButtons={false}
+         hideCursor={true}
+         center={true}
+         blockKeys={true}
+         usePointer={true}
+         placeholder="placeholder.png"
+  >
+    <Controls/>
+    <Reset/>
+    <Pause/>
+    <Sound/>
+    <Carts/>
+    <Fullscreen/>
+  </Pico8>
+)
 #+END_SRC
 
 Simply add the game widget to the React application using JSX.
 
 Be sure to include the ~.js~ ~src~ of the game cartridge generated from [[https://lexaloffle.com/pico-8.php][PICO-8]]'s web export.
+
+If no buttons are nested in the component then the default [[https://lexaloffle.com/pico-8.php][PICO-8]] buttons will be used.
 
 ** Props
 *** Src

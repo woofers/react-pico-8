@@ -1,7 +1,7 @@
 /** @jsx jsx */
-import { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { jsx, css } from '@emotion/core'
-import { Button, LegacyButton } from './buttons'
+import { DefaultButtons, Button } from './buttons'
 import Start from './start.js'
 import Canvas from './canvas.js'
 import { startPico, removePico } from './pico.js'
@@ -87,8 +87,7 @@ const Pico8 = p => {
     window.Module.pico8TogglePaused()
     updatePauseButton()
   }
-  const reset = () => window.Module.pico8Reset()
-  const context = () => {
+  const controls = () => {
     window.Module.pico8ToggleControlMenu()
     updatePauseButton()
   }
@@ -133,6 +132,22 @@ const Pico8 = p => {
     margin-right: auto;
   `
   const playArea = useRef()
+  const { usePointer, legacyButtons } = p
+  const Buttons = b => {
+    let buttons = p.children
+    if (!buttons || buttons.length <= 0) return <DefaultButtons {...b} />
+    return React.Children.map(buttons, B => React.cloneElement(B, b))
+  }
+  const buttonData = {
+    usePointer,
+    legacyButtons,
+    isPaused,
+    isMuted,
+    pause,
+    fullscreen,
+    sound,
+    controls
+  }
   return (
     <div css={p.css} className={p.className} style={p.style}>
       <canvas css={hide} />
@@ -140,8 +155,8 @@ const Pico8 = p => {
         { !hasStarted ? <Start center={p.center} placeholder={p.placeholder} onClick={start} usePointer={p.usePointer} /> : null }
         <div ref={playArea} id="p8_playarea" css={hasStarted ? '' : [hide, none]}>
           <div id="menu_buttons_touch" css={mobileHeader}>
-            <Button align="left" id="p8b_sound" on={!isMuted} onClick={sound} hidden={!isMobile || !isFullscreen} />
-            <Button align="right" id="p8b_close" onClick={close} hidden={!isMobile || !isFullscreen} />
+            <Button align="left" button="Sound" on={!isMuted} onClick={sound} hidden={!isMobile || !isFullscreen} />
+            <Button align="right" button="Close" onClick={close} hidden={!isMobile || !isFullscreen} />
           </div>
           <div>
             <Canvas legacyButtons={p.legacyButtons} center={p.center}
@@ -149,23 +164,10 @@ const Pico8 = p => {
                     hasStarted={hasStarted} hideCursor={p.hideCursor}
             >
               { !(isMobile || isFullscreen) && hasStarted ?
-                ( !p.legacyButtons ?
-                  <div css={stack}>
-                    <Button usePointer={p.usePointer} id="p8b_controls" title="Controls" onClick={context} />
-                    <Button usePointer={p.usePointer} id="p8b_pause" onTitle="Play" title="Pause" on={isPaused} onClick={pause} />
-                    <Button usePointer={p.usePointer} id="p8b_sound" onTitle="Mute" title="Unmute" on={!isMuted} onClick={sound} />
-                    <Button usePointer={p.usePointer} id="p8b_full" title="Go Fullscreen" onClick={fullscreen} />
-                  </div>
-                  :
-                  <div css={[inline, p.center ? center : '']}>
-                    <LegacyButton usePointer={p.usePointer} button="Reset" onClick={reset} />
-                    <LegacyButton usePointer={p.usePointer} button="Pause" onClick={pause} />
-                    <LegacyButton usePointer={p.usePointer} button="Fullscreen" alt="Toggle Fullscreen" onClick={fullscreen} />
-                    <LegacyButton usePointer={p.usePointer} button="Sound" onClick={sound} />
-                    <LegacyButton usePointer={p.usePointer} button="Carts" alt="More Carts" onClick="http://www.lexaloffle.com/bbs/?cat=7&sub=2" />
-                    <LegacyButton usePointer={p.usePointer} button="Controls" onClick={context} />
-                  </div>
-                ) : null }
+                <div css={!p.legacyButtons ? stack : ([inline, p.center ? center : ''])}>
+                  <Buttons {...buttonData} />
+                </div>
+              : null}
             </Canvas>
           </div>
         </div>

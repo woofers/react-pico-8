@@ -29,7 +29,7 @@ const Start = p => {
     margin-right: auto;
   `
   return (
-    <button title="Start Game" css={[style, p.center ? center : '']} onClick={p.onClick} id="p8_start_button">
+    <button title="Start Game" css={[style, p.center ? center : '']} onClick={p.onClick}>
       <img alt="" src={start}/>
     </button>
   )

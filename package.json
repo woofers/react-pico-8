@@ -1,20 +1,21 @@
 {
   "name": "react-pico-8",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "",
-  "main": "dist/react-pico-8.min.js",
+  "main": "react-pico-8.js",
   "src": "src/pico-8.js",
   "files": [
-    "dist",
+    "react-pico-8.js",
+    "buttons.js",
     "License.txt",
     "package.json",
     "README.md"
   ],
   "scripts": {
     "start": "yarn watch",
-    "build": "rollup -c",
-    "watch": "rollup -c --watch",
-    "clean": "rm -rf dist",
+    "build": "NODE_ENV=production webpack",
+    "watch": "NODE_ENV=development webpack --watch",
+    "clean": "rm react-pico-8.js buttons.js",
     "test": "echo \"No tests \" && exit 0"
   },
   "repository": {
@@ -36,18 +37,19 @@
     "react": "^0.13.0 || ^0.14.0 || ^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@babel/plugin-proposal-class-properties": "^7.4.0",
-    "@babel/preset-env": "^7.4.3",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
-    "rollup": "^1.8.0",
-    "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-copy": "^2.0.0",
-    "rollup-plugin-uglify": "^6.0.2",
-    "rollup-plugin-url": "^2.2.1"
+    "babel-loader": "8.0.5",
+    "react": "^16.8.6",
+    "url-loader": "^2.0.1",
+    "webpack": "4.29.6",
+    "webpack-cli": "^3.3.5",
+    "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
-    "@emotion/core": "^10.0.10",
-    "emotion": "^10.0.9"
+    "@emotion/core": "^10.0.14",
+    "emotion": "^10.0.14"
   }
 }
