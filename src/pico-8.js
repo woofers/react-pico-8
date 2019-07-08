@@ -48,7 +48,10 @@ const Pico8 = p => {
   useEffect(() => {
     setEvent("keydown", blockKeys, { passive: false }, hasStarted && p.blockKeys)
   })
-
+  const reset = () => {
+    if (isPaused && p.unpauseOnReset) pause()
+    setTimeout(window.Module.pico8Reset, 20)
+  }
   const onMobile = () => setMobile(true)
   useEffect(() => {
     startPico()
@@ -146,7 +149,8 @@ const Pico8 = p => {
     pause,
     fullscreen,
     sound,
-    controls
+    controls,
+    reset
   }
   return (
     <div css={p.css} className={p.className} style={p.style}>
@@ -183,7 +187,8 @@ Pico8.defaultProps = {
   hideCursor: true,
   center: false,
   blockKeys: true,
-  usePointer: true
+  usePointer: true,
+  unpauseOnReset: false
 }
 
 export default Pico8

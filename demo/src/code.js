@@ -24,7 +24,7 @@ const imports = buttons => {
 
 const code = (
   autoPlay, legacyButtons, hideCursor,
-  center, blockKeys, usePointer, buttons
+  center, blockKeys, usePointer, unpauseOnReset, buttons
 ) => {
   const enabled = buttons.filter(({ enabled }) => enabled)
   return `${imports(enabled)}
@@ -37,6 +37,7 @@ const code = (
            center={${center}}
            blockKeys={${blockKeys}}
            usePointer={${usePointer}}
+           unpauseOnReset={${unpauseOnReset}}
            placeholder="placeholder.png"
     ${tags(enabled)}
   )`

@@ -8,8 +8,7 @@ const SmartButton = p => {
 }
 
 export const Reset = p => {
-  const reset = () => window.Module.pico8Reset()
-  return (<SmartButton {...p} button="Reset" title="Reset" onClick={reset} />)
+  return (<SmartButton {...p} button="Reset" title="Reset" onClick={p.reset} />)
 }
 
 export const Pause = p => {

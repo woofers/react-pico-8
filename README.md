@@ -40,6 +40,7 @@ const App = () => (
          center={true}
          blockKeys={true}
          usePointer={true}
+         unpauseOnReset={false}
          placeholder="placeholder.png"
   >
     <Controls/>
@@ -105,6 +106,13 @@ If un-set keys will only be blocked when the canvas is focused.  **Default:** `t
 If `usePointer` is set the pointer hand will be used on buttons.
 
 If un-set a normal cursor will be used on all buttons which do not lead to a new page. **Default:** `true`
+
+
+### Unpause On Reset
+
+If `unpauseOnReset` is set hitting the reset button when paused will instantly reset the game.
+
+If un-set the game will need to be resumed before it resets. **Default:** `false`
 
 
 ### Placeholder
