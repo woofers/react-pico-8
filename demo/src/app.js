@@ -119,32 +119,27 @@ const App = () => {
   const [blockKeys, setBlockKeys] = useState(true)
   const [isMounted, setMounted] = useState(true)
   const [usePointer, setPointer] = useState(true)
+  const [unpauseOnReset, setUnpauseOnReset] = useState(false)
   const [buttons, setButtons] = useState(order.map(name => ({
     name,
     Button: picoButtons[name],
     enabled: name !== 'Reset' && name !== 'Carts'
   })))
-  const values = [
+  const props = {
     autoPlay,
     legacyButtons,
     hideCursor,
     center,
     blockKeys,
-    usePointer
-  ]
+    usePointer,
+    unpauseOnReset
+  }
   return (
     <div>
       <div css={page}>
         <Global styles={font} />
         { isMounted ?
-          <Pico8 src="index.js"
-                 autoPlay={autoPlay}
-                 legacyButtons={legacyButtons}
-                 hideCursor={hideCursor}
-                 center={center}
-                 blockKeys={blockKeys}
-                 usePointer={usePointer}
-                 placeholder="placeholder.png">
+          <Pico8 src="index.js" placeholder="placeholder.png" {...props}>
             {buttons.filter(({enabled}) => enabled).map(({ name, Button }) => <Button key={name}/>)}
           </Pico8> : null }
         <div css={desc}>
@@ -175,6 +170,9 @@ const App = () => {
               <Option name="usePointer" checked={usePointer} onChange={() => setPointer(!usePointer)}>
                 If set the pointer hand will be used on buttons.  If un-set a normal cursor will be used on all buttons which do not lead to a new page.
               </Option>
+              <Option name="unpauseOnReset" checked={unpauseOnReset} onChange={() => setUnpauseOnReset(!unpauseOnReset)}>
+                If set hitting the reset button when paused will instantly reset the game.  Otherwise the game will need to be resumed before it resets.
+              </Option>
             </fieldset>
             <fieldset>
               <legend>State</legend>
@@ -189,7 +187,7 @@ const App = () => {
             </div>
             <div css={usage}>
               <h2>Usage</h2>
-              <CodeBlock language="jsx">{codeDemo(...values, buttons)}</CodeBlock>
+              <CodeBlock language="jsx">{codeDemo(...Object.values(props), buttons)}</CodeBlock>
               <p>Simply add the game widget to the React application using JSX.</p>
               <p css={link}>
                 Be sure to include the <code>.js</code> <code>src</code> of
