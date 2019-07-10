@@ -1,3 +1,5 @@
+import { hasWindow } from './window'
+
 // The following code has been adapted to work with react-pico-8.
 // File generated from default PICO-8 web export.
 
@@ -52,6 +54,7 @@ const init = () => {
 const onTouch = (e) => window.p8_touch_detected = true
 
 export const startPico = () => {
+  if (!hasWindow()) return
   init()
   window.addEventListener("touchstart", onTouch, { passive: true })
   window.p8_create_audio_context = () => {
@@ -112,6 +115,7 @@ export const startPico = () => {
 }
 
 export const removePico = () => {
+  if (!hasWindow()) return
   window.removeEventListener("touchstart", onTouch, { passive: true })
   init()
 }
