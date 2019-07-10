@@ -1,15 +1,15 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3cf566617eb57b635260d87cecdd4beb",
+    "revision": "79316c0fe45f36fbdddb1c434d79bcc2",
     "url": "/react-pico-8/index.html"
   },
   {
-    "revision": "e96d7d66fbf557a3e6c8",
+    "revision": "40183d67c712f247b923",
     "url": "/react-pico-8/static/css/2.66d9353d.chunk.css"
   },
   {
-    "revision": "e96d7d66fbf557a3e6c8",
-    "url": "/react-pico-8/static/js/2.0e1f1332.chunk.js"
+    "revision": "40183d67c712f247b923",
+    "url": "/react-pico-8/static/js/2.8e81a217.chunk.js"
   },
   {
     "revision": "bda776aeae52477acef7",
