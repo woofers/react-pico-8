@@ -18,7 +18,8 @@ module.exports = {
     filename: '[name].js',
     path: path.resolve(__dirname),
     library: json.name,
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
+    globalObject: 'this'
   },
   externals: [nodeExternals()],
   mode: 'production',
