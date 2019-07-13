@@ -66,6 +66,7 @@ const Pico8 = p => {
       removeOnFullscreenEvent(fullscreenChange, false)
       removeEvent("keydown", blockKeys, { passive: false })
     }
+  // eslint-disable-next-line
   }, [])
 
   const fullscreenChange = (e) => {
