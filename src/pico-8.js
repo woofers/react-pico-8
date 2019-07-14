@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { jsx, css } from '@emotion/core'
 import { DefaultButtons, Button } from './buttons'
+import { Sound } from './external-buttons'
 import Start from './start.js'
 import Canvas from './canvas.js'
 import { startPico, removePico } from './pico.js'
@@ -12,9 +13,9 @@ import { removeOnFullscreenEvent, onFullscreenEvent, goFullscreen, onFullscreenE
 const Pico8 = p => {
   const [isMuted, setMuted] = useState(true)
   const [isMobile, _setMobile] = useState(false)
-  const setMobile = (value) => {
+  const setMobile = value => {
     _setMobile(value)
-    if (value) setTimeout(fullscreen, 100)
+    document.body.style.position = value ? 'fixed' : null
   }
   const [isPaused, setPaused] = useState(true)
   const [isFullscreen, setFullscreen] = useState(false)
@@ -103,12 +104,21 @@ const Pico8 = p => {
     window.p8_close_cart()
   }
   const hide = css`
+    display: none;
     position: absolute;
     visibility: hidden;
     width: 0;
     height: 0;
   `
-  const none = css`display: none`;
+  const mobileFull = css`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 9999;
+  `
   const mobileHeader = css`
     position: absolute;
     width: 100%;
@@ -158,10 +168,10 @@ const Pico8 = p => {
       <canvas css={hide} />
       <div id="p8_container">
         { !hasStarted ? <Start center={p.center} placeholder={p.placeholder} onClick={start} usePointer={p.usePointer} /> : null }
-        <div ref={playArea} id="p8_playarea" css={hasStarted ? '' : [hide, none]}>
+        <div ref={playArea} id="p8_playarea" css={hasStarted ? (isMobile ? mobileFull : '') : hide}>
           <div id="menu_buttons_touch" css={mobileHeader}>
-            <Button align="left" button="Sound" on={!isMuted} onClick={sound} hidden={!isMobile || !isFullscreen} />
-            <Button align="right" button="Close" onClick={close} hidden={!isMobile || !isFullscreen} />
+            <Sound align="left" hidden={!isMobile} {...buttonData} />
+            <Button align="right" button="Close" onClick={close} hidden={!isMobile} />
           </div>
           <div>
             <Canvas legacyButtons={p.legacyButtons} center={p.center}
