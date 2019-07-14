@@ -12,6 +12,7 @@ const Canvas = p => {
     height: 85vmin;
     max-height: 768px;
     max-width: 768px;
+    background-color: #000;
   `
   const canvas = css`
     image-rendering: optimizeSpeed;
