@@ -114,12 +114,12 @@ const App = () => {
   ]
   const [autoPlay, setAutoPlay] = useState(true)
   const [legacyButtons, setLegacyButtons] = useState(false)
-  const [hideCursor, setHideCursor] = useState(true)
+  const [hideCursor, setHideCursor] = useState(false)
   const [center, setCenter] = useState(true)
-  const [blockKeys, setBlockKeys] = useState(true)
+  const [blockKeys, setBlockKeys] = useState(false)
   const [isMounted, setMounted] = useState(true)
   const [usePointer, setPointer] = useState(true)
-  const [unpauseOnReset, setUnpauseOnReset] = useState(false)
+  const [unpauseOnReset, setUnpauseOnReset] = useState(true)
   const [buttons, setButtons] = useState(order.map(name => ({
     name,
     Button: picoButtons[name],

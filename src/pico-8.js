@@ -185,11 +185,11 @@ Pico8.defaultProps = {
   autoPlay: true,
   legacyButtons: false,
   placeholder: '',
-  hideCursor: true,
+  hideCursor: false,
   center: false,
-  blockKeys: true,
+  blockKeys: false,
   usePointer: true,
-  unpauseOnReset: false
+  unpauseOnReset: true
 }
 
 export default Pico8
