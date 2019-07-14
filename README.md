@@ -22,7 +22,7 @@ Run [PICO-8](https://lexaloffle.com/pico-8.php) game cartridges using a cusomtiz
 
 # Usage
 
-```js
+```jsx
 import React from 'react'
 import Pico8 from 'react-pico-8'
 import { Controls,
@@ -36,11 +36,11 @@ const App = () => (
   <Pico8 src="index.js"
          autoPlay={true}
          legacyButtons={false}
-         hideCursor={true}
+         hideCursor={false}
          center={true}
-         blockKeys={true}
+         blockKeys={false}
          usePointer={true}
-         unpauseOnReset={false}
+         unpauseOnReset={true}
          placeholder="placeholder.png"
   >
     <Controls/>
@@ -86,7 +86,7 @@ Since `react-pico-8` already has the game player embeded, only the `.js` file ne
 
 ### Hide Cursor
 
-`hideCusor` indicates if the cursor is hidden over the game canvas when the game is playing.  **Default:** `true`
+`hideCusor` indicates if the cursor is hidden over the game canvas when the game is playing.  **Default:** `false`
 
 
 ### Center
@@ -98,7 +98,7 @@ Since `react-pico-8` already has the game player embeded, only the `.js` file ne
 
 If `blockKeys` is set keys which are used to interact with the game are blocked from scrolling when the game is running.
 
-If un-set keys will only be blocked when the canvas is focused.  **Default:** `true`
+If un-set keys will only be blocked when the canvas is focused.  **Default:** `false`
 
 
 ### Use Pointer
@@ -112,7 +112,7 @@ If un-set a normal cursor will be used on all buttons which do not lead to a new
 
 If `unpauseOnReset` is set hitting the reset button when paused will instantly reset the game.
 
-If un-set the game will need to be resumed before it resets. **Default:** `false`
+If un-set the game will need to be resumed before it resets. **Default:** `true`
 
 
 ### Placeholder

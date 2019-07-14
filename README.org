@@ -40,11 +40,11 @@ const App = () => (
   <Pico8 src="index.js"
          autoPlay={true}
          legacyButtons={false}
-         hideCursor={true}
+         hideCursor={false}
          center={true}
-         blockKeys={true}
+         blockKeys={false}
          usePointer={true}
-         unpauseOnReset={false}
+         unpauseOnReset={true}
          placeholder="placeholder.png"
   >
     <Controls/>
@@ -77,13 +77,13 @@ Since ~react-pico-8~ already has the game player embeded, only the ~.js~ file ne
 *** Legacy Buttons
 ~legacyButtons~ is used to select the type of buttons. *Default:* ~false~
 *** Hide Cursor
-~hideCusor~ indicates if the cursor is hidden over the game canvas when the game is playing.  *Default:* ~true~
+~hideCusor~ indicates if the cursor is hidden over the game canvas when the game is playing.  *Default:* ~false~
 *** Center
 ~center~ indicates if the game is centred outside of fullscreen mode. *Default:* ~true~
 *** Block Keys
 If ~blockKeys~ is set keys which are used to interact with the game are blocked from scrolling when the game is running.
 
-If un-set keys will only be blocked when the canvas is focused.  *Default:* ~true~
+If un-set keys will only be blocked when the canvas is focused.  *Default:* ~false~
 *** Use Pointer
 
 If ~usePointer~ is set the pointer hand will be used on buttons.
@@ -94,7 +94,7 @@ If un-set a normal cursor will be used on all buttons which do not lead to a new
 
 If ~unpauseOnReset~ is set hitting the reset button when paused will instantly reset the game.
 
-If un-set the game will need to be resumed before it resets. *Default:* ~false~
+If un-set the game will need to be resumed before it resets. *Default:* ~true~
 
 *** Placeholder
 The image to be used as a placeholder prior to starting the game.  If un-set, a black background will be used.  *Default:* ~''~
