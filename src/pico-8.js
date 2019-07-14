@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import React, { useState, useEffect, useRef } from 'react'
+import { icons } from './icons'
 import { jsx, css } from '@emotion/core'
 import { DefaultButtons, Button } from './buttons'
 import { Sound } from './external-buttons'
@@ -119,6 +120,24 @@ const Pico8 = p => {
     background: #000;
     z-index: 9999;
   `
+  const left = css`
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    opacity: 0.5;
+    width: 100%;
+    max-width: 240px;
+    max-height: 240px;
+  `
+  const right = css`
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    opacity: 0.5;
+    width: 100%;
+    max-width: 240px;
+    max-height: 280px;
+  `
   const mobileHeader = css`
     position: absolute;
     width: 100%;
@@ -184,6 +203,10 @@ const Pico8 = p => {
                 </div>
               : null}
             </Canvas>
+          </div>
+          <div>
+            <img src={icons['controls_right_panel.png']} css={right} />
+            <img src={icons['controls_left_panel.png']}  css={left} />
           </div>
         </div>
       </div>
