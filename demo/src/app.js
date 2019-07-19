@@ -6,18 +6,17 @@ import * as picoButtons from 'react-pico-8/buttons'
 import CodeBlock from './code-block'
 import codeDemo from './code'
 import List from './drag-list'
+import Box from './checkbox'
+import Button from './mount-button'
 
 const Checkbox = p => {
   const span = css`
-    padding: 10px;
-  `
-  const style = css`
-    margin-left: 5px;
+    padding: 3px;
   `
   return (
     <div css={span}>
-      <input id={p.name} type="checkbox" checked={p.checked} onChange={p.onChange} />
-      <label css={style} htmlFor={p.name}>{p.children}</label>
+      <Box id={p.name} checked={p.checked} onChange={p.onChange} />
+      <label htmlFor={p.name}>{p.children}</label>
     </div>
   )
 }
@@ -176,9 +175,7 @@ const App = () => {
             </fieldset>
             <fieldset>
               <legend>State</legend>
-              <Option name="isMounted" checked={isMounted} onChange={() => setMounted(!isMounted)}>
-                Used to test component mounting and un-mounting.
-              </Option>
+              <Button mounted={isMounted} onClick={() => setMounted(!isMounted)}/>
             </fieldset>
           </form>
           <div css={live}>
