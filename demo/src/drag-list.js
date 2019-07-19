@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
+import Box from './checkbox'
 
 // Adapted from https://codesandbox.io/s/4qp6vjp319?from-embed
 
@@ -32,15 +33,6 @@ const align = css`
   align-items: center;
   padding-top: 8px;
   padding-bottom: 8px;
-`
-
-const hidden = css`
-  position: absolute;
-  left: -10000px;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
 `
 
 const reorder = (list, startIndex, endIndex) => {
@@ -104,10 +96,9 @@ const DragList = p => {
                             )}
                           >
                             <div css={align}>
-                              <input id={label} css={check} type="checkbox" checked={pair.enabled} onChange={() => toggle(index)} />
-                              <label css={hidden} htmlFor={label}>Show {name.toLowerCase()} button</label>
-                              <div css={iconSize}>{icon}</div>
-                              <div>{name}</div>
+                              <Box id={label} css={check} checked={pair.enabled} onChange={() => toggle(index)} />
+                              <div css={iconSize} aria-hidden="true">{icon}</div>
+                              <label htmlFor={label}>{name}</label>
                             </div>
                           </li>
                         )}
