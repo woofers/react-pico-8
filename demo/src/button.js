@@ -13,6 +13,7 @@ const useStyles = makeStyles(theme => ({
     borderColor: normal,
     '&:hover': {
       borderColor: grey[200],
+      backgroundColor: 'rgba(140, 146, 181, 0.08)',
     },
   },
   input: {
