@@ -8,6 +8,7 @@ import codeDemo from './code'
 import List from './drag-list'
 import Box from './checkbox'
 import Button from './mount-button'
+import { ChameleonThemeColor } from 'react-chameleon-theme-color'
 
 const Checkbox = p => {
   const span = css`
@@ -135,6 +136,7 @@ const App = () => {
   }
   return (
     <div>
+      <ChameleonThemeColor />
       <div css={page}>
         <Global styles={font} />
         { isMounted ?
