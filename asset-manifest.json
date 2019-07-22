@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/react-pico-8/static/js/main.de4ae094.chunk.js",
-    "main.js.map": "/react-pico-8/static/js/main.de4ae094.chunk.js.map",
+    "main.js": "/react-pico-8/static/js/main.4962515b.chunk.js",
+    "main.js.map": "/react-pico-8/static/js/main.4962515b.chunk.js.map",
     "runtime~main.js": "/react-pico-8/static/js/runtime~main.7269bc60.js",
     "runtime~main.js.map": "/react-pico-8/static/js/runtime~main.7269bc60.js.map",
     "static/css/2.66d9353d.chunk.css": "/react-pico-8/static/css/2.66d9353d.chunk.css",
-    "static/js/2.a0273bca.chunk.js": "/react-pico-8/static/js/2.a0273bca.chunk.js",
-    "static/js/2.a0273bca.chunk.js.map": "/react-pico-8/static/js/2.a0273bca.chunk.js.map",
+    "static/js/2.f6cec2d5.chunk.js": "/react-pico-8/static/js/2.f6cec2d5.chunk.js",
+    "static/js/2.f6cec2d5.chunk.js.map": "/react-pico-8/static/js/2.f6cec2d5.chunk.js.map",
     "index.html": "/react-pico-8/index.html",
-    "precache-manifest.fa7eb2a31e67f9a1f5f94a8eb7a5e13b.js": "/react-pico-8/precache-manifest.fa7eb2a31e67f9a1f5f94a8eb7a5e13b.js",
+    "precache-manifest.a3e7af37dcdc1ff439a22c77361580f9.js": "/react-pico-8/precache-manifest.a3e7af37dcdc1ff439a22c77361580f9.js",
     "service-worker.js": "/react-pico-8/service-worker.js",
     "static/css/2.66d9353d.chunk.css.map": "/react-pico-8/static/css/2.66d9353d.chunk.css.map"
   }
