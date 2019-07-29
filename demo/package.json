@@ -24,8 +24,8 @@
     "react-scripts": "^3.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "./game.sh && react-scripts start",
+    "build": "./game.sh && react-scripts build",
     "test": "echo 'No tests'",
     "eject": "react-scripts eject",
     "deploy-ident": "git config --global user.email 'woofers1tt@gmail.com' && yarn deploy",
@@ -43,6 +43,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "alien-expansion": "^1.2.0",
     "gh-pages": "^2.0.1",
     "gh-pages-with-token": "^1.0.0"
   }
