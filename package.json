@@ -1,6 +1,6 @@
 {
   "name": "react-pico-8",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "Run PICO-8 game cartridges in React",
   "main": "react-pico-8.js",
   "src": "src/pico-8.js",
