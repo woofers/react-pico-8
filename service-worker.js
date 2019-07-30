@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/react-pico-8/precache-manifest.a3e7af37dcdc1ff439a22c77361580f9.js"
+  "/react-pico-8/precache-manifest.3f90fceb36641efe0b6611c294911e5e.js"
 );
 
 self.addEventListener('message', (event) => {
