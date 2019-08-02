@@ -8,9 +8,8 @@ export default withStyles({
   root: {
     color: grey[100],
     padding: '6px',
-    '&$checked': {
-      color: grey[50],
-    },
   },
-  checked: {},
+  disabled: {
+    color: '#3c3a3a !important'
+  },
 })(p => <Checkbox color="default" {...p} />)

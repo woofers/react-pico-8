@@ -82,9 +82,14 @@ const DragList = p => {
                     const { name, Button } = pair
                     const id = `icon-${name}`
                     const label = name.toLowerCase()
-                    const icon = <Button selected={pair.enabled} disabled={true} />
+                    const dragable = css`
+                      div {
+                        cursor: ${p.disabled ? 'auto' : 'grab'} !important;
+                      }
+                    `
+                    const icon = <span css={dragable}><Button selected={pair.enabled} disabled={true} /></span>
                     return (
-                      <Draggable key={id} draggableId={id} index={index}>
+                      <Draggable key={id} isDragDisabled={p.disabled} draggableId={id} index={index}>
                         {(provided, snapshot) => (
                           <li
                             ref={provided.innerRef}
@@ -96,7 +101,7 @@ const DragList = p => {
                             )}
                           >
                             <div css={align}>
-                              <Box id={label} css={check} checked={pair.enabled} onChange={() => toggle(index)} />
+                              <Box id={label} disabled={p.disabled} css={check} checked={pair.enabled} onChange={() => toggle(index)} />
                               <div css={iconSize} aria-hidden="true">{icon}</div>
                               <label htmlFor={label}>{name}</label>
                             </div>
