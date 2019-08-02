@@ -26,7 +26,7 @@ const Button = p => {
       display: table;
     }
     &:hover {
-      cursor: ${p.disabled ? 'grab' : (p.usePointer ? 'pointer' : 'auto')};
+      cursor: ${p.usePointer ? 'pointer' : 'auto'};
       button {
         ${p.disabled ? '' : 'background: #fff'};
       }

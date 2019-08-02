@@ -16,7 +16,7 @@ const Checkbox = p => {
   `
   return (
     <div css={span}>
-      <Box id={p.name} checked={p.checked} onChange={p.onChange} />
+      <Box id={p.name} disabled={p.disabled} checked={p.checked} onChange={p.onChange} />
       <label htmlFor={p.name}>{p.children}</label>
     </div>
   )
@@ -28,7 +28,7 @@ const Option = p => {
     margin-left: 5px;
   `
   return (
-    <Checkbox name={p.name} checked={p.checked} onChange={p.onChange}>
+    <Checkbox name={p.name} disabled={p.disabled} checked={p.checked} onChange={p.onChange}>
       <strong>{p.name}</strong>
       <span css={style}>- {p.children}</span>
     </Checkbox>
@@ -51,7 +51,6 @@ const App = () => {
     padding: 35px;
     color: #FFF;
     max-width: 1000px;
-
     fieldset {
       border: none;
     }
@@ -156,22 +155,22 @@ const App = () => {
               <Option name="autoPlay" checked={autoPlay} onChange={() => setAutoPlay(!autoPlay)}>
                 Indicates if the game canvas should attempt to auto-play on page-load.
               </Option>
-              <Option name="legacyButtons" checked={legacyButtons} onChange={() => setLegacyButtons(!legacyButtons)}>
+              <Option name="legacyButtons" disabled={!isMounted} checked={legacyButtons} onChange={() => setLegacyButtons(!legacyButtons)}>
                 Used to select the type of buttons.
               </Option>
-              <Option name="hideCursor" checked={hideCursor} onChange={() => setHideCursor(!hideCursor)}>
+              <Option name="hideCursor" disabled={!isMounted} checked={hideCursor} onChange={() => setHideCursor(!hideCursor)}>
                 Indicates if the cursor is hidden over the game canvas when the game is playing.
               </Option>
-              <Option name="center" checked={center} onChange={() => setCenter(!center)}>
+              <Option name="center" disabled={!isMounted} checked={center} onChange={() => setCenter(!center)}>
                 Indicates if the game is centred outside of fullscreen mode.
               </Option>
-              <Option name="blockKeys" checked={blockKeys} onChange={() => setBlockKeys(!blockKeys)}>
+              <Option name="blockKeys" disabled={!isMounted} checked={blockKeys} onChange={() => setBlockKeys(!blockKeys)}>
                 If set keys which are used to interact with the game are blocked from scrolling when the game is running.  If un-set keys will only be blocked when the canvas is focused.
               </Option>
-              <Option name="usePointer" checked={usePointer} onChange={() => setPointer(!usePointer)}>
+              <Option name="usePointer" disabled={!isMounted} checked={usePointer} onChange={() => setPointer(!usePointer)}>
                 If set the pointer hand will be used on buttons.  If un-set a normal cursor will be used on all buttons which do not lead to a new page.
               </Option>
-              <Option name="unpauseOnReset" checked={unpauseOnReset} onChange={() => setUnpauseOnReset(!unpauseOnReset)}>
+              <Option name="unpauseOnReset" disabled={!isMounted} checked={unpauseOnReset} onChange={() => setUnpauseOnReset(!unpauseOnReset)}>
                 If set hitting the reset button when paused will instantly reset the game.  Otherwise the game will need to be resumed before it resets.
               </Option>
             </fieldset>
@@ -182,7 +181,7 @@ const App = () => {
           </form>
           <div css={live}>
             <div css={list}>
-              <List items={buttons} setItems={setButtons}>Buttons</List>
+              <List disabled={!isMounted} items={buttons} setItems={setButtons}>Buttons</List>
             </div>
             <div css={usage}>
               <h2>Usage</h2>
