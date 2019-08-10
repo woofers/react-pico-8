@@ -8,6 +8,8 @@ Run [PICO-8](https://lexaloffle.com/pico-8.php) game cartridges using a cusomtiz
 
 **Note:** This project is community made and not endorsed by Lexaloffle or the offical [PICO-8](https://www.lexaloffle.com/pico-8.php) Fantasy Console.
 
+![img](./screenshots/boot.gif "PICO-8 Player")
+
 
 # Installation
 
