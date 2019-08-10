@@ -12,6 +12,10 @@ Run [[https://lexaloffle.com/pico-8.php][PICO-8]] game cartridges using a cusomt
 
 *Note:* This project is community made and not endorsed by Lexaloffle or the offical [[https://www.lexaloffle.com/pico-8.php][PICO-8]] Fantasy Console.
 
+#+CAPTION: PICO-8 Player
+#+ATTR_HTML: :style margin-left: auto; margin-right: auto;
+[[./screenshots/boot.gif]]
+
 * Installation
 
 *Yarn*
