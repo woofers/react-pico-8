@@ -1,6 +1,8 @@
-React PICO-8
-===========
-[![img](https://wdp9fww0r9.execute-api.us-west-2.amazonaws.com/production/badge/woofers/react-pico-8)](https://wdp9fww0r9.execute-api.us-west-2.amazonaws.com/production/results/woofers/react-pico-8) [![img](https://david-dm.org/woofers/react-pico-8.svg)](https://www.npmjs.com/package/react-pico-8) [![img](https://badge.fury.io/js/react-pico-8.svg)](https://www.npmjs.com/package/react-pico-8) [![img](https://img.shields.io/npm/dt/react-pico-8.svg)](https://www.npmjs.com/package/react-pico-8) [![img](https://img.shields.io/npm/l/react-pico-8.svg)](https://github.com/woofers/react-pico-8/blob/master/License.txt) [![img](https://img.shields.io/badge/greenkeeper-enabled-brightgreen.svg)](https://greenkeeper.io/)
+
+
+# React PICO-8
+
+[![img](https://github.com/woofers/react-pico-8/workflows/build/badge.svg)](https://github.com/woofers/react-pico-8/actions) [![img](https://david-dm.org/woofers/react-pico-8.svg)](https://www.npmjs.com/package/react-pico-8) [![img](https://badge.fury.io/js/react-pico-8.svg)](https://www.npmjs.com/package/react-pico-8) [![img](https://img.shields.io/npm/dt/react-pico-8.svg)](https://www.npmjs.com/package/react-pico-8) [![img](https://img.shields.io/npm/l/react-pico-8.svg)](https://github.com/woofers/react-pico-8/blob/master/License.txt)
 
 Run [PICO-8](https://lexaloffle.com/pico-8.php) game cartridges using a cusomtizable React component.
 
