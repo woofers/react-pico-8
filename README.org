@@ -4,7 +4,9 @@
 #+EMAIL:	jaxson.vandoorn@gmail.com
 #+OPTIONS:  num:nil toc:nil
 
-[[https://wdp9fww0r9.execute-api.us-west-2.amazonaws.com/production/results/woofers/react-pico-8][https://wdp9fww0r9.execute-api.us-west-2.amazonaws.com/production/badge/woofers/react-pico-8]] [[https://www.npmjs.com/package/react-pico-8][https://david-dm.org/woofers/react-pico-8.svg]] [[https://www.npmjs.com/package/react-pico-8][https://badge.fury.io/js/react-pico-8.svg]] [[https://www.npmjs.com/package/react-pico-8][https://img.shields.io/npm/dt/react-pico-8.svg]] [[https://github.com/woofers/react-pico-8/blob/master/License.txt][https://img.shields.io/npm/l/react-pico-8.svg]] [[https://greenkeeper.io/][https://img.shields.io/badge/greenkeeper-enabled-brightgreen.svg]]
+* React PICO-8
+
+[[https://github.com/woofers/react-pico-8/actions][https://github.com/woofers/react-pico-8/workflows/build/badge.svg]] [[https://www.npmjs.com/package/react-pico-8][https://david-dm.org/woofers/react-pico-8.svg]] [[https://www.npmjs.com/package/react-pico-8][https://badge.fury.io/js/react-pico-8.svg]] [[https://www.npmjs.com/package/react-pico-8][https://img.shields.io/npm/dt/react-pico-8.svg]] [[https://github.com/woofers/react-pico-8/blob/master/License.txt][https://img.shields.io/npm/l/react-pico-8.svg]]
 
 Run [[https://lexaloffle.com/pico-8.php][PICO-8]] game cartridges using a cusomtizable React component.
 
