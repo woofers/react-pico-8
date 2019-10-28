@@ -4,13 +4,20 @@ import PrismCode from 'react-prism'
 import 'prismjs'
 import 'prismjs/components/prism-jsx.min'
 import 'prism-themes/themes/prism-dracula.css'
+import Copy from './copy'
 
 const code = css`
+  position: relative;
   width: 600px;
+  div {
+    background: #191919;
+    border-radius: 0.3em;
+  }
   pre {
+    background: none;
+    margin-left: 20px;
     padding: 0;
     padding-bottom: 25px;
-    background: #191919;
     span[class*="class-name"] {
       color: #ff79c6;
     }
@@ -25,14 +32,23 @@ const code = css`
   }
 `
 
+const copy = css`
+  position: absolute;
+  right: 10px;
+  top: 10px;
+`
+
 const CodeBlock = p => {
   let lang = p.language || ''
   lang = lang.toLowerCase()
   return (
     <div css={code}>
-      <PrismCode component="pre" className={`language-${lang}`}>
-        {p.children}
-      </PrismCode>
+      <span css={copy}><Copy value={p.children} /></span>
+      <div>
+        <PrismCode component="pre" className={`language-${lang}`}>
+          {p.children}
+        </PrismCode>
+      </div>
     </div>
   )
 }
