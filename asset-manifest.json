@@ -1,15 +1,21 @@
 {
   "files": {
-    "main.js": "/react-pico-8/static/js/main.50eee4a7.chunk.js",
-    "main.js.map": "/react-pico-8/static/js/main.50eee4a7.chunk.js.map",
-    "runtime~main.js": "/react-pico-8/static/js/runtime~main.7269bc60.js",
-    "runtime~main.js.map": "/react-pico-8/static/js/runtime~main.7269bc60.js.map",
-    "static/css/2.66d9353d.chunk.css": "/react-pico-8/static/css/2.66d9353d.chunk.css",
-    "static/js/2.0fc3adeb.chunk.js": "/react-pico-8/static/js/2.0fc3adeb.chunk.js",
-    "static/js/2.0fc3adeb.chunk.js.map": "/react-pico-8/static/js/2.0fc3adeb.chunk.js.map",
+    "main.js": "/react-pico-8/static/js/main.9a0a69bd.chunk.js",
+    "main.js.map": "/react-pico-8/static/js/main.9a0a69bd.chunk.js.map",
+    "runtime-main.js": "/react-pico-8/static/js/runtime-main.c8d1f5e6.js",
+    "runtime-main.js.map": "/react-pico-8/static/js/runtime-main.c8d1f5e6.js.map",
+    "static/css/2.8acbcd97.chunk.css": "/react-pico-8/static/css/2.8acbcd97.chunk.css",
+    "static/js/2.da7cf3d7.chunk.js": "/react-pico-8/static/js/2.da7cf3d7.chunk.js",
+    "static/js/2.da7cf3d7.chunk.js.map": "/react-pico-8/static/js/2.da7cf3d7.chunk.js.map",
     "index.html": "/react-pico-8/index.html",
-    "precache-manifest.dd297f00f3d52a591edf64214b20dd54.js": "/react-pico-8/precache-manifest.dd297f00f3d52a591edf64214b20dd54.js",
+    "precache-manifest.dcb6501adee38befae190a032cefe422.js": "/react-pico-8/precache-manifest.dcb6501adee38befae190a032cefe422.js",
     "service-worker.js": "/react-pico-8/service-worker.js",
-    "static/css/2.66d9353d.chunk.css.map": "/react-pico-8/static/css/2.66d9353d.chunk.css.map"
-  }
+    "static/css/2.8acbcd97.chunk.css.map": "/react-pico-8/static/css/2.8acbcd97.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c8d1f5e6.js",
+    "static/css/2.8acbcd97.chunk.css",
+    "static/js/2.da7cf3d7.chunk.js",
+    "static/js/main.9a0a69bd.chunk.js"
+  ]
 }
