@@ -75,7 +75,7 @@ export const startPico = () => {
           22050
         ) // dummy
         window.source_sfx.connect(pico8_audio_context.destination)
-        window.source_sfx.start(1, 0.25)
+        window.source_sfx.start(1,  Math.min(window.source_sfx.buffer.duration, 0.25))
       }
     }
   }
