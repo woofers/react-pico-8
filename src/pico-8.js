@@ -34,7 +34,13 @@ const Pico8 = p => {
     window.p8_create_audio_context()
   }
   const autoStart = () => {
-    const temp_context = new AudioContext()
+    const temp_context = (() => {
+      var AC
+      if (typeof window !== 'undefined') {
+        AC = window.AudioContext || window.webkitAudioContext
+      }
+      return AC ? new AC() : {}
+    })()
     temp_context.onstatechange = () => {
       if (temp_context.state == "running") {
         setMuted(false)
@@ -80,8 +86,8 @@ const Pico8 = p => {
   }
   const sound = () => {
     setMuted(!isMuted)
-    window.p8_create_audio_context();
-    window.Module.pico8ToggleSound();
+    window.p8_create_audio_context()
+    window.Module.pico8ToggleSound()
   }
   const fullscreen = () => {
     setFullscreen(true)
