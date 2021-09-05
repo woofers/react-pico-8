@@ -2,11 +2,11 @@
 
 # React PICO-8
 
-[![img](https://github.com/woofers/react-pico-8/workflows/build/badge.svg)](https://github.com/woofers/react-pico-8/actions) [![img](https://david-dm.org/woofers/react-pico-8.svg)](https://www.npmjs.com/package/react-pico-8) [![img](https://badge.fury.io/js/react-pico-8.svg)](https://www.npmjs.com/package/react-pico-8) [![img](https://img.shields.io/npm/dt/react-pico-8.svg)](https://www.npmjs.com/package/react-pico-8) [![img](https://img.shields.io/npm/l/react-pico-8.svg)](https://github.com/woofers/react-pico-8/blob/master/License.txt)
+[![img](https://github.com/woofers/react-pico-8/workflows/build/badge.svg)](https://github.com/woofers/react-pico-8/actions) [![img](https://david-dm.org/woofers/react-pico-8.svg)](https://www.npmjs.com/package/react-pico-8) [![img](https://badge.fury.io/js/react-pico-8.svg)](https://www.npmjs.com/package/react-pico-8) [![img](https://img.shields.io/npm/dt/react-pico-8.svg)](https://www.npmjs.com/package/react-pico-8) [![img](https://img.shields.io/npm/l/react-pico-8.svg)](https://github.com/woofers/react-pico-8/blob/main/License.txt)
 
 Run [PICO-8](https://lexaloffle.com/pico-8.php) game cartridges using a cusomtizable React component.
 
-**[Live Demo](https://jaxson.vandoorn.ca/react-pico-8/)**
+**[Live Demo](https://jaxs.onl/react-pico-8/)**
 
 **Note:** This project is community made and not endorsed by Lexaloffle or the offical [PICO-8](https://www.lexaloffle.com/pico-8.php) Fantasy Console.
 
