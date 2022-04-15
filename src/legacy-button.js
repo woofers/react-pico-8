@@ -1,6 +1,5 @@
 /** @jsx jsx */
-import { jsx, css } from '@emotion/core'
-import { importAll } from './import'
+import { jsx, css } from '@emotion/react'
 import { legacy } from './icons'
 
 const OldButton = p => {

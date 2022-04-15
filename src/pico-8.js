@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React, { useState, useEffect, useRef } from 'react'
-import { jsx, css } from '@emotion/core'
+import { jsx, css } from '@emotion/react'
 import { DefaultButtons, Button } from './buttons'
 import Start from './start.js'
 import Canvas from './canvas.js'

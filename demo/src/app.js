@@ -139,7 +139,7 @@ const App = () => {
       <div css={page}>
         <Global styles={font} />
         { isMounted ?
-          <Pico8 src="index.js" placeholder="placeholder.png" {...props}>
+          <Pico8 src="/react-pico-8/index.js" placeholder="/react-pico-8/placeholder.png" {...props}>
             {buttons.filter(({enabled}) => enabled).map(({ name, Button }) => <Button key={name}/>)}
           </Pico8> : null }
         <div css={desc}>
@@ -147,7 +147,7 @@ const App = () => {
             <h1>
               <a href="https://github.com/woofers/react-pico-8">react-pico-8</a>
             </h1>
-            <img width="32px" height="32px" src="pico.png" alt="PICO-8 Logo" />
+            <img width="32px" height="32px" src="/react-pico-8/pico.png" alt="PICO-8 Logo" />
           </span>
           <form css={form}>
             <fieldset>

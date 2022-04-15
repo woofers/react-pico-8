@@ -6,5 +6,5 @@ module.exports = {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn"
   },
-  "parser": "babel-eslint"
+  "parser": "@babel/eslint-parser"
 }

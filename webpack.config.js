@@ -1,14 +1,18 @@
 const path = require('path')
 const nodeExternals = require('webpack-node-externals')
 const json = require('./package.json')
+const PeerDepsExternalsPlugin = require('peer-deps-externals-webpack-plugin')
+const ESLintPlugin = require('eslint-webpack-plugin')
 const getPath = path => path.substring(0, path.lastIndexOf('/'))
 const getFile = path => path.substring(path.lastIndexOf('/') + 1)
 const mode = process.env.NODE_ENV
-const PeerDepsExternalsPlugin = require('peer-deps-externals-webpack-plugin')
 
 module.exports = {
   plugins: [
-    new PeerDepsExternalsPlugin(),
+    new ESLintPlugin({
+      failOnWarning: true,
+      failOnError: true
+    })
   ],
   entry: {
     'react-pico-8': `./${json.src}`,
@@ -21,20 +25,10 @@ module.exports = {
     libraryTarget: 'umd',
     globalObject: 'this'
   },
-  externals: [nodeExternals()],
+  externals: [nodeExternals(), 'react'],
   mode: 'production',
   module: {
     rules: [
-      {
-        enforce: "pre",
-        test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: "eslint-loader",
-        options: {
-          failOnWarning: true,
-          failOnError: true
-        }
-      },
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
@@ -42,13 +36,13 @@ module.exports = {
       },
       {
         test: /\.png$/,
-        loader: "url-loader?mimetype=image/png"
+        use: [{ loader: 'url-loader?mimetype=image/png' }]
       }
     ]
   },
   optimization: {
-    splitChunks: {
-      chunks: 'all'
-    }
+    minimize: true,
+    chunkIds: 'natural',
+    moduleIds: 'natural'
   }
 }
