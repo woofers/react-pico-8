@@ -1,9 +1,7 @@
-/** @jsx jsx */
-import { jsx, css } from '@emotion/core'
+import { css } from '@emotion/react'
 import PrismCode from 'react-prism'
 import 'prismjs'
 import 'prismjs/components/prism-jsx.min'
-import 'prism-themes/themes/prism-dracula.css'
 import Copy from './copy'
 
 const code = css`

@@ -1,11 +1,13 @@
 import React from 'react'
-import Button from './button'
+import Base from './button'
 
-export default p => {
+const Button = p => {
   const onClick = () => {
     if (p.onClick) p.onClick()
   }
   return (
-    <Button onClick={onClick}>{p.mounted ? 'Unmount' : 'Mount'}</Button>
+    <Base onClick={onClick}>{p.mounted ? 'Unmount' : 'Mount'}</Base>
   )
 }
+
+export default Button

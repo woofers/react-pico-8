@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
+import Base from '@material-ui/core/Button'
 import { grey } from '@material-ui/core/colors'
 
 const normal = grey[100]
@@ -21,7 +21,9 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default p => {
+const Button = p => {
   const classes = useStyles()
-  return <Button variant="outlined" color="primary" className={classes.button} onClick={p.onClick}>{p.children}</Button>
+  return <Base variant="outlined" color="primary" className={classes.button} onClick={p.onClick}>{p.children}</Base>
 }
+
+export default Button

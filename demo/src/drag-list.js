@@ -1,6 +1,5 @@
-/** @jsx jsx */
-import { jsx, css } from '@emotion/core'
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
+import { css } from '@emotion/react'
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import Box from './checkbox'
 
 // Adapted from https://codesandbox.io/s/4qp6vjp319?from-embed

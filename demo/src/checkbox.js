@@ -1,4 +1,3 @@
-
 import React from 'react'
 import Checkbox from '@material-ui/core/Checkbox'
 import { withStyles } from '@material-ui/core/styles'

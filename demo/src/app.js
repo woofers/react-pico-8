@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { Global, jsx, css } from '@emotion/core'
+import { Global, css } from '@emotion/react'
 import { useState } from 'react'
 import Pico8 from 'react-pico-8'
 import * as picoButtons from 'react-pico-8/buttons'
@@ -8,7 +7,6 @@ import codeDemo from './code'
 import List from './drag-list'
 import Box from './checkbox'
 import Button from './mount-button'
-import { ChameleonThemeColor } from 'react-chameleon-theme-color'
 
 const Checkbox = p => {
   const span = css`
@@ -135,11 +133,10 @@ const App = () => {
   }
   return (
     <div>
-      <ChameleonThemeColor />
       <div css={page}>
         <Global styles={font} />
         { isMounted ?
-          <Pico8 src="/react-pico-8/index.js" placeholder="/react-pico-8/placeholder.png" {...props}>
+          <Pico8 src="/react-pico-8/pico.js" placeholder="/react-pico-8/placeholder.png" {...props}>
             {buttons.filter(({enabled}) => enabled).map(({ name, Button }) => <Button key={name}/>)}
           </Pico8> : null }
         <div css={desc}>
@@ -189,7 +186,7 @@ const App = () => {
               <p>Simply add the game widget to the React application using JSX.</p>
               <p css={link}>
                 Be sure to include the <code>.js</code> <code>src</code> of
-                the game cartridge generated from <a href="https://lexaloffle.com/pico-8.php">PICO-8</a>'s web export.
+                the game cartridge generated from <a href="https://lexaloffle.com/pico-8.php">PICO-8</a>{`'`}s web export.
               </p>
             </div>
           </div>

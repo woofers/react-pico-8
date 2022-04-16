@@ -26,3 +26,5 @@ react-pico-8.js
 /demo/yarn.lock
 /demo/public/placeholder.png
 /demo/public/index.js
+/demo/public/pico.js
+/demo/out
