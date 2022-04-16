@@ -12,6 +12,11 @@ const App = ({ Component, pageProps }) => {
           content="width=device-width, initial-scale=1, viewport-fit=cover"
         />
         <title>react-pico-8</title>
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com/"
+          crossOrigin="true"
+        />
       </Head>
       <Component {...pageProps} />
     </>

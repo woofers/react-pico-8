@@ -2,7 +2,7 @@ import { css } from '@emotion/react'
 import PrismCode from 'react-prism'
 import 'prismjs'
 import 'prismjs/components/prism-jsx.min'
-import Copy from './copy'
+import Copy from 'components/copy'
 
 const code = css`
   && {
@@ -17,16 +17,18 @@ const code = css`
       margin-left: 20px;
       padding: 0;
       padding-bottom: 25px;
-      span[class*="class-name"] {
+      span[class*='class-name'] {
         color: #ff79c6;
       }
     }
-    span, code, pre {
+    span,
+    code,
+    pre {
       font-family: 'Inconsolata', monospace;
     }
-    span[class*="boolean"],
-    span[class*="string"],
-    span[class*="attr-value"] {
+    span[class*='boolean'],
+    span[class*='string'],
+    span[class*='attr-value'] {
       font-weight: 700;
     }
   }
@@ -38,15 +40,17 @@ const copy = css`
   top: 10px;
 `
 
-const CodeBlock = p => {
-  let lang = p.language || ''
-  lang = lang.toLowerCase()
+const CodeBlock = ({ language, children, ...rest }) => {
+  const lower = language || ''
+  const lang = lower.toLowerCase()
   return (
-    <div css={code}>
-      <span css={copy}><Copy value={p.children} /></span>
+    <div css={code} {...rest}>
+      <span css={copy}>
+        <Copy value={children} />
+      </span>
       <div>
         <PrismCode component="pre" className={`language-${lang}`}>
-          {p.children}
+          {children}
         </PrismCode>
       </div>
     </div>

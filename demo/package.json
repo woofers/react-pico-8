@@ -21,7 +21,8 @@
     "start": "./game.sh && next start",
     "dev": "./game.sh && next dev",
     "build": "./game.sh && next build && next export",
-    "test": "echo 'No tests'"
+    "test": "echo 'No tests'",
+    "format": "prettier --write \"{tests,src}/**/*.{js,mjs}\""
   },
   "author": "Jaxson Van Doorn <jaxson.vandoorn@gmail.com>",
   "license": "MIT",
@@ -30,6 +31,7 @@
     "eslint": "^8.13.0",
     "eslint-config-next": "^12.1.5",
     "eslint-webpack-plugin": "^3.1.1",
-    "gh-pages": "^3.2.3"
+    "gh-pages": "^3.2.3",
+    "prettier": "^2.6.2"
   }
 }

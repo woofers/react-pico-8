@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import Box from './checkbox'
+import Box from 'components/checkbox'
 
 // Adapted from https://codesandbox.io/s/4qp6vjp319?from-embed
 
@@ -57,19 +57,15 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   listStyle: 'none',
   ...draggableStyle,
   ...(isDragging && {
-    background: "#313131"
+    background: '#313131'
   })
 })
 
 const DragList = p => {
-  const onDragEnd = (result) => {
+  const onDragEnd = result => {
     if (!result.destination) return
     p.setItems(items => {
-      return reorder(
-        items,
-        result.source.index,
-        result.destination.index
-      )
+      return reorder(items, result.source.index, result.destination.index)
     })
   }
   const toggle = index => {
@@ -93,9 +89,18 @@ const DragList = p => {
                     const { name, Button } = pair
                     const id = `icon-${name}`
                     const label = name.toLowerCase()
-                    const icon = <span css={p.disabled ? normal : dragable}><Button selected={pair.enabled} disabled={true} /></span>
+                    const icon = (
+                      <span css={p.disabled ? normal : dragable}>
+                        <Button selected={pair.enabled} disabled={true} />
+                      </span>
+                    )
                     return (
-                      <Draggable key={id} isDragDisabled={p.disabled} draggableId={id} index={index}>
+                      <Draggable
+                        key={id}
+                        isDragDisabled={p.disabled}
+                        draggableId={id}
+                        index={index}
+                      >
                         {(provided, snapshot) => (
                           <li
                             ref={provided.innerRef}
@@ -107,15 +112,24 @@ const DragList = p => {
                             )}
                           >
                             <div css={align}>
-                              <Box id={label} disabled={p.disabled} css={check} checked={pair.enabled} onChange={() => toggle(index)} />
-                              <div css={iconSize} aria-hidden="true">{icon}</div>
+                              <Box
+                                id={label}
+                                disabled={p.disabled}
+                                css={check}
+                                checked={pair.enabled}
+                                onChange={() => toggle(index)}
+                              />
+                              <div css={iconSize} aria-hidden="true">
+                                {icon}
+                              </div>
                               <label htmlFor={label}>{name}</label>
                             </div>
                           </li>
                         )}
                       </Draggable>
-                    )})}
-                    {provided.placeholder}
+                    )
+                  })}
+                  {provided.placeholder}
                 </ul>
               </div>
             )}

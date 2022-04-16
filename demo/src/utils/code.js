@@ -23,8 +23,14 @@ import { ${names} } from 'react-pico-8/buttons'`
 }
 
 const code = (
-  autoPlay, legacyButtons, hideCursor,
-  center, blockKeys, usePointer, unpauseOnReset, buttons
+  autoPlay,
+  legacyButtons,
+  hideCursor,
+  center,
+  blockKeys,
+  usePointer,
+  unpauseOnReset,
+  buttons
 ) => {
   const enabled = buttons.filter(({ enabled }) => enabled)
   return `${imports(enabled)}
