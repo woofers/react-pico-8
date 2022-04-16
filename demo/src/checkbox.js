@@ -1,14 +1,12 @@
 import React from 'react'
-import Checkbox from '@material-ui/core/Checkbox'
-import { withStyles } from '@material-ui/core/styles'
-import { grey } from '@material-ui/core/colors'
+import Base from '@mui/material/Checkbox'
 
-export default withStyles({
-  root: {
-    color: grey[100],
-    padding: '6px',
-  },
-  disabled: {
-    color: '#3c3a3a !important'
-  },
-})(p => <Checkbox color="default" {...p} />)
+const grey100 = '#f5f5f5'
+
+const Checkbox = props => {
+  return (
+    <Base {...props} color="default" sx={{ padding: '6px', color: grey100, '&.Mui-disabled': { color: '#3c3a3a !important' } }} />
+  )
+}
+
+export default Checkbox

@@ -1,29 +1,31 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import Base from '@material-ui/core/Button'
-import { grey } from '@material-ui/core/colors'
+import Base from '@mui/material/Button'
 
-const normal = grey[100]
-
-const useStyles = makeStyles(theme => ({
-  button: {
-    margin: theme.spacing(1),
-    width: '145px',
-    color: normal,
-    borderColor: normal,
-    '&:hover': {
-      borderColor: grey[200],
-      backgroundColor: 'rgba(140, 146, 181, 0.08)',
-    },
-  },
-  input: {
-    display: 'none',
-  },
-}))
+const grey100 = '#f5f5f5'
+const grey200 = '#eeeeee'
+const normal = grey100
 
 const Button = p => {
-  const classes = useStyles()
-  return <Base variant="outlined" color="primary" className={classes.button} onClick={p.onClick}>{p.children}</Base>
+  return (
+    <Base
+      sx={{
+        margin: '8px',
+        width: '145px',
+        color: normal,
+        borderColor: normal,
+        fontFamily: "'Lato', sans-serif",
+        '&:hover': {
+          borderColor: grey200,
+          backgroundColor: 'rgba(140, 146, 181, 0.08)',
+        }
+      }}
+      variant="outlined"
+      color="primary"
+      onClick={p.onClick}
+    >
+        {p.children}
+    </Base>
+  )
 }
 
 export default Button
