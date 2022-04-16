@@ -11,14 +11,13 @@
     "prismjs": "^1.27.0",
     "react": "^18.0.0",
     "react-beautiful-dnd": "^13.1.0",
-    "react-chameleon-theme-color": "^1.1.1",
     "react-dom": "^18.0.0",
     "react-emotion": "^10.0.0",
     "react-pico-8": "../.",
     "react-prism": "^4.3.2"
   },
   "scripts": {
-    "start": "./game.sh && next start",
+    "start": "next start",
     "dev": "./game.sh && next dev",
     "build": "./game.sh && next build && next export",
     "test": "echo 'No tests'",

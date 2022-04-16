@@ -12,38 +12,36 @@ const span = css`
   padding: 3px;
 `
 
-const Checkbox = p => {
-  return (
-    <div css={span}>
-      <Box
-        id={p.name}
-        disabled={p.disabled}
-        checked={p.checked}
-        onChange={p.onChange}
-      />
-      <label htmlFor={p.name}>{p.children}</label>
-    </div>
-  )
-}
+const Checkbox = ({ name, disabled, checked, onChange, children, ...rest }) => (
+  <div css={span}>
+    <Box
+      {...rest}
+      id={name}
+      disabled={disabled}
+      checked={checked}
+      onChange={onChange}
+    />
+    <label htmlFor={name}>{children}</label>
+  </div>
+)
 
 const style = css`
   color: #fff;
   margin-left: 5px;
 `
 
-const Option = p => {
-  return (
-    <Checkbox
-      name={p.name}
-      disabled={p.disabled}
-      checked={p.checked}
-      onChange={p.onChange}
-    >
-      <strong>{p.name}</strong>
-      <span css={style}>- {p.children}</span>
-    </Checkbox>
-  )
-}
+const Option = ({ name, disabled, checked, onChange, children, ...rest }) => (
+  <Checkbox
+    {...rest}
+    name={name}
+    disabled={disabled}
+    checked={checked}
+    onChange={onChange}
+  >
+    <strong>{name}</strong>
+    <span css={style}>- {children}</span>
+  </Checkbox>
+)
 
 const font = css`
   @import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700|Lato:400,700');
