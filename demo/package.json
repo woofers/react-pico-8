@@ -17,7 +17,6 @@
     "react": "^16.8.6",
     "react-beautiful-dnd": "^11.0.4",
     "react-chameleon-theme-color": "^1.1.1",
-    "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.8.3",
     "react-emotion": "^10.0.0",
     "react-helmet": "^5.2.0",
