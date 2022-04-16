@@ -5,28 +5,30 @@ import 'prismjs/components/prism-jsx.min'
 import Copy from './copy'
 
 const code = css`
-  position: relative;
-  width: 600px;
-  div {
-    background: #191919;
-    border-radius: 0.3em;
-  }
-  pre {
-    background: none;
-    margin-left: 20px;
-    padding: 0;
-    padding-bottom: 25px;
-    span[class*="class-name"] {
-      color: #ff79c6;
+  && {
+    position: relative;
+    width: 600px;
+    div {
+      background: #191919;
+      border-radius: 0.3em;
     }
-  }
-  span, code, pre {
-    font-family: 'Inconsolata', monospace;
-  }
-  span[class*="boolean"],
-  span[class*="string"],
-  span[class*="attr-value"] {
-    font-weight: 700;
+    pre {
+      background: none;
+      margin-left: 20px;
+      padding: 0;
+      padding-bottom: 25px;
+      span[class*="class-name"] {
+        color: #ff79c6;
+      }
+    }
+    span, code, pre {
+      font-family: 'Inconsolata', monospace;
+    }
+    span[class*="boolean"],
+    span[class*="string"],
+    span[class*="attr-value"] {
+      font-weight: 700;
+    }
   }
 `
 

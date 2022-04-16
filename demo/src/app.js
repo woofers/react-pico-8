@@ -8,10 +8,11 @@ import List from './drag-list'
 import Box from './checkbox'
 import Button from './mount-button'
 
+const span = css`
+  padding: 3px;
+`
+
 const Checkbox = p => {
-  const span = css`
-    padding: 3px;
-  `
   return (
     <div css={span}>
       <Box id={p.name} disabled={p.disabled} checked={p.checked} onChange={p.onChange} />
@@ -20,11 +21,12 @@ const Checkbox = p => {
   )
 }
 
+const style = css`
+  color: #fff;
+  margin-left: 5px;
+`
+
 const Option = p => {
-  const style = css`
-    color: #fff;
-    margin-left: 5px;
-  `
   return (
     <Checkbox name={p.name} disabled={p.disabled} checked={p.checked} onChange={p.onChange}>
       <strong>{p.name}</strong>
@@ -33,74 +35,76 @@ const Option = p => {
   )
 }
 
-const App = () => {
-  const font = css`
-    @import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700|Lato:400,700');
-    * {
-      font-family: 'Lato', sans-serif;
-    }
-    body {
-      background: #222;
-      margin: 0;
-    }
-  `
-  const desc = css`
-    margin: 0 auto;
-    padding: 35px;
-    color: #FFF;
-    max-width: 1000px;
-    fieldset {
-      border: none;
-    }
-    legend {
-      display: block;
-      font-size: 1.5em;
-      font-weight: bold;
-      margin: 0 0 5px 0;
-    }
-    h2 {
-      margin-top: 0;
-    }
-  `
-  const page = css`
-    margin-top: 75px;
-  `
-  const form = css`
-    margin-top: 20px;
-  `
-  const link = css`
-    a {
-      text-decoration: none;
-      color: #FFF;
-    }
-    a:hover {
-      opacity: 0.5;
-    }
-  `
-  const heading = css`
-    margin-bottom: 20px;
-    a {
-      margin-right: 10px;
-    }
-    h1 {
-      display: inline;
-    }
-    img {
-      image-rendering: pixelated;
-    }
-  `
-  const live = css`
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  `
-  const list = css`
-    flex: 0 400px;
-  `
+const font = css`
+  @import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700|Lato:400,700');
+  * {
+    font-family: 'Lato', sans-serif;
+  }
+  body {
+    background: #222;
+    margin: 0;
+  }
+`
 
-  const usage = css`
-    flex: 0 600px;
-  `
+const desc = css`
+  margin: 0 auto;
+  padding: 35px;
+  color: #FFF;
+  max-width: 1000px;
+  fieldset {
+    border: none;
+  }
+  legend {
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0 0 5px 0;
+  }
+  h2 {
+    margin-top: 0;
+  }
+`
+const page = css`
+  margin-top: 75px;
+`
+const form = css`
+  margin-top: 20px;
+`
+const link = css`
+  a {
+    text-decoration: none;
+    color: #FFF;
+  }
+  a:hover {
+    opacity: 0.5;
+  }
+`
+const heading = css`
+  margin-bottom: 20px;
+  a {
+    margin-right: 10px;
+  }
+  h1 {
+    display: inline;
+  }
+  img {
+    image-rendering: pixelated;
+  }
+`
+const live = css`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+`
+const list = css`
+  flex: 0 400px;
+`
+
+const usage = css`
+  flex: 0 600px;
+`
+
+const App = () => {
   const order = [
     'Controls',
     'Reset',

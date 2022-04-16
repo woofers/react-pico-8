@@ -34,6 +34,18 @@ const align = css`
   padding-bottom: 8px;
 `
 
+const dragable = css`
+  div {
+    cursor: grab !important;
+  }
+`
+
+const normal = css`
+  div {
+    cursor: auto !important;
+  }
+`
+
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list)
   const [removed] = result.splice(startIndex, 1)
@@ -81,12 +93,7 @@ const DragList = p => {
                     const { name, Button } = pair
                     const id = `icon-${name}`
                     const label = name.toLowerCase()
-                    const dragable = css`
-                      div {
-                        cursor: ${p.disabled ? 'auto' : 'grab'} !important;
-                      }
-                    `
-                    const icon = <span css={dragable}><Button selected={pair.enabled} disabled={true} /></span>
+                    const icon = <span css={p.disabled ? normal : dragable}><Button selected={pair.enabled} disabled={true} /></span>
                     return (
                       <Draggable key={id} isDragDisabled={p.disabled} draggableId={id} index={index}>
                         {(provided, snapshot) => (
