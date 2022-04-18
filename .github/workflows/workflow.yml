@@ -21,7 +21,7 @@ jobs:
     - name: Test
       run: yarn test
     - name: Install Prod
-      run: yarn install --prod && rm .eslintrc.js
+      run: yarn install --prod
     - name: Install Demo
       run: yarn --cwd demo install
     - name: Build Demo

@@ -9,7 +9,14 @@ import { blockKeys, keys } from './keys.js'
 import { addEvent, removeEvent, setEvent } from './event.js'
 import { removeOnFullscreenEvent, onFullscreenEvent, goFullscreen, onFullscreenExit } from './screen.js'
 
-const Pico8 = p => {
+export { Controls,
+         Reset,
+         Pause,
+         Sound,
+         Carts,
+         Fullscreen } from './external-buttons'
+
+export const Pico8 = p => {
   const [isMuted, setMuted] = useState(true)
   const [isMobile, _setMobile] = useState(false)
   const setMobile = (value) => {
@@ -197,5 +204,3 @@ Pico8.defaultProps = {
   usePointer: true,
   unpauseOnReset: true
 }
-
-export default Pico8

@@ -21,10 +21,16 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-buttons.js
 react-pico-8.js
 /demo/yarn.lock
 /demo/public/placeholder.png
 /demo/public/index.js
 /demo/public/pico.js
 /demo/out
+/lib/react-pico-8.module.js
+/lib/react-pico-8.module.dev.js
+/lib/react-pico-8.dev.js
+/lib/react-pico-8.js
+/react-pico-8.dev.js
+/index.js
+/buttons.js
