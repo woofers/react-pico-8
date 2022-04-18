@@ -1,0 +1,39 @@
+.fullscreen {
+  width: 100vmin;
+  height: 100vmin;
+}
+
+.normal {
+  width: 85vmin;
+  height: 85vmin;
+  max-height: 768px;
+  max-width: 768px;
+  background-color: #000;
+}
+
+.canvas {
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-contrast;
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor;
+  border: 0px;
+  cursor: auto;
+  outline: none;
+}
+
+.none {
+  cursor: none;
+}
+
+.center {
+  text-align: center;
+}
+
+.margin {}
+@media only screen and (min-width: 768px) {
+  .margin {
+    margin-left: 45px;
+  }
+}

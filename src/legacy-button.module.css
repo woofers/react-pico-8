@@ -1,0 +1,28 @@
+.box {
+  float: left;
+  width: 100%;
+  min-height: 16px;
+  display: inline-block;
+  margin: 1px;
+  padding: 4px;
+  text-align: center;
+  color: #fff;
+  background-color: #777;
+  font-family: verdana;
+  font-size: 9pt;
+  cursor: hand;
+  text-decoration: none;
+  border: 0;
+}
+
+.box:hover {
+  background-color: #aaa;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.normal {
+  cursor: auto;
+}

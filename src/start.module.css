@@ -1,0 +1,34 @@
+
+.box {
+  max-width: 768px;
+  max-height: 768px;
+  display: flex;
+  cursor: auto;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position: relative;
+  left: 0px;
+  top: 0px;
+  width: 85vmin;
+  height: 85vmin;
+  border: 0;
+}
+
+.img {
+  margin: auto;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.normal {
+  cursor: auto;
+}

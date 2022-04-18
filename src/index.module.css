@@ -1,0 +1,43 @@
+.hide {
+  position: absolute;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.none {
+  display: none;
+}
+
+.mobile-header {
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+  left: 0px;
+}
+
+.stack {
+  color: #ccc;
+  display: inline-block;
+  margin-left: 0px;
+  margin-top: 12.5px;
+}
+
+@media only screen and (min-width: 768px) {
+  .stack {
+    margin-top: 0px;
+    margin-left: 12.5px;
+  }
+}
+
+.inline {
+  display: flex;
+  justify-content: center;
+  width: 85vmin;
+  max-width: 768px;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}

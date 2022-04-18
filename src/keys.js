@@ -1,4 +1,4 @@
-const code = (key) => key.toUpperCase().charCodeAt(0)
+const code = key => key.toUpperCase().charCodeAt(0)
 
 const arrows = [37, 38, 39, 40]
 
@@ -21,6 +21,6 @@ export const keys = [
   code('p')
 ].concat(arrows)
 
-export const blockKeys = (e) => {
+export const blockKeys = e => {
   if (keys.indexOf(e.keyCode) > -1) e.preventDefault()
 }

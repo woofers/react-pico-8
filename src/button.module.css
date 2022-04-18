@@ -1,0 +1,46 @@
+.left {
+  float: left !important;
+  margin: 0 0 0 10px;
+}
+
+.right {
+  float: right !important;
+  margin: 0 10px 0 0;
+}
+
+.menu {
+  padding: 4px;
+  display: inline;
+  margin-left: 6px;
+}
+
+@media only screen and (min-width: 768px) {
+  .menu {
+    display: table;
+  }
+}
+
+.menu:hover .button-enabled {
+  background: #fff;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.normal {
+  cursor: auto;
+}
+
+.mask {
+  width: 24px;
+  height: 24px;
+  background: #64605d;
+  pointer-events: none;
+  display: inline-block;
+  border: 0;
+}
+
+.mask-selected {
+  background: #b9b2ad;
+}

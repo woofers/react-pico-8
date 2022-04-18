@@ -33,7 +33,7 @@ const init = () => {
   window.p8_touch_detected = false
 
   // Set canvas for game module
-  window.Module = { canvas: document.getElementById("canvas") }
+  window.Module = { canvas: document.getElementById('canvas') }
 
   // Indicate that the game instance is not running
   // by default
@@ -48,12 +48,11 @@ const init = () => {
   window.pico8_audio_context = null
 }
 
-
-const onTouch = (e) => window.p8_touch_detected = true
+const onTouch = e => (window.p8_touch_detected = true)
 
 export const startPico = () => {
   init()
-  window.addEventListener("touchstart", onTouch, { passive: true })
+  window.addEventListener('touchstart', onTouch, { passive: true })
   window.p8_create_audio_context = () => {
     if (window.pico8_audio_context) {
       window.pico8_audio_context.resume()
@@ -69,13 +68,12 @@ export const startPico = () => {
       window.pico8_audio_context = new webAudioAPI()
       if (window.pico8_audio_context) {
         window.source_sfx = pico8_audio_context.createBufferSource()
-        window.source_sfx.buffer = pico8_audio_context.createBuffer(
-          1,
-          1,
-          22050
-        ) // dummy
+        window.source_sfx.buffer = pico8_audio_context.createBuffer(1, 1, 22050) // dummy
         window.source_sfx.connect(pico8_audio_context.destination)
-        window.source_sfx.start(1,  Math.min(window.source_sfx.buffer.duration, 0.25))
+        window.source_sfx.start(
+          1,
+          Math.min(window.source_sfx.buffer.duration, 0.25)
+        )
       }
     }
   }
@@ -94,8 +92,8 @@ export const startPico = () => {
     // create audio context and wake it up (for iOS -- needs happen inside touch event)
     window.p8_create_audio_context()
 
-    window.p8_script = document.createElement("script")
-    window.p8_script.type = "application/javascript"
+    window.p8_script = document.createElement('script')
+    window.p8_script.type = 'application/javascript'
     window.p8_script.src = src
 
     // load and run
@@ -103,15 +101,15 @@ export const startPico = () => {
 
     // add #playing for touchscreen devices (allows back button to close)
     if (window.p8_touch_detected) {
-      window.location.hash = "#playing"
+      window.location.hash = '#playing'
       window.onhashchange = () => {
-        if (window.location.hash.search("playing") < 0) window.p8_close_cart()
+        if (window.location.hash.search('playing') < 0) window.p8_close_cart()
       }
     }
   }
 }
 
 export const removePico = () => {
-  window.removeEventListener("touchstart", onTouch, { passive: true })
+  window.removeEventListener('touchstart', onTouch, { passive: true })
   init()
 }

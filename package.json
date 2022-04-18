@@ -10,20 +10,22 @@
     "buttons.js",
     "react-pico-8.dev.js",
     "react-pico-8.js",
+    "styles.css",
     "LICENSE",
     "package.json",
     "README.md"
   ],
   "scripts": {
     "start": "yarn build",
+    "format": "prettier --write \"{tests,src}/**/*.{js,mjs}\"",
     "build": "yarn build:dev:module && yarn build:dev:umd && yarn build:module && yarn build:umd && yarn build:move",
-    "clean": "rimraf lib/react-pico-8.dev.js lib/react-pico-8.js lib/react-pico-8.module.dev.js lib/react-pico-8.module.js index.js buttons.js react-pico-8.dev.js react-pico-8.js",
+    "clean": "rimraf lib/react-pico-8.dev.js lib/react-pico-8.js lib/react-pico-8.module.dev.js lib/react-pico-8.module.js index.js buttons.js react-pico-8.dev.js react-pico-8.js lib/react-pico-8.css lib/react-pico-8.dev.css lib/react-pico-8.module.css lib/react-pico-8.module.dev.css react-pico-8.css react-pico-8.dev.css react-pico-8.module.css react-pico-8.module.dev.css styles.css",
     "test": "echo \"No tests \" && exit 0",
-    "build:module": "microbundle --globals @emotion/react=emotionReact --no-pkg-main --no-sourcemap --no-generateTypes --jsx React.createElement --jsxFragment React.Fragment --define __isDev__=false -i src/index.js -o lib/react-pico-8.module.js -f es",
-    "build:umd": "microbundle --globals @emotion/react=emotionReact --no-pkg-main --no-sourcemap --no-generateTypes --jsx React.createElement --jsxFragment React.Fragment --define __isDev__=false -i src/index.js -o lib/react-pico-8.js -f umd",
-    "build:dev:module": "microbundle --globals @emotion/react=emotionReact --no-pkg-main --no-sourcemap --no-generateTypes --jsx React.createElement --jsxFragment React.Fragment --define __isDev__=true -i src/index.js -o lib/react-pico-8.module.dev.js -f es",
-    "build:dev:umd": "microbundle --globals @emotion/react=emotionReact --no-pkg-main --no-sourcemap --no-generateTypes --jsx React.createElement --jsxFragment React.Fragment --define __isDev__=true -i src/index.js -o lib/react-pico-8.dev.js -f umd",
-    "build:move": "cp lib/index.js lib/buttons.js lib/react-pico-8.dev.js lib/react-pico-8.js ."
+    "build:module": "microbundle --no-pkg-main --no-sourcemap --no-generateTypes --jsx React.createElement --jsxFragment React.Fragment --define __isDev__=false -i src/index.js -o lib/react-pico-8.module.js -f es",
+    "build:umd": "microbundle --no-pkg-main --no-sourcemap --no-generateTypes --jsx React.createElement --jsxFragment React.Fragment --define __isDev__=false -i src/index.js -o lib/react-pico-8.js -f umd",
+    "build:dev:module": "microbundle --no-pkg-main --no-sourcemap --no-generateTypes --jsx React.createElement --jsxFragment React.Fragment --define __isDev__=true -i src/index.js -o lib/react-pico-8.module.dev.js -f es",
+    "build:dev:umd": "microbundle --no-pkg-main --no-sourcemap --no-generateTypes --jsx React.createElement --jsxFragment React.Fragment --define __isDev__=true -i src/index.js -o lib/react-pico-8.dev.js -f umd",
+    "build:move": "cp lib/index.js lib/buttons.js lib/react-pico-8.dev.js lib/react-pico-8.js . && cp lib/react-pico-8.css styles.css"
   },
   "repository": {
     "type": "git",
@@ -44,7 +46,9 @@
     "react": "^0.13.0 || ^0.14.0 || ^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
-    "microbundle": "^0.14.2"
+    "microbundle": "^0.14.2",
+    "prettier": "^2.6.2",
+    "rimraf": "^3.0.2"
   },
   "dependencies": {
     "@emotion/react": "^11.9.0"

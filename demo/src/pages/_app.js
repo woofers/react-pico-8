@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import 'prism-themes/themes/prism-dracula.css'
+import 'react-pico-8/styles.css'
 
 const App = ({ Component, pageProps }) => {
   return (

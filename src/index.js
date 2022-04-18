@@ -1,25 +1,34 @@
-/** @jsx jsx */
 import React, { useState, useEffect, useRef } from 'react'
-import { jsx, css } from '@emotion/react'
 import { DefaultButtons, Button } from './buttons'
 import Start from './start.js'
 import Canvas from './canvas.js'
 import { startPico, removePico } from './pico.js'
 import { blockKeys, keys } from './keys.js'
 import { addEvent, removeEvent, setEvent } from './event.js'
-import { removeOnFullscreenEvent, onFullscreenEvent, goFullscreen, onFullscreenExit } from './screen.js'
+import {
+  removeOnFullscreenEvent,
+  onFullscreenEvent,
+  goFullscreen,
+  onFullscreenExit
+} from './screen.js'
+import classes from './classnames'
+import styles from './index.module.css'
 
-export { Controls,
-         Reset,
-         Pause,
-         Sound,
-         Carts,
-         Fullscreen } from './external-buttons'
+const cx = classes.bind(styles)
 
-export const Pico8 = p => {
+export {
+  Controls,
+  Reset,
+  Pause,
+  Sound,
+  Carts,
+  Fullscreen
+} from './external-buttons'
+
+export const Pico8 = ({ className, css, ...p }) => {
   const [isMuted, setMuted] = useState(true)
   const [isMobile, _setMobile] = useState(false)
-  const setMobile = (value) => {
+  const setMobile = value => {
     _setMobile(value)
     if (value) setTimeout(fullscreen, 100)
   }
@@ -49,7 +58,7 @@ export const Pico8 = p => {
       return AC ? new AC() : {}
     })()
     temp_context.onstatechange = () => {
-      if (temp_context.state == "running") {
+      if (temp_context.state == 'running') {
         setMuted(false)
         setPaused(false)
         setStarted(true)
@@ -59,7 +68,12 @@ export const Pico8 = p => {
     }
   }
   useEffect(() => {
-    setEvent("keydown", blockKeys, { passive: false }, hasStarted && p.blockKeys)
+    setEvent(
+      'keydown',
+      blockKeys,
+      { passive: false },
+      hasStarted && p.blockKeys
+    )
   })
   const reset = () => {
     if (isPaused && p.unpauseOnReset) pause()
@@ -69,23 +83,23 @@ export const Pico8 = p => {
   useEffect(() => {
     startPico()
     if (p.autoPlay) autoStart()
-    addEvent("keydown", keydown, { passive: false })
+    addEvent('keydown', keydown, { passive: false })
     addEvent('touchstart', onMobile, { passive: true })
     onFullscreenEvent(fullscreenChange, false)
     return () => {
       removePico()
-      removeEvent("keydown", keydown, { passive: false })
+      removeEvent('keydown', keydown, { passive: false })
       removeEvent('touchstart', onMobile, { passive: true })
       removeOnFullscreenEvent(fullscreenChange, false)
-      removeEvent("keydown", blockKeys, { passive: false })
+      removeEvent('keydown', blockKeys, { passive: false })
     }
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [])
 
-  const fullscreenChange = (e) => {
+  const fullscreenChange = e => {
     onFullscreenExit(() => setFullscreen(false))
   }
-  const keydown = (e) => {
+  const keydown = e => {
     if (keys.indexOf(e.keyCode) > -1) updatePauseButton()
   }
   const updatePauseButton = () => {
@@ -115,39 +129,6 @@ export const Pico8 = p => {
     setMobile(false)
     window.p8_close_cart()
   }
-  const hide = css`
-    position: absolute;
-    visibility: hidden;
-    width: 0;
-    height: 0;
-  `
-  const none = css`display: none`;
-  const mobileHeader = css`
-    position: absolute;
-    width: 100%;
-    z-index: 10;
-    left: 0px;
-  `
-  const stack = css`
-    color: #ccc;
-    display: inline-block;
-    margin-left: 0px;
-    margin-top: 12.5px;
-    @media only screen and (min-width: 768px) {
-      margin-top: 0px;
-      margin-left: 12.5px;
-    }
-  `
-  const inline = css`
-    display: flex;
-    justify-content: center;
-    width: 85vmin;
-    max-width: 768px;
-  `
-  const center = css`
-    margin-left: auto;
-    margin-right: auto;
-  `
   const playArea = useRef()
   const { usePointer, legacyButtons } = p
   const Buttons = b => {
@@ -167,25 +148,56 @@ export const Pico8 = p => {
     reset
   }
   return (
-    <div css={p.css} className={p.className} style={p.style}>
-      <canvas css={hide} />
+    <div css={css} className={className} style={p.style}>
+      <canvas className={styles.hide} />
       <div id="p8_container">
-        { !hasStarted ? <Start center={p.center} placeholder={p.placeholder} onClick={start} usePointer={p.usePointer} /> : null }
-        <div ref={playArea} id="p8_playarea" css={hasStarted ? '' : [hide, none]}>
-          <div id="menu_buttons_touch" css={mobileHeader}>
-            <Button align="left" button="Sound" on={!isMuted} onClick={sound} hidden={!isMobile || !isFullscreen} />
-            <Button align="right" button="Close" onClick={close} hidden={!isMobile || !isFullscreen} />
+        {!hasStarted ? (
+          <Start
+            center={p.center}
+            placeholder={p.placeholder}
+            onClick={start}
+            usePointer={p.usePointer}
+          />
+        ) : null}
+        <div
+          ref={playArea}
+          id="p8_playarea"
+          className={cx({ hide: !hasStarted, none: !hasStarted })}
+        >
+          <div id="menu_buttons_touch" className={styles['mobile-header']}>
+            <Button
+              align="left"
+              button="Sound"
+              on={!isMuted}
+              onClick={sound}
+              hidden={!isMobile || !isFullscreen}
+            />
+            <Button
+              align="right"
+              button="Close"
+              onClick={close}
+              hidden={!isMobile || !isFullscreen}
+            />
           </div>
           <div>
-            <Canvas legacyButtons={p.legacyButtons} center={p.center}
-                    fullscreen={(isMobile && isFullscreen) || isFullscreen}
-                    hasStarted={hasStarted} hideCursor={p.hideCursor}
+            <Canvas
+              legacyButtons={p.legacyButtons}
+              center={p.center}
+              fullscreen={(isMobile && isFullscreen) || isFullscreen}
+              hasStarted={hasStarted}
+              hideCursor={p.hideCursor}
             >
-              { !(isMobile || isFullscreen) && hasStarted ?
-                <div css={!p.legacyButtons ? stack : ([inline, p.center ? center : ''])}>
+              {!(isMobile || isFullscreen) && hasStarted ? (
+                <div
+                  className={cx({
+                    stack: !p.legacyButtons,
+                    inline: p.legacyButtons,
+                    center: p.legacyButtons && p.center
+                  })}
+                >
                   <Buttons {...buttonData} />
                 </div>
-              : null}
+              ) : null}
             </Canvas>
           </div>
         </div>

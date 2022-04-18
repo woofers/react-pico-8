@@ -1,6 +1,12 @@
 import React from 'react'
-import { Reset, Pause, Fullscreen,
-         Sound, Carts, Controls } from './external-buttons'
+import {
+  Reset,
+  Pause,
+  Fullscreen,
+  Sound,
+  Carts,
+  Controls
+} from './external-buttons'
 
 export { default as LegacyButton } from './legacy-button'
 export { default as Button } from './button'
@@ -25,4 +31,5 @@ const NormalButtons = p => (
   </>
 )
 
-export const DefaultButtons = p => p.legacyButtons ? <LegacyButtons {...p} /> : <NormalButtons {...p} />
+export const DefaultButtons = p =>
+  p.legacyButtons ? <LegacyButtons {...p} /> : <NormalButtons {...p} />

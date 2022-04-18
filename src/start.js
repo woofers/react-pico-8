@@ -1,36 +1,27 @@
-/** @jsx jsx */
-import { jsx, css } from '@emotion/react'
+import React from 'react'
 import { start } from './icons'
+import classes from './classnames'
+import styles from './start.module.css'
 
-const Start = p => {
-  const bg = p.placeholder ? `url(${p.placeholder})` : '#000'
-  const style = css`
-    max-width: 768px;
-    max-height: 768px;
-    display: flex;
-    img {
-      margin: auto;
-    }
-    cursor: ${p.usePointer ? 'pointer' : 'auto'};
-    background: ${bg};
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    position: relative;
-    left: 0px;
-    top: 0px;
-    width: 85vmin;
-    height: 85vmin;
-    border: 0;
-  `
-  const center = css`
-    margin-left: auto;
-    margin-right: auto;
-  `
+const cx = classes.bind(styles)
+
+const Start = ({ onClick, placeholder, usePointer, center, ...rest }) => {
+  const background = placeholder
+    ? `rgba(0, 0, 0, 0) url(${placeholder}) no-repeat scroll 0% 0% / cover`
+    : '#000'
   return (
-    <button title="Start Game" css={[style, p.center ? center : '']} onClick={p.onClick}>
-      <img alt="" src={start}/>
+    <button
+      className={cx('box', {
+        center,
+        pointer: usePointer,
+        normal: !usePointer
+      })}
+      title="Start Game"
+      style={{ background }}
+      onClick={onClick}
+      type="button"
+    >
+      <img alt="" src={start} className={styles.img} />
     </button>
   )
 }
