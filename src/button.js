@@ -1,17 +1,12 @@
 import React from 'react'
-import { icons } from './icons'
 import classes from './classnames'
 import styles from './button.module.css'
 
 const cx = classes.bind(styles)
 
 const Button = p => {
-  let image = p.button.toLowerCase()
-  let title = p.title
-  if (p.onTitle) {
-    image += p.on ? '1' : '0'
-  }
-  image = icons[`${image}.png`]
+  const title = p.title
+  const image = p.button.toLowerCase() + (p.onTitle ? (p.on ? '1' : '0') : '')
   if (p.hidden) return null
   let align = ''
   const Wrapper = p => {
@@ -52,11 +47,10 @@ const Button = p => {
     >
       <button
         disabled={p.disabled}
-        className={cx('mask', {
+        className={cx('mask', `icon-${image}`, {
           'mask-selected': p.selected,
           'button-enabled': !p.disabled
         })}
-        style={{ maskImage: `url(${image})` }}
       />
     </Wrapper>
   )

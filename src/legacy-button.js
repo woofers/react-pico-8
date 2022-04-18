@@ -1,5 +1,4 @@
 import React from 'react'
-import { legacy } from './icons'
 import classes from './classnames'
 import styles from './legacy-button.module.css'
 
@@ -50,12 +49,7 @@ const OldButton = ({
   return (
     <Link>
       <Button>
-        <img
-          width="12px"
-          height="12px"
-          src={legacy[`${button.toLowerCase()}.png`]}
-          alt=""
-        />{' '}
+        <div className={cx('icon', `icon-${button.toLowerCase()}`)} />{' '}
         {button}
       </Button>
     </Link>

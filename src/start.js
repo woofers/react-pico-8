@@ -1,5 +1,4 @@
 import React from 'react'
-import { start } from './icons'
 import classes from './classnames'
 import styles from './start.module.css'
 
@@ -21,7 +20,7 @@ const Start = ({ onClick, placeholder, usePointer, center, ...rest }) => {
       onClick={onClick}
       type="button"
     >
-      <img alt="" src={start} className={styles.img} />
+      <div className={styles.img} />
     </button>
   )
 }
