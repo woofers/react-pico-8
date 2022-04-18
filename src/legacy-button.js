@@ -49,8 +49,7 @@ const OldButton = ({
   return (
     <Link>
       <Button>
-        <div className={cx('icon', `icon-${button.toLowerCase()}`)} />{' '}
-        {button}
+        <div className={cx('icon', `icon-${button.toLowerCase()}`)} /> {button}
       </Button>
     </Link>
   )

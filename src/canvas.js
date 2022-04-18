@@ -15,8 +15,11 @@ const Canvas = p => {
     >
       <canvas
         className={
-          cx('canvas', { fullscreen: p.fullscreen, normal: !p.fullscreen }) +
-          ' emscripten'
+          cx('canvas', {
+            fullscreen: p.fullscreen,
+            normal: !p.fullscreen,
+            none: p.hasStarted && p.hideCursor
+          }) + ' emscripten'
         }
         id="canvas"
         onContextMenu={e => e.preventDefault()}
