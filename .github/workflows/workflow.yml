@@ -11,13 +11,9 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '16.14.2'
+        node-version: '17.8.0'
         registry-url: 'https://registry.npmjs.org'
         cache: 'yarn'
-    - name: Deploy Info
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "$GITHUB_CONTEXT"
     - name: Install
       run: yarn install
     - name: Build
@@ -38,7 +34,9 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
     - name: Publish Demo
+      uses: JamesIves/github-pages-deploy-action@v4.3.0
       if: startsWith(github.ref, 'refs/tags/')
-      run: yarn --cwd demo deploy-ident
-      env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      with:
+        branch: gh-pages
+        folder: demo/out
+        commit-message: Updates
