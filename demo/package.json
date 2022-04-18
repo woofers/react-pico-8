@@ -1,7 +1,7 @@
 {
   "name": "react-pico-8-demo",
   "homepage": "http://woofers.github.io/react-pico-8",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
@@ -13,7 +13,7 @@
     "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^18.0.0",
     "react-emotion": "^10.0.0",
-    "react-pico-8": "../.",
+    "react-pico-8": "^4.0.1",
     "react-prism": "^4.3.2"
   },
   "scripts": {
