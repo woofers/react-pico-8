@@ -35,6 +35,7 @@ import { Controls,
          Sound,
          Carts,
          Fullscreen } from 'react-pico-8/buttons'
+import 'react-pico-8/styles.css'
 
 const App = () => (
   <Pico8 src="index.js"
