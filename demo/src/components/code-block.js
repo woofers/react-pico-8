@@ -7,16 +7,17 @@ import Copy from 'components/copy'
 const code = css`
   && {
     position: relative;
-    width: 600px;
+    max-width: 600px;
+    overflow-x: auto;
+    background: #191919;
     div {
       background: #191919;
       border-radius: 0.3em;
     }
     pre {
+      margin: 0;
       background: none;
-      margin-left: 20px;
-      padding: 0;
-      padding-bottom: 25px;
+      padding: 8px 20px 33px;
       span[class*='class-name'] {
         color: #ff79c6;
       }
@@ -30,6 +31,9 @@ const code = css`
     span[class*='string'],
     span[class*='attr-value'] {
       font-weight: 700;
+    }
+    button {
+      padding: 1px 6px;
     }
   }
 `

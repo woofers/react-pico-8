@@ -8,7 +8,6 @@ const Button = p => {
   const title = p.title
   const image = p.button.toLowerCase() + (p.onTitle ? (p.on ? '1' : '0') : '')
   if (p.hidden) return null
-  let align = ''
   const Wrapper = p => {
     const isFunction = () => typeof p.onClick === 'function'
     const { disabled, onClick, ...rest } = p
@@ -29,8 +28,6 @@ const Button = p => {
       </a>
     )
   }
-  if (p.align === 'left') align = left
-  else if (p.align === 'right') align = right
   return (
     <Wrapper
       disabled={p.disabled}

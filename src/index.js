@@ -79,7 +79,10 @@ export const Pico8 = ({ className, css, ...p }) => {
     if (isPaused && p.unpauseOnReset) pause()
     setTimeout(window.Module.pico8Reset, 20)
   }
-  const onMobile = () => setMobile(true)
+  const onMobile = () => {
+    if (isMobile) return
+    setMobile(true)
+  }
   useEffect(() => {
     startPico()
     if (p.autoPlay) autoStart()
@@ -168,6 +171,8 @@ export const Pico8 = ({ className, css, ...p }) => {
             <Button
               align="left"
               button="Sound"
+              onTitle="Mute"
+              title="Unmute"
               on={!isMuted}
               onClick={sound}
               hidden={!isMobile || !isFullscreen}
@@ -175,6 +180,7 @@ export const Pico8 = ({ className, css, ...p }) => {
             <Button
               align="right"
               button="Close"
+              title="Close"
               onClick={close}
               hidden={!isMobile || !isFullscreen}
             />
