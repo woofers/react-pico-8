@@ -4,13 +4,12 @@ const path = require('path')
 module.exports = {
   distDir: 'build',
   swcMinify: true,
-  webpack5: true,
   reactStrictMode: true,
   images: {
     loader: 'imgix',
     path: 'https://example.com/myaccount/',
   },
-  experimental: {
+  compiler: {
     emotion: true
   },
   webpack(config, { isServer }) {

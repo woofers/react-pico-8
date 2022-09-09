@@ -1,6 +1,6 @@
 {
   "name": "react-pico-8",
-  "version": "4.0.3",
+  "version": "4.0.4",
   "description": "Run PICO-8 game cartridges in React",
   "main": "index.js",
   "sideEffects": false,
@@ -36,6 +36,10 @@
     "reactjs",
     "component"
   ],
+  "browserslist": [
+    "defaults",
+    "not IE 11"
+  ],
   "author": "Jaxson Van Doorn <jaxson.vandoorn@gmail.com>",
   "license": "MIT",
   "bugs": {
@@ -46,7 +50,7 @@
     "react": "^0.13.0 || ^0.14.0 || ^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
-    "microbundle": "^0.15.0",
+    "microbundle": "^0.15.1",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2"
   },
