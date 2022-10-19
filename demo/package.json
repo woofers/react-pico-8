@@ -5,8 +5,9 @@
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
-    "@mui/material": "^5.10.4",
-    "next": "^12.3.0",
+    "@mui/material": "^5.10.10",
+    "eslint-config": "^0.3.0",
+    "next": "^12.3.1",
     "prism-themes": "https://github.com/PrismJS/prism-themes",
     "prismjs": "^1.29.0",
     "react": "^18.0.0",
@@ -27,7 +28,7 @@
   "license": "MIT",
   "devDependencies": {
     "alien-expansion": "^1.2.0",
-    "eslint": "^8.23.0",
+    "eslint": "^8.25.0",
     "eslint-config-next": "^12.3.0",
     "eslint-webpack-plugin": "^3.1.1",
     "gh-pages": "^4.0.0",
