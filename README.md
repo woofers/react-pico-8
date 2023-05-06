@@ -17,12 +17,15 @@ Run [PICO-8](https://lexaloffle.com/pico-8.php) game cartridges using a cusomtiz
 
 **Yarn**
 
-    yarn add react-pico-8
+```yarn
+yarn add react-pico-8
+```
 
 **npm**
 
-    npm install react-pico-8
-
+```npm
+npm install react-pico-8
+```
 
 # Usage
 
