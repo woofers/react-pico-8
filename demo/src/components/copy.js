@@ -37,7 +37,7 @@ const icon = css`
   }
 `
 
-const Copy = ({ value, ...rest }) => (
+const Copy = ({ value = 'Copied from button', ...rest }) => (
   <button
     {...rest}
     type="button"
@@ -48,9 +48,5 @@ const Copy = ({ value, ...rest }) => (
     <Icon />
   </button>
 )
-
-Copy.defaultProps = {
-  value: 'Copied from button'
-}
 
 export default Copy

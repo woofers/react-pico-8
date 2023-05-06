@@ -25,7 +25,20 @@ export {
   Fullscreen
 } from './external-buttons'
 
-export const Pico8 = ({ className, css, ...p }) => {
+
+const defaultProps = {
+  autoPlay: true,
+  legacyButtons: false,
+  placeholder: '',
+  hideCursor: false,
+  center: false,
+  blockKeys: false,
+  usePointer: true,
+  unpauseOnReset: true
+}
+
+export const Pico8 = ({ className, css, ...restProps }) => {
+  const p = { ...defaultProps, ...restProps }
   const [isMuted, setMuted] = useState(true)
   const [isMobile, _setMobile] = useState(false)
   const setMobile = value => {
@@ -212,13 +225,3 @@ export const Pico8 = ({ className, css, ...p }) => {
   )
 }
 
-Pico8.defaultProps = {
-  autoPlay: true,
-  legacyButtons: false,
-  placeholder: '',
-  hideCursor: false,
-  center: false,
-  blockKeys: false,
-  usePointer: true,
-  unpauseOnReset: true
-}
